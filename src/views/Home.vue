@@ -1,18 +1,22 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <el-row type="flex" justify="center">
+    <el-col :lg="12">
+      <p style="text-align:text-center">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde sequi
+        itaque, perspiciatis sunt, excepturi magnam ipsam eum tenetur aperiam,
+        quae veritatis delectus.
+      </p>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import HomeLayout from "../layouts/HomeLayout";
 
 export default {
   name: "Home",
-  components: {
-    HelloWorld
+  created() {
+    this.$emit(`update:layout`, HomeLayout);
   }
 };
 </script>
