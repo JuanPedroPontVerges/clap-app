@@ -1,9 +1,7 @@
 <template>
-  <v-app>
-    <component :is="layout">
-      <router-view :layout.sync="layout" />
-    </component>
-  </v-app>
+  <component :is="layout">
+    <router-view :layout.sync="layout" />
+  </component>
 </template>
 
 <script>

@@ -15,29 +15,50 @@
     <el-row type="flex" justify="center">
       <el-col :lg="9" class="centrado">
         <h3>Alumnos/Profesores</h3>
-        <el-button>Ingresar</el-button>
+        <el-button @click="toogleRegister()">Ingresar</el-button>
+        <LogInOrRegister
+          v-if="registerDialog"
+          @close="toogleRegister()"
+        ></LogInOrRegister>
       </el-col>
       <el-col :lg="1">
         <div class="linea"></div>
       </el-col>
       <el-col :lg="8" class="centrado">
         <h3>Empelados/Proveedores</h3>
-        <el-button>Ingresar</el-button>
+        <el-button @click="toogleRegister()">Ingresar</el-button>
+        <LogInOrRegister
+          v-if="registerDialog"
+          @close="toogleRegister()"
+        ></LogInOrRegister>
       </el-col>
     </el-row>
   </div>
 </template>
 
 <script>
-
 import LandingLayout from "../layouts/LandingLayout";
+import LogInOrRegister from "../components/LogInOrRegister";
 
 export default {
   data() {
     return {};
   },
   created() {
-    this.$emit(`update:layout`, LandingLayout)
+    this.$emit(`update:layout`, LandingLayout);
+  },
+  methods: {
+    toogleRegister() {
+      this.$store.commit("setShowLogInOrRegister");
+    }
+  },
+  computed: {
+    registerDialog() {
+      return this.$store.state.loginOrRegister;
+    }
+  },
+  components: {
+    LogInOrRegister
   }
 };
 </script>

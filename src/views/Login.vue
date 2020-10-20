@@ -21,19 +21,7 @@
       </el-row>
       <el-row type="flex" justify="center">
         <el-col :lg="16">
-          <el-form :model="form">
-            <el-form-item label="">
-              <el-input v-model="form.email" type="text"></el-input>
-            </el-form-item>
-            <el-form-item label="">
-              <el-input v-model="form.password" type="text"></el-input>
-            </el-form-item>
-            <el-button type="submit">Ingresar</el-button>
-            <div class="extras">
-              <p>¿Aún no tienes cuenta?</p>
-              <a href="">Registrate ahora</a>
-            </div>
-          </el-form>
+          <component :is="currentComponent"></component>
         </el-col>
       </el-row>
     </el-aside>
@@ -75,8 +63,10 @@
 </template>
 
 <script>
-
 import LoginOrSignupLayout from "../layouts/LoginOrSignupLayout";
+import LogInOrRegister from "../components/LogInOrRegister";
+import AppLogin from "../components/AppLogin";
+import AppRegister from "../components/AppRegister";
 
 export default {
   data() {
@@ -87,12 +77,28 @@ export default {
       }
     };
   },
+  methods: {
+    toogleRegister() {
+      this.$store.commit("setShowLogInOrRegister");
+    }
+  },
+  computed: {
+    registerDialog() {
+      return this.$store.state.loginOrRegister;
+    },
+    currentComponent() {
+      return this.$store.state.component;
+    }
+  },
   created() {
     this.$emit(`update:layout`, LoginOrSignupLayout);
   },
-  components: {}
+  components: {
+    LogInOrRegister,
+    AppLogin,
+    AppRegister
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>
