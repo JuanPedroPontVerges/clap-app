@@ -9,7 +9,8 @@ export default new Vuex.Store({
   state: {
     userProfile: {},
     loginOrRegister: false,
-    component: 'AppLogin'
+    component: 'AppLogin',
+    errorMsg: ''
   },
   mutations: {
     setUserProfile(state, val) {
@@ -20,6 +21,9 @@ export default new Vuex.Store({
     },
     setCurrentComponent(state, payload) {
       state.component = payload
+    },
+    setErrorMessage(state, payload) {
+      state.errorMsg = payload
     }
   },
   actions: {
@@ -27,7 +31,7 @@ export default new Vuex.Store({
       // sign user in
       await fb.auth.signInWithEmailAndPassword(form.email, form.password)
         .then(({ user }) => {
-          console.log(user)
+          this.commit('setErrorMessage', ' ')
           dispatch('fetchUserProfile', user)
         })
         .catch(err => {
@@ -46,8 +50,8 @@ export default new Vuex.Store({
       })
       // set user profile in state
       // change route to dashboard
-      // if (router.currentRoute.fullPath !== '/')
-      //   router.push('/')
+      if (router.currentRoute.fullPath !== '/')
+        router.push('/')
     },
     async signup({ dispatch }, form) {
       // sign user up
@@ -74,7 +78,7 @@ export default new Vuex.Store({
       await fb.auth.signOut()
       // clear userProfile and redirect to /login
       commit('setUserProfile', {})
-      // router.push('/login')
+      router.push('/login')
     },
   },
   modules: {}

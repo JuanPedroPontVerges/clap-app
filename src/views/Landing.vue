@@ -15,22 +15,18 @@
     <el-row type="flex" justify="center">
       <el-col :lg="9" class="centrado">
         <h3>Alumnos/Profesores</h3>
-        <el-button @click="toogleRegister()">Ingresar</el-button>
-        <LogInOrRegister
-          v-if="registerDialog"
-          @close="toogleRegister()"
-        ></LogInOrRegister>
+        <router-link to="/login?user=Alumno/Profesores">
+          <el-button>Ingresar</el-button>
+        </router-link>
       </el-col>
       <el-col :lg="1">
         <div class="linea"></div>
       </el-col>
       <el-col :lg="8" class="centrado">
         <h3>Empelados/Proveedores</h3>
-        <el-button @click="toogleRegister()">Ingresar</el-button>
-        <LogInOrRegister
-          v-if="registerDialog"
-          @close="toogleRegister()"
-        ></LogInOrRegister>
+        <router-link to="/login?user=Empleados/Proveedores">
+          <el-button>Ingresar</el-button>
+        </router-link>
       </el-col>
     </el-row>
   </div>

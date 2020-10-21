@@ -8,8 +8,6 @@
     >
       <component :is="currentComponent"></component>
     </el-dialog>
-
-    <!--                                                                                -->
   </div>
 </template>
 
@@ -25,17 +23,7 @@ export default {
     };
   },
   methods: {
-    async loguearse() {
-      this.errorMsg = "";
-      try {
-        this.$store.dispatch("login", {
-          email: this.loginForm.email,
-          password: this.loginForm.password
-        });
-      } catch (err) {
-        this.errorMsg = err.message;
-      }
-    },
+
     beforeCloseHandler() {
       this.$store.commit("setShowLogInOrRegister")
       this.$store.commit("setCurrentComponent", 'AppLogin')

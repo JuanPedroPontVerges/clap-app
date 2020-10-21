@@ -4,14 +4,17 @@ import Home from "../views/Home.vue";
 import Landing from "../views/Landing.vue";
 import Login from "../views/Login.vue";
 import Forms from "../views/Forms.vue";
+import { auth } from '../firebase';
 
 Vue.use(VueRouter);
 
-const routes = [
-  {
+const routes = [{
     path: "/",
     name: "Home",
-    component: Home
+    component: Home,
+    meta: {
+      requiresAuth: true,
+    }
   },
   {
     path: "/landing",
@@ -21,12 +24,15 @@ const routes = [
   {
     path: "/login",
     name: "Login",
-    component: Login
+    component: Login,
   },
   {
     path: "/forms",
     name: "Forms",
-    component: Forms
+    component: Forms,
+    meta: {
+      requiresAuth: true,
+    }
   },
 ];
 
@@ -35,5 +41,14 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 });
+
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
+  if (requiresAuth && !auth.currentUser) {
+    next('/landing')
+  } else {
+    next()
+  }
+})
 
 export default router;

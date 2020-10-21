@@ -16,7 +16,7 @@
       </el-row>
       <el-row type="flex" justify="center">
         <el-col :lg="16">
-          <h3>Alumnos/Profesores</h3>
+          <h3>{{this.$route.query.user}}</h3>
         </el-col>
       </el-row>
       <el-row type="flex" justify="center">
@@ -92,6 +92,12 @@ export default {
   },
   created() {
     this.$emit(`update:layout`, LoginOrSignupLayout);
+  },
+  beforeRouteEnter (to, from, next) {
+    if(from.fullPath !== "/landing")
+      next("/landing")
+    else 
+      next()
   },
   components: {
     LogInOrRegister,

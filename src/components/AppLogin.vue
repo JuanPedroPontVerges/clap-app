@@ -13,9 +13,11 @@
       <span @click="setRegister()">aca</span> para poder inciar sesión
     </div>
     <div slot="footer" class="dialog-footer" style="margin-top:20px">
-      <el-button @click="setShowLogInOrRegister">Cancelar</el-button>
       <el-button type="primary" @click="loguearse()">Iniciar Sesión</el-button>
     </div>
+    <p v-if="errMsg">
+      {{ errMsg }}
+    </p>
   </div>
 </template>
 
@@ -36,6 +38,17 @@ export default {
     setShowLogInOrRegister() {
       this.$store.commit("setShowLogInOrRegister");
       this.$store.commit("setCurrentComponent", "AppLogin");
+    },
+    loguearse() {
+      this.$store.dispatch("login", {
+        email: this.loginForm.email,
+        password: this.loginForm.contrasena
+      });
+    }
+  },
+  computed: {
+    errMsg() {
+      return this.$store.state.errorMsg;
     }
   }
 };
