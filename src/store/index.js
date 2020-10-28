@@ -10,7 +10,7 @@ export default new Vuex.Store({
     userProfile: {},
     loginOrRegister: false,
     component: 'AppLogin',
-    errorMsg: ''
+    errorMsg: '',
   },
   mutations: {
     setUserProfile(state, val) {
@@ -24,13 +24,17 @@ export default new Vuex.Store({
     },
     setErrorMessage(state, payload) {
       state.errorMsg = payload
-    }
+    },
   },
   actions: {
-    async login({ dispatch }, form) {
+    async login({
+      dispatch
+    }, form) {
       // sign user in
       await fb.auth.signInWithEmailAndPassword(form.email, form.password)
-        .then(({ user }) => {
+        .then(({
+          user
+        }) => {
           this.commit('setErrorMessage', ' ')
           dispatch('fetchUserProfile', user)
         })
@@ -39,42 +43,58 @@ export default new Vuex.Store({
           console.log("Errorrrr", err)
         })
     },
-    async fetchUserProfile({ commit }, user) {
+    async fetchUserProfile({
+      commit
+    }, user) {
       // fetch user profile
       await fb.usersCollection.doc(user.uid).get()
-      .then(userProfile => {
-        commit('setUserProfile', userProfile.data())
-      })
-      .catch(err => {
-        commit('setErrorMessage', err.message)
-      })
+        .then(userProfile => {
+          console.log(userProfile.data())
+          commit('setUserProfile', userProfile.data())
+        })
+        .catch(err => {
+          commit('setErrorMessage', err.message)
+        })
       // set user profile in state
       // change route to dashboard
       if (router.currentRoute.fullPath !== '/')
         router.push('/')
     },
-    async signup({ dispatch }, form) {
+    async signup({
+      dispatch
+    }, form) {
       // sign user up
-      const { user } = await fb.auth.createUserWithEmailAndPassword(form.email, form.password)
+      const { user } = await fb.auth.createUserWithEmailAndPassword(form.usuario.email, form.usuario.contrasena)
       // set type of user depending of where this action is called from
-      let tipo
-        if (router.currentRoute.fullPath == "/login") {
+      let tipo = ''
+      if (router.currentRoute.fullPath == "/login") {
         tipo = "admin-user"
       } else {
         tipo = "normal-user"
       }
       // create user profile object in userCollections
       await fb.usersCollection.doc(user.uid).set({
-        name: form.name,
-        email: form.email,
-        contrasena: form.password,
-        type: tipo
+        usuario: {
+          nombre: form.usuario.nombre,
+          email: form.usuario.email,
+          contrasena: form.usuario.contrasena,
+          apellido: form.usuario.apellido,
+          type: tipo
+        },
+        institucion: {
+          nombre: form.institucion.nombre,
+          tieneSitioWeb: form.institucion.tieneSitioWeb,
+          web: form.institucion.web,
+          interesados: form.institucion.interesados
+        }
       })
-    
+
       // fetch user profile and set in state
       dispatch('fetchUserProfile', user)
     },
-    async logout({ commit }) {
+    async logout({
+      commit
+    }) {
       await fb.auth.signOut()
       // clear userProfile and redirect to /login
       commit('setUserProfile', {})

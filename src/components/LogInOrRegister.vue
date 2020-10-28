@@ -23,7 +23,6 @@ export default {
     };
   },
   methods: {
-
     beforeCloseHandler() {
       this.$store.commit("setShowLogInOrRegister")
       this.$store.commit("setCurrentComponent", 'AppLogin')

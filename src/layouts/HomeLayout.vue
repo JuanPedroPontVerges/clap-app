@@ -2,10 +2,10 @@
   <el-container>
     <el-header style="background:#E1D5E7;">
       <el-row type="flex" justify="space-between" align="middle">
-        <el-col :lg="4">
-          <h1>CLAP</h1>
+        <el-col :sm="4">
+          <h1 v-if="getInstitucion">{{getInstitucion}}</h1>
         </el-col>
-        <el-col :lg="4">
+        <el-col :sm="4">
           <el-button @click="signout()">cerrar sesion</el-button>
         </el-col>
       </el-row>
@@ -25,6 +25,11 @@ export default {
   methods: {
     signout() {
       this.$store.dispatch("logout");
+    }
+  },
+  computed: {
+    getInstitucion() {
+      return this.$store.state.userProfile.institucion.nombre || "cargando";
     }
   }
 };

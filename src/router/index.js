@@ -4,6 +4,7 @@ import Home from "../views/Home.vue";
 import Landing from "../views/Landing.vue";
 import Login from "../views/Login.vue";
 import Forms from "../views/Forms.vue";
+import Register from "../views/Register.vue";
 import { auth } from '../firebase';
 
 Vue.use(VueRouter);
@@ -32,6 +33,14 @@ const routes = [{
     component: Forms,
     meta: {
       requiresAuth: true,
+    }
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: Register,
+    meta: {
+      requiresAuth: false,
     }
   },
 ];

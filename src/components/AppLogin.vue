@@ -10,7 +10,8 @@
     </el-form>
     <div class="extras">
       No te registraste?, registrate
-      <span @click="setRegister()">aca</span> para poder inciar sesión
+      <router-link @click.native="setRegister()" to="/register">aca</router-link> para poder inciar
+      sesión
     </div>
     <div slot="footer" class="dialog-footer" style="margin-top:20px">
       <el-button type="primary" @click="loguearse()">Iniciar Sesión</el-button>

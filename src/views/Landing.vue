@@ -12,21 +12,26 @@
         </p>
       </el-col>
     </el-row>
-    <el-row type="flex" justify="center">
-      <el-col :lg="9" class="centrado">
-        <h3>Alumnos/Profesores</h3>
-        <router-link to="/login?user=Alumno/Profesores">
-          <el-button>Ingresar</el-button>
-        </router-link>
+    <el-row>
+      <el-col :xs="24" :sm="11" class="centrado">
+        <div>
+          <h3>Alumnos/Profesores</h3>
+          <router-link to="/login?user=Alumno/Profesores">
+            <el-button>Ingresar</el-button>
+          </router-link>
+        </div>
       </el-col>
-      <el-col :lg="1">
-        <div class="linea"></div>
+      <el-col :lg="2" :sm="2">
+        <div class="linea hidden-xs-only"></div>
+        <div class="linea2 hidden-sm-and-up"></div>
       </el-col>
-      <el-col :lg="8" class="centrado">
-        <h3>Empelados/Proveedores</h3>
-        <router-link to="/login?user=Empleados/Proveedores">
-          <el-button>Ingresar</el-button>
-        </router-link>
+      <el-col :xs="24" :sm="11" :md="11" class="centrado">
+        <div>
+          <h3>Empelados/Proveedores</h3>
+          <router-link to="/login?user=Empleados/Proveedores">
+            <el-button>Ingresar</el-button>
+          </router-link>
+        </div>
       </el-col>
     </el-row>
   </div>
@@ -65,6 +70,14 @@ export default {
   background: black;
   width: 0px;
   border: 1px solid black;
+  margin: auto;
+}
+.linea2 {
+  height: 0px;
+  background: black;
+  width: 180px;
+  border: 1px solid black;
+  margin: 20px auto;
 }
 .centrado {
   text-align: center;
