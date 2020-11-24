@@ -1,5 +1,5 @@
 <template>
-  <el-container>
+  <el-container style="background-color: #dfddeb; height=100vh;">
     <slot />
   </el-container>
 </template>

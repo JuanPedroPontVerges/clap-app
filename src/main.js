@@ -3,15 +3,20 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import "./plugins/element.js";
-import { auth } from './firebase'
+import {
+  auth
+} from './firebase'
+import VueNavigationBar from "vue-navigation-bar";
+Vue.component("vue-navigation-bar", VueNavigationBar);
+import "vue-navigation-bar/dist/vue-navigation-bar.css";
 
 
 Vue.config.productionTip = false;
 
 let app
 
-auth.onAuthStateChanged( user => {
-  if(!app) {
+auth.onAuthStateChanged(user => {
+  if (!app) {
     app = new Vue({
       router,
       store,
@@ -21,5 +26,6 @@ auth.onAuthStateChanged( user => {
 
   if (user) {
     store.dispatch('fetchUserProfile', user)
-  }
+  } else
+    store.commit("setUserProfile", null)
 })

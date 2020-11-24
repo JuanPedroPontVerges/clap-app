@@ -1,21 +1,18 @@
 <template>
   <el-container>
     <el-main>
-      <el-row :gutter="10">
-        <el-col :xs="24" :sm="12">
+      <el-row :gutter="10" style="height: 100vh">
+        <el-col :xs="24" :sm="18" style="padding: 0 50px">
+          <div class="button-volver" @click="volver">
+            <i class="el-icon-back">Volver</i>
+          </div>
           <el-col :xs="24">
             <h1>La Metro</h1>
           </el-col>
-          <el-col :xs="24">
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis
-              odio
-              <br />excepturi autem molestias libero minima?
-            </p>
-          </el-col>
           <el-row>
             <el-col :xs="24">
-              <h3>{{ this.$route.query.user }}</h3>
+              <h3>Iniciar sesiòn</h3>
+              <p>Acceso {{ this.$route.query.user }}</p>
             </el-col>
           </el-row>
           <el-row>
@@ -25,34 +22,23 @@
           </el-row>
         </el-col>
         <!-- separacion de contenidos -->
-        <el-col :xs="24" :sm="12" style="background:#E1D5E7;margin:10px 0;">
+        <el-col :xs="24" :sm="6" class="aside">
           <el-col :xs="24" class="center">
-            <h1>CLAP</h1>
+            <el-row type="flex" align="middle" justify="center" style="margin:20px 0;">
+              <img src="../assets/logo.png" alt="" />
+              <h1>Pulpo</h1>
+            </el-row>
           </el-col>
-          <el-row  class="center">
-            <el-col :lg="12">
-              <h2>1</h2>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore
-                eligendi dolore inventore vel eius.
-              </p>
-            </el-col>
-          </el-row>
-          <el-row  class="center">
-            <el-col :lg="12">
-              <h2>2</h2>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore
-                eligendi dolore inventore vel eius.
-              </p>
-            </el-col>
-          </el-row>
           <el-row>
-            <el-col :lg="12" class="center">
-              <h2>3</h2>
+            <el-col :lg="24" class="center">
+              <h4>Gestión administrativa de institutos educativos</h4>
+            </el-col>
+          </el-row>
+          <el-row class="center">
+            <el-col :lg="24">
               <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore
-                eligendi dolore inventore vel eius.
+                Solocita tramites, recibe notidicaciones y rcordatorios
+                automativos, comparte archivos y ¡mucho más!
               </p>
             </el-col>
           </el-row>
@@ -72,14 +58,17 @@ export default {
     return {
       form: {
         email: "",
-        password: ""
-      }
+        password: "",
+      },
     };
   },
   methods: {
     toogleRegister() {
       this.$store.commit("setShowLogInOrRegister");
-    }
+    },
+    volver() {
+      alert("a");
+    },
   },
   computed: {},
   created() {
@@ -91,13 +80,25 @@ export default {
   },
   components: {
     LogInOrRegister,
-    AppLogin
-  }
+    AppLogin,
+  },
 };
 </script>
 
 <style>
 .center {
   text-align: center;
+}
+
+.button-volver {
+  cursor: pointer;
+}
+
+.aside {
+  background-image: url("../assets/login-bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100%;
+  color: white;
 }
 </style>

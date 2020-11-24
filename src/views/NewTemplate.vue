@@ -1,27 +1,23 @@
 <template>
-  <div>
-    <el-row>
-      <el-col :sm="24" :lg="24">
-        <h2>Tramites</h2>
-      </el-col>
-    </el-row>
-  </div>
+<AppTablero></AppTablero> 
 </template>
 
 <script>
 import HomeLayout from "../layouts/HomeLayout";
+import AppTablero from "../components/AppTablero";
 
 export default {
-  name: "Home",
   data() {
     return {};
   },
   created() {
     this.$emit(`update:layout`, HomeLayout);
   },
+  components: {
+    AppTablero
+  }
 };
 </script>
 
 <style>
-
 </style>

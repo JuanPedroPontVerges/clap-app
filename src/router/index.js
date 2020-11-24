@@ -5,16 +5,65 @@ import Landing from "../views/Landing.vue";
 import Login from "../views/Login.vue";
 import Forms from "../views/Forms.vue";
 import Register from "../views/Register.vue";
-import { auth } from '../firebase';
+import Descripcion from "../views/Descripcion.vue";
+import Tramites from "../views/Tramites.vue";
+import Configuraciones from "../views/Configuraciones.vue";
+import Personas from "../views/Personas.vue";
+import Procesos from "../views/Procesos.vue";
+import Reportes from "../views/Reportes.vue";
+//import NewTemplate from "../views/NewTemplate.vue";
+import {
+  auth
+} from '../firebase';
 
 Vue.use(VueRouter);
 
 const routes = [{
+    path: "/tramites",
+    name: "Tramites",
+    component: Tramites,
+    meta: {
+      requiresAuth: true,
+    }
+  },
+  {
+    path: "/personas",
+    name: "Personas",
+    component: Personas,
+    meta: {
+      requiresAuth: true,
+    }
+  },
+  {
     path: "/",
     name: "Home",
     component: Home,
     meta: {
-      requiresAuth: true,
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/procesos",
+    name: "Procesos",
+    component: Procesos,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/reportes",
+    name: "Reportes",
+    component: Reportes,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/configuraciones",
+    name: "Configuraciones",
+    component: Configuraciones,
+    meta: {
+      requiresAuth: true
     }
   },
   {
@@ -41,6 +90,14 @@ const routes = [{
     component: Register,
     meta: {
       requiresAuth: false,
+    }
+  },
+  {
+    path: "/descripcion/:id",
+    name: "Descipcion",
+    component: Descripcion,
+    meta: {
+      requiresAuth: true,
     }
   },
 ];
