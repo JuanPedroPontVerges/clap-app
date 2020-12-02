@@ -51,6 +51,7 @@ export default {
       this.$store.commit("setCurrentComponent", "AppLogin");
     },
     loguearse() {
+      console.log('logeo');
       this.$store.dispatch("login", {
         email: this.loginForm.email,
         password: this.loginForm.contrasena,

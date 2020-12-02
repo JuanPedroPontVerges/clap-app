@@ -6,7 +6,6 @@
     <el-main style="background-color: #dfddeb">
       <slot />
     </el-main>
-    <el-footer style="border: 1px solid black">Pie de página</el-footer>
   </el-container>
 </template>
 

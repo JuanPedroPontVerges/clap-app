@@ -11,6 +11,9 @@
     </el-row>
     <el-row>
       <el-col :sm="12">
+        <el-button type="danger" @click="eliminarTramite">Eliminar</el-button>
+      </el-col>
+      <el-col :sm="12">
         <el-input
           placeholder="Nombre solicitante"
           suffix-icon="el-icon-search"
@@ -27,24 +30,26 @@
             getTableData.filter(
               (data) =>
                 !search ||
-                data.interesado.toLowerCase().includes(search.toLowerCase())
+                data.tramite.toLowerCase().includes(search.toLowerCase())
             )
           "
           ref="singleTable"
           highlight-current-row
           @cell-click="getNumeroFila"
           @current-change="handleCurrentChange"
+          @selection-change="handleSelectionChange"
         >
-          <el-table-column prop="tramite" label="Proceso" width="140px">
+          <el-table-column type="selection" width="55"> </el-table-column>
+          <el-table-column prop="tramite" label="Tramite" width="140px">
+          </el-table-column>
+          <el-table-column prop="departamento" label="Departamento">
           </el-table-column>
           <el-table-column prop="interesado" label="Solicitante">
           </el-table-column>
           <el-table-column prop="tipo" label="Tipo"> </el-table-column>
-          <el-table-column prop="departamento" label="Departamento">
-          </el-table-column>
-          <el-table-column prop="pasosCompletados" label="Progreso">
-          </el-table-column>
           <el-table-column prop="fecha" label="Fecha"> </el-table-column>
+          <el-table-column prop="pasosCompletados" label="Pasos">
+          </el-table-column>
           <el-table-column
             prop="estado"
             label="Estado"
@@ -103,6 +108,7 @@ export default {
       currentRow: null,
       nroFila: 0,
     };
+    multipleSelection = [];
   },
   created() {
     this.$emit(`update:layout`, HomeLayout);
@@ -119,6 +125,9 @@ export default {
     handleAccion(index) {
       this.currentRow = index;
       console.log(index);
+    },
+    handleSelectionChange(val) {
+      this.multipleSelection = val;
     },
     handleCommand(command) {
       console.log(`click en ${command}`);
@@ -156,12 +165,62 @@ export default {
       const property = column["property"];
       return row[property] === value;
     },
+    eliminarTramite() {
+      //eliminar tramite
+    },
   },
   components: {},
 };
 </script>
 
 <style>
+html,
+body,
+div,
+span {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
 .el-table__row {
   cursor: pointer !important;
 }
