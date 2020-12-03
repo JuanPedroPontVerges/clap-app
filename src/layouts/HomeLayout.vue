@@ -1,9 +1,9 @@
 <template>
-  <el-container>
+  <el-container type="flex" justify="center">
     <el-header>
       <vue-navigation-bar :options="navbarOptions" />
     </el-header>
-    <el-main style="background-color: #dfddeb">
+    <el-main>
       <slot />
     </el-main>
   </el-container>
@@ -28,7 +28,7 @@ export default {
         menuOptionsRight: [
           {
             type: "link",
-            text: "Tramites",
+            text: "Trámites",
             path: { name: "Tramites" },
           },
           {
@@ -48,7 +48,7 @@ export default {
           },
           {
             type: "link",
-            text: "Configuracion",
+            text: "Configuración",
             path: { name: "Configuraciones" },
           },
           {
@@ -88,22 +88,5 @@ export default {
 
 i {
   margin: 0 !important;
-}
-
-.vnb {
-  background: #00185d !important;
-  color: #7e8ebe !important;
-}
-
-.vnb__menu-options__option__link {
-  color: #7e8ebe !important;
-}
-
-.el-header {
-  padding: 0 !important;
-}
-
-.router-link-active{
-  color:white !important;
 }
 </style>

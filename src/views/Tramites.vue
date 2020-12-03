@@ -1,11 +1,11 @@
-<template>
-  <div style="padding: 0 30px">
-    <el-row>
+<template class="tramites">
+  <div>
+    <el-row class="page-title">
       <el-col :sm="24" :lg="24">
-        <h2 style="color: rgb(0, 24, 93)">Tramites</h2>
+        <h1>Trámites</h1>
         <p>
-          Son las solicitudes generadas por alumnos, familiares, empelados o
-          proveedores.
+          Aquí verás las solicitudes generadas por alumnos, familiares, empleados o
+          proveedores de tu institución.
         </p>
       </el-col>
     </el-row>
@@ -40,7 +40,7 @@
           @selection-change="handleSelectionChange"
         >
           <el-table-column type="selection" width="55"> </el-table-column>
-          <el-table-column prop="tramite" label="Tramite" width="140px">
+          <el-table-column prop="tramite" label="Trámite" width="140px">
           </el-table-column>
           <el-table-column prop="departamento" label="Departamento">
           </el-table-column>
@@ -172,60 +172,3 @@ export default {
   components: {},
 };
 </script>
-
-<style>
-html,
-body,
-div,
-span {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
-}
-/* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-  display: block;
-}
-body {
-  line-height: 1;
-}
-ol,
-ul {
-  list-style: none;
-}
-blockquote,
-q {
-  quotes: none;
-}
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-  content: none;
-}
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-.el-table__row {
-  cursor: pointer !important;
-}
-
-.text-center {
-  text-align: center;
-}
-</style>

@@ -6,11 +6,151 @@ For example, to overwrite the theme color:
 $--color-primary: #0049ff;
 $--color-secondary: #00d6c9;
 $--color-primary-dark: rgb(0, 24, 93);
-$--table-header-background-color: #dfddeb;
+$--color-background:#EEF2FF;
+$--table-header-background-color: #EEF2FF;
 $--table-header-font-color: black;
 $--input-border-radius: 1px;
+
 
 /* icon font path, required */
 $--font-path: '~element-ui/lib/theme-chalk/fonts';
 
 @import "~element-ui/packages/theme-chalk/src/index";
+
+@font-face {
+    font-family: 'Geomanist';
+    src: url(fonts/Geomanist/Geomanist-Light.otf) format('otf');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Geomanist';
+    src: url(fonts/Geomanist/Geomanist-Book.otf) format('otf');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Geomanist';
+    src: url(fonts/Geomanist/Geomanist-Regular.otf) format('otf');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Geomanist';
+    src: url(fonts/Geomanist/Geomanist-Medium.otf) format('otf');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Geomanist';
+    src: url(fonts/Geomanist/Geomanist-Bold.otf) format('otf');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Geomanist';
+    src: url(fonts/Geomanist/Geomanist-Black.otf) format('otf');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url(fonts/Montserrat/Montserrat-Light.otf) format('otf');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: url(fonts/Montserrat/Montserrat-Regular.otf) format('otf');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: url(fonts/Montserrat/Montserrat-Medium.otf) format('otf');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Montserrat';
+    src: url(fonts/Montserrat/Montserrat-Bold.otf) format('otf');
+    font-weight: 700;
+    font-style: normal;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Geomanist', sans-serif;
+    font-weight: bold;
+    color: $--color-primary-dark;
+}
+
+h1{
+    font-size: 2em;
+    margin-block-end: 0em;
+}
+
+html{
+   min-height: 100%;
+   
+   body{
+        min-height: 100vh;
+        background-color: $--color-background;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 300;
+        padding: 0px;
+        margin: 0 auto;
+
+       .el-header{
+            padding: 0px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 9999;
+
+           .vnb {
+            background: #00185d;
+            color: #7e8ebe;
+            padding: 20px 30px;
+            }
+            
+            .vnb__menu-options__option__link {
+                color: #7e8ebe;
+                font-family: 'Geomanist', sans-serif;
+                font-weight: bold;
+                font-size: 1.08rem;
+                padding: 0px 10px;
+            }
+            
+            .router-link-active{
+                color:white;
+            }
+
+       }
+
+       .el-container{
+            min-height: 100vh;
+           
+           .el-main{
+                max-width: 1366px;
+                padding: 90px 20px 20px;
+                margin: 0 auto;
+
+                .page-title{
+                    margin-bottom: 50px;
+                }
+                
+           }
+       }
+   }
+}
+
+/* TRAMITES */
+.tramites{
+    
+    .el-table{
+
+
+    }
+
+}
