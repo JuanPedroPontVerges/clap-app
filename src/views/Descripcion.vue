@@ -69,7 +69,7 @@
             <AppPasos></AppPasos>
           </el-tab-pane>
           <el-tab-pane label="Archivos" name="second">Archivos</el-tab-pane>
-          <el-tab-pane label="Com." name="third">Com</el-tab-pane>
+          <el-tab-pane label="Chat" name="third">Chat</el-tab-pane>
           <el-tab-pane label="Perfil" name="fourth">Perfil</el-tab-pane>
         </el-tabs>
       </el-col>

@@ -16,7 +16,7 @@
     <el-row style="border:1px solid black; padding:20px; background-color:white;" :gutter="20">
       <el-col :sm="24">
         <div style="text-align:center;">
-          <el-progress type="circle" :percentage="30" :width="250"></el-progress>
+          <el-progress type="circle" :percentage="80" :width="250" :stroke-width="10" ></el-progress>
         </div>
       </el-col>
       <el-col :sm="24">

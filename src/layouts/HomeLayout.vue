@@ -4,7 +4,7 @@
       <vue-navigation-bar :options="navbarOptions" />
     </el-header>
     <el-main>
-      <slot />
+      <slot/>
     </el-main>
   </el-container>
 </template>
