@@ -8,8 +8,8 @@ import {
 } from './firebase'
 import VueNavigationBar from "vue-navigation-bar";
 Vue.component("vue-navigation-bar", VueNavigationBar);
+// vue navigation bar CSS
 import "vue-navigation-bar/dist/vue-navigation-bar.css";
-
 
 Vue.config.productionTip = false;
 

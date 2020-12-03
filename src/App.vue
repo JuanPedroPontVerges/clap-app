@@ -8,12 +8,18 @@
 export default {
   data() {
     return {
-      layout: `div`
+      layout: `div`,
     };
   },
   name: "app",
-  components: {}
+  components: {},
 };
 </script>
 
-<style></style>
+<style>
+@font-face {
+  font-family: "Geomanist";
+  src: local("Geomanist"),
+    url(./fonts/Geomanist/Geomanist-Regular.otf) format("truetype");
+}
+</style>

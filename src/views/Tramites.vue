@@ -107,8 +107,8 @@ export default {
       search: "",
       currentRow: null,
       nroFila: 0,
+      filtered: null,
     };
-    multipleSelection = [];
   },
   created() {
     this.$emit(`update:layout`, HomeLayout);
@@ -127,16 +127,16 @@ export default {
       console.log(index);
     },
     handleSelectionChange(val) {
-      this.multipleSelection = val;
+      //this.multipleSelection = val;
+      const toRemove = new Set(val);
+      const filtered = this.getTableData.filter((el) => !toRemove.has(el));
+      this.filtered = filtered
     },
     handleCommand(command) {
       console.log(`click en ${command}`);
       if (command === "eliminar") {
         this.$store.commit("deleteTramite", this.currentRow);
       }
-    },
-    eliminarTramite(index) {
-      console.log(index);
     },
     handleCurrentChange(val) {
       let { id, accion, fecha, interesado, pasosCompletados, tramite } = val;
@@ -166,7 +166,7 @@ export default {
       return row[property] === value;
     },
     eliminarTramite() {
-      //eliminar tramite
+      this.$store.commit('setFilteredTable', this.filtered)
     },
   },
   components: {},

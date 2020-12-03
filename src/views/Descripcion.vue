@@ -1,8 +1,8 @@
 <template>
   <div>
     <el-container>
-      <el-header style="border: 1px solid black">
-        <el-row type="flex" align="middle" justify="space-between">
+      <el-main style="border: 1px solid black">
+        <el-row type="flex" align="middle" justify="space-between" class="margen">
           <el-col :sm="6">
             <el-row type="flex" align="middle">
               <el-col :sm="6">
@@ -34,60 +34,61 @@
             </el-dropdown>
           </el-col>
         </el-row>
-      </el-header>
-      <el-container>
-        <el-main>
-          <el-row>
-            <el-col :sm="24">
-              <el-row
-                style="border: 1px solid black"
-                type="flex"
-                align="middle"
-                justify="space-between"
-              >
-                <el-col :sm="12">
-                  <p>Descripcion</p>
-                  <p>Lorem ipsum dolor sit amet consectetur.</p>
-                </el-col>
-                <el-col :sm="6">
-                  <el-button round>Completado</el-button>
-                </el-col>
-              </el-row>
-              <el-row style="border: 1px solid black; padding: 20px">
-                <el-col :sm="12">
-                  <el-form label-position="top">
-                    <el-form-item label="Nombre">
-                      <el-input v-model="form.nombre"></el-input>
-                    </el-form-item>
-                    <el-form-item label="Id Empleado">
-                      <el-input v-model="form.id"></el-input>
-                    </el-form-item>
-                    <el-form-item label="Periodo">
-                      <el-input v-model="form.periodo"></el-input>
-                    </el-form-item>
-                  </el-form>
-                </el-col>
-              </el-row>
-            </el-col>
-          </el-row>
-        </el-main>
-        <el-aside>
-          <el-tabs v-model="activeName" @tab-click="handleClick">
-            <el-tab-pane label="Pasos" name="first">Pasos</el-tab-pane>
-            <el-tab-pane label="Archivos" name="second">Archivos</el-tab-pane>
-            <el-tab-pane label="Com." name="third">Com</el-tab-pane>
-            <el-tab-pane label="Perfil" name="fourth">Perfil</el-tab-pane>
-          </el-tabs></el-aside
+        <el-row>
+          <el-col :sm="24">
+            <el-row
+              type="flex"
+              align="middle"
+              justify="space-between"
+            >
+              <el-col :sm="12">
+                <p>Descripcion</p>
+                <p>Lorem ipsum dolor sit amet consectetur.</p>
+              </el-col>
+              <el-col :sm="6">
+                <el-button round icon="el-icon-check">Completado</el-button>
+              </el-col>
+            </el-row>
+            <el-row style="border: 1px solid black; padding: 20px">
+              <el-col :sm="12">
+                <el-form label-position="top">
+                  <el-form-item label="Nombre">
+                    <el-input v-model="form.nombre"></el-input>
+                  </el-form-item>
+                  <el-form-item label="Id Empleado">
+                    <el-input v-model="form.id"></el-input>
+                  </el-form-item>
+                  <el-form-item label="Periodo">
+                    <el-input v-model="form.periodo"></el-input>
+                  </el-form-item>
+                </el-form>
+              </el-col>
+            </el-row>
+          </el-col>
+        </el-row>
+      </el-main>
+      <el-aside width="400px" style="border: 1px solid black;"> 
+        <el-tabs
+          v-model="activeName"
+          @tab-click="handleClick"
+          style="margin-top:20px;"
         >
-      </el-container>
+          <el-tab-pane label="Pasos" name="first">
+            <AppPasos></AppPasos>
+          </el-tab-pane>
+          <el-tab-pane label="Archivos" name="second">Archivos</el-tab-pane>
+          <el-tab-pane label="Com." name="third">Com</el-tab-pane>
+          <el-tab-pane label="Perfil" name="fourth">Perfil</el-tab-pane>
+        </el-tabs>
+      </el-aside>
     </el-container>
   </div>
 </template>
 
 <script>
-
 import HomeLayout from "../layouts/HomeLayout";
 import AppModal from "../components/AppModal";
+import AppPasos from "../components/AppPasos";
 
 export default {
   name: "Descripcion",
@@ -124,15 +125,18 @@ export default {
       console.log(tab, event);
     },
     handleBack() {
-      this.$router.back()
+      this.$router.back();
     },
     handleCommand() {
       //
     },
   },
-  components: { AppModal },
+  components: { AppModal, AppPasos },
 };
 </script>
 
 <style>
+.margen {
+
+}
 </style>

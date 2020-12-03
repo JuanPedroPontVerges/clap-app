@@ -104,6 +104,9 @@ export default new Vuex.Store({
     },
     setAgregarPersona(state, payload) {
       state.personas.push(payload)
+    },
+    setFilteredTable(state, payload) {
+      state.tramites = payload
     }
   },
   actions: {
