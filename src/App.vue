@@ -17,9 +17,4 @@ export default {
 </script>
 
 <style>
-@font-face {
-  font-family: "Geomanist";
-  src: local("Geomanist"),
-    url(./fonts/Geomanist/Geomanist-Regular.otf) format("truetype");
-}
 </style>

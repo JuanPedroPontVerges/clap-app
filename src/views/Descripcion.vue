@@ -1,24 +1,20 @@
 <template>
-  <div>
-    <el-container>
-      <el-main style="border: 1px solid black">
-        <el-row type="flex" align="middle" justify="space-between" class="margen">
+  <div class="descripcion-container">
+    <el-row>
+      <el-col :sm="18">
+        <el-row type="flex" align="middle">
           <el-col :sm="6">
-            <el-row type="flex" align="middle">
-              <el-col :sm="6">
-                <el-button
-                  icon="el-icon-arrow-left"
-                  round
-                  size="small"
-                  @click="handleBack()"
-                ></el-button>
-              </el-col>
-              <el-col :sm="18">
-                <h1>{{ getTramite.tramite }}</h1>
-              </el-col>
-            </el-row>
+            <el-button
+              icon="el-icon-arrow-left"
+              round
+              size="small"
+              @click="handleBack()"
+            ></el-button>
           </el-col>
-          <el-col :sm="2">
+          <el-col :sm="16">
+            <h1>{{ getTramite.tramite }}</h1>
+          </el-col>
+          <el-col :sm="4">
             <el-dropdown trigger="click" @command="handleCommand">
               <el-button
                 type="primary"
@@ -34,15 +30,11 @@
             </el-dropdown>
           </el-col>
         </el-row>
+
         <el-row>
           <el-col :sm="24">
-            <el-row
-              type="flex"
-              align="middle"
-              justify="space-between"
-            >
+            <el-row type="flex" align="middle" justify="space-between">
               <el-col :sm="12">
-                <p>Descripcion</p>
                 <p>Lorem ipsum dolor sit amet consectetur.</p>
               </el-col>
               <el-col :sm="6">
@@ -66,12 +58,12 @@
             </el-row>
           </el-col>
         </el-row>
-      </el-main>
-      <el-aside width="400px" style="border: 1px solid black;"> 
+      </el-col>
+      <el-col :sm="6">
         <el-tabs
           v-model="activeName"
           @tab-click="handleClick"
-          style="margin-top:20px;"
+          style="margin-top: 20px"
         >
           <el-tab-pane label="Pasos" name="first">
             <AppPasos></AppPasos>
@@ -80,8 +72,8 @@
           <el-tab-pane label="Com." name="third">Com</el-tab-pane>
           <el-tab-pane label="Perfil" name="fourth">Perfil</el-tab-pane>
         </el-tabs>
-      </el-aside>
-    </el-container>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -136,7 +128,5 @@ export default {
 </script>
 
 <style>
-.margen {
 
-}
 </style>
