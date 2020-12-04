@@ -140,8 +140,8 @@ export default new Vuex.Store({
       commit('setLoaded', true)
       // set user profile in state
       // change route to dashboard
-      // if (router.currentRoute.fullPath !== '/')
-      //   router.push('/')
+      if (router.currentRoute.fullPath !== '/')
+        router.push('/')
     },
     async signup({
       dispatch

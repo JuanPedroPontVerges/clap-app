@@ -4,8 +4,8 @@
       <el-col :sm="24" :lg="24">
         <h1>Trámites</h1>
         <p>
-          Aquí verás las solicitudes generadas por alumnos, familiares, empleados o
-          proveedores de tu institución.
+          Aquí verás las solicitudes generadas por alumnos, familiares,
+          empleados o proveedores de tu institución.
         </p>
       </el-col>
     </el-row>
@@ -30,7 +30,7 @@
             getTableData.filter(
               (data) =>
                 !search ||
-                data.tramite.toLowerCase().includes(search.toLowerCase())
+                data.interesado.toLowerCase().includes(search.toLowerCase())
             )
           "
           ref="singleTable"
@@ -39,16 +39,33 @@
           @current-change="handleCurrentChange"
           @selection-change="handleSelectionChange"
         >
-          <el-table-column type="selection" width="55"> </el-table-column>
-          <el-table-column prop="tramite" label="Trámite" width="140px">
+          <el-table-column type="selection"> </el-table-column>
+          <el-table-column prop="tramite" label="Trámite" width="120px">
           </el-table-column>
-          <el-table-column prop="departamento" label="Departamento">
+          <el-table-column
+            prop="departamento"
+            label="Departamento"
+            width="130px"
+            :filters="departamentos"
+            :filter-method="filterHandler"
+          >
           </el-table-column>
-          <el-table-column prop="interesado" label="Solicitante">
+          <el-table-column prop="interesado" label="Solicitante" width="120px">
           </el-table-column>
-          <el-table-column prop="tipo" label="Tipo"> </el-table-column>
-          <el-table-column prop="fecha" label="Fecha"> </el-table-column>
-          <el-table-column prop="pasosCompletados" label="Pasos">
+          <el-table-column
+            prop="tipo"
+            label="Tipo"
+            width="120px"
+            :filters="[
+              { text: 'Proveedor', value: 'Proveedor' },
+              { text: 'Interesado', value: 'Interesado' },
+            ]"
+            :filter-method="filterHandler"
+          >
+          </el-table-column>
+          <el-table-column prop="fecha" label="Fecha" width="120px">
+          </el-table-column>
+          <el-table-column prop="pasosCompletados" label="Pasos" width="120px">
           </el-table-column>
           <el-table-column
             prop="estado"
@@ -107,11 +124,14 @@ export default {
       search: "",
       currentRow: null,
       nroFila: 0,
-      filtered: null,
+      departamentos: [],
     };
   },
   created() {
     this.$emit(`update:layout`, HomeLayout);
+    this.$store.state.departamentos.forEach((depto) => {
+      this.departamentos.push({ text: depto.nombre, value: depto.nombre });
+    });
   },
   computed: {
     getUsuario() {
@@ -130,7 +150,7 @@ export default {
       //this.multipleSelection = val;
       const toRemove = new Set(val);
       const filtered = this.getTableData.filter((el) => !toRemove.has(el));
-      this.filtered = filtered
+      this.filtered = filtered;
     },
     handleCommand(command) {
       console.log(`click en ${command}`);
@@ -153,20 +173,16 @@ export default {
     },
     getNumeroFila(row, column, cell, event) {
       this.nroFila = this.getTableData.indexOf(row);
-      console.log(row);
-      console.log(column);
-      console.log(cell);
     },
     filterTag(value, row) {
       return row.estado === value;
     },
     filterHandler(value, row, column) {
-      console.log(column);
       const property = column["property"];
       return row[property] === value;
     },
     eliminarTramite() {
-      this.$store.commit('setFilteredTable', this.filtered)
+      this.$store.commit("setFilteredTable", this.filtered);
     },
   },
   components: {},
