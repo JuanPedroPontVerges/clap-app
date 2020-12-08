@@ -1,5 +1,5 @@
 <template class="tramites">
-  <div>
+  <div class="container">
     <el-row class="page-title">
       <el-col :sm="24" :lg="24">
         <h1>Trámites</h1>
@@ -25,7 +25,7 @@
     <el-row>
       <el-col :sm="24" :lg="24">
         <el-table
-          style="margin-top: 20px; width=100%;"
+          style="margin-top: 20px; width:100%;"
           :data="
             getTableData.filter(
               (data) =>

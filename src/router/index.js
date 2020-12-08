@@ -11,7 +11,6 @@ import Configuraciones from "../views/Configuraciones.vue";
 import Personas from "../views/Personas.vue";
 import Procesos from "../views/Procesos.vue";
 import Reportes from "../views/Reportes.vue";
-//import NewTemplate from "../views/NewTemplate.vue";
 import {
   auth
 } from '../firebase';
