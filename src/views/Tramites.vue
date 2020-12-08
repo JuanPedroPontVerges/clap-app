@@ -25,7 +25,7 @@
     <el-row>
       <el-col :sm="24" :lg="24">
         <el-table
-          style="margin-top: 20px"
+          style="margin-top: 20px; width=100%;"
           :data="
             getTableData.filter(
               (data) =>
@@ -38,6 +38,7 @@
           @current-change="handleCurrentChange"
           @selection-change="handleSelectionChange"
           empty-text
+          stripe
         >
           <div slot="empty">
             <p>No se encontraron resultados</p>

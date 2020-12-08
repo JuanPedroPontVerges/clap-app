@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <el-row>
       <el-col :sm="8">
         <el-tabs

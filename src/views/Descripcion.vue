@@ -1,5 +1,5 @@
 <template>
-  <div class="descripcion-container">
+  <div class="container">
     <el-row>
       <el-col :sm="18">
         <el-row type="flex" align="middle">
