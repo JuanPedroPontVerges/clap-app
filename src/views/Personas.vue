@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <el-row type="flex" justify="space-between" align="middle">
       <el-col :sm="12">
         <h1>Personas</h1>

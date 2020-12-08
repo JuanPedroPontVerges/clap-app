@@ -19,14 +19,6 @@ import {
 Vue.use(VueRouter);
 
 const routes = [{
-    path: "/tramites",
-    name: "Tramites",
-    component: Tramites,
-    meta: {
-      requiresAuth: true,
-    }
-  },
-  {
     path: "/personas",
     name: "Personas",
     component: Personas,
@@ -36,8 +28,8 @@ const routes = [{
   },
   {
     path: "/",
-    name: "Home",
-    component: Home,
+    name: "Tramites",
+    component: Tramites,
     meta: {
       requiresAuth: true
     }
