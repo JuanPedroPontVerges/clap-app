@@ -4,8 +4,8 @@
       <el-col :sm="24" :lg="24">
         <h1>Trámites</h1>
         <p>
-          Aquí verás las solicitudes generadas por alumnos, familiares,
-          empleados o proveedores de tu institución.
+          Aquí verás las solicitudes generadas por alumnos, familiares, empleados o
+          proveedores de tu institución.
         </p>
       </el-col>
     </el-row>
@@ -29,18 +29,21 @@
           :data="
             getTableData.filter(
               (data) =>
-                !search ||
-                data.interesado.toLowerCase().includes(search.toLowerCase())
+                !search || data.interesado.toLowerCase().includes(search.toLowerCase())
             )
           "
-          ref="singleTable"
+          ref="tab"
           highlight-current-row
           @cell-click="getNumeroFila"
           @current-change="handleCurrentChange"
           @selection-change="handleSelectionChange"
+          empty-text
         >
+          <div slot="empty">
+            <p>No se encontraron resultados</p>
+          </div>
           <el-table-column type="selection"> </el-table-column>
-          <el-table-column prop="tramite" label="Trámite" width="120px">
+          <el-table-column prop="tramite" label="Trámite" width="200px">
           </el-table-column>
           <el-table-column
             prop="departamento"
@@ -63,8 +66,7 @@
             :filter-method="filterHandler"
           >
           </el-table-column>
-          <el-table-column prop="fecha" label="Fecha" width="120px">
-          </el-table-column>
+          <el-table-column prop="fecha" label="Fecha" width="120px"> </el-table-column>
           <el-table-column prop="pasosCompletados" label="Pasos" width="120px">
           </el-table-column>
           <el-table-column
@@ -97,9 +99,7 @@
                   <i class="el-icon-more" style="transform: rotate(90deg)"></i>
                 </el-button>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item command="eliminar"
-                    >Eliminar</el-dropdown-item
-                  >
+                  <el-dropdown-item command="eliminar">Eliminar</el-dropdown-item>
                   <el-dropdown-item command="editar">Editar</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
@@ -148,9 +148,8 @@ export default {
     },
     handleSelectionChange(val) {
       //this.multipleSelection = val;
-      const toRemove = new Set(val);
-      const filtered = this.getTableData.filter((el) => !toRemove.has(el));
-      this.filtered = filtered;
+      let toRemove = new Set(val);
+      let filtered = this.getTableData.filter((el) => !toRemove.has(el));
     },
     handleCommand(command) {
       console.log(`click en ${command}`);

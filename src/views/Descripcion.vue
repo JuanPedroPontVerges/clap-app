@@ -60,15 +60,13 @@
         </el-row>
       </el-col>
       <el-col :sm="6">
-        <el-tabs
-          v-model="activeName"
-          @tab-click="handleClick"
-          style="margin-top: 20px"
-        >
+        <el-tabs v-model="activeName" @tab-click="handleClick" style="margin-top: 20px">
           <el-tab-pane label="Pasos" name="first">
             <AppPasos></AppPasos>
           </el-tab-pane>
-          <el-tab-pane label="Archivos" name="second">Archivos</el-tab-pane>
+          <el-tab-pane label="Archivos" name="second">
+            <AppArchivos></AppArchivos>
+          </el-tab-pane>
           <el-tab-pane label="Chat" name="third">Chat</el-tab-pane>
           <el-tab-pane label="Perfil" name="fourth">Perfil</el-tab-pane>
         </el-tabs>
@@ -81,6 +79,7 @@
 import HomeLayout from "../layouts/HomeLayout";
 import AppModal from "../components/AppModal";
 import AppPasos from "../components/AppPasos";
+import AppArchivos from "../components/AppArchivos";
 
 export default {
   name: "Descripcion",
@@ -114,7 +113,7 @@ export default {
       this.$store.commit("setFormDialog");
     },
     handleClick(tab, event) {
-      console.log(tab, event);
+      //console.log(tab, event);
     },
     handleBack() {
       this.$router.back();
@@ -123,10 +122,8 @@ export default {
       //
     },
   },
-  components: { AppModal, AppPasos },
+  components: { AppModal, AppPasos, AppArchivos },
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

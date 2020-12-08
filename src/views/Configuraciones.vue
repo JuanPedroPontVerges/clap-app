@@ -50,7 +50,7 @@ import HomeLayout from "../layouts/HomeLayout"
 export default {
   data() {
     return {
-      currentTab: "Almacenamiento",
+      currentTab: "General",
     };
   },
   methods: {
