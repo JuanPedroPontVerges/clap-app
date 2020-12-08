@@ -25,13 +25,8 @@
     <el-row>
       <el-col :sm="24" :lg="24">
         <el-table
-          style="margin-top: 20px; width:100%;"
-          :data="
-            getTableData.filter(
-              (data) =>
-                !search || data.interesado.toLowerCase().includes(search.toLowerCase())
-            )
-          "
+          style="margin-top: 20px; width: 100%"
+          :data="displayData"
           ref="tab"
           highlight-current-row
           @cell-click="getNumeroFila"
@@ -107,6 +102,18 @@
             </template>
           </el-table-column>
         </el-table>
+        <el-divider></el-divider>
+
+        <div style="text-align: center">
+          <el-pagination
+            background
+            layout="prev, pager, next"
+            @current-change="handlePaginationChange"
+            :page-size="pageSize"
+            :total="total"
+          >
+          </el-pagination>
+        </div>
       </el-col>
     </el-row>
   </div>
@@ -126,6 +133,10 @@ export default {
       currentRow: null,
       nroFila: 0,
       departamentos: [],
+      page: 1,
+      pageSize: 15,
+      total: 0,
+      filtered: [],
     };
   },
   created() {
@@ -140,6 +151,18 @@ export default {
     },
     getTableData() {
       return this.$store.state.tramites;
+    },
+    displayData() {
+      this.filtered = this.$store.state.tramites.filter(
+        (data) =>
+          !this.search ||
+          data.interesado.toLowerCase().includes(this.search.toLowerCase())
+      );
+      this.total = this.filtered.length;
+      return this.filtered.slice(
+        this.pageSize * this.page - this.pageSize,
+        this.pageSize * this.page
+      );
     },
   },
   methods: {
@@ -183,6 +206,9 @@ export default {
     },
     eliminarTramite() {
       this.$store.commit("setFilteredTable", this.filtered);
+    },
+    handlePaginationChange(val) {
+      this.page = val;
     },
   },
   components: {},
