@@ -195,3 +195,41 @@ html {
         width: 1320px;
     }
 }
+
+/* CONFIGURACIÓN */
+
+.el-tabs--left {
+    margin-top: 30px;
+
+    .el-tabs__active-bar.is-left, .el-tabs__nav-wrap.is-left::after{
+        display: none;
+    }
+    .el-tabs__item.is-left {
+        text-align: left;
+        margin-bottom: 15px;
+    }
+    .el-tabs__item{
+        font-size: 16px;
+    }
+}
+
+.settings-title{
+    margin-bottom: 15px;
+
+    h2{
+        margin-bottom: 0px;
+    }
+
+    p{
+        font-size: 14px;
+        color: #868d92
+    }
+}
+
+.settings-body{
+    background-color: rgb(255, 255, 255);
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid rgb(204, 204, 204);
+    margin: 0px !important;
+}
