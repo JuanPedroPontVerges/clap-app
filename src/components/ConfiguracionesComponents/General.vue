@@ -1,8 +1,6 @@
 <template>
   <div>
-    <el-row
-      class="settings-title"
-    >
+    <el-row class="settings-title">
       <el-col :sm="24">
         <h2>General</h2>
       </el-col>
@@ -14,16 +12,20 @@
         </div>
       </el-col>
     </el-row>
-    <el-row
-      :gutter="20"
-      class="settings-body"
-    >
+    <el-row :gutter="20" class="settings-body">
       <el-form label-position="top">
         <el-col :sm="24">
           <h3>Logo</h3>
         </el-col>
         <el-col :sm="24">
-          <el-upload action="#" list-type="picture-card" :auto-upload="false">
+          <el-upload
+            action="#"
+            list-type="picture-card"
+            :auto-upload="false"
+            :on-change="toggleUpload"
+            :on-remove="toggleUpload"
+            :class="{ hideUpload: !showUpload }"
+          >
             <i slot="default" class="el-icon-plus"></i>
             <div slot="file" slot-scope="{ file }">
               <img class="el-upload-list__item-thumbnail" :src="file.url" alt="" />
@@ -37,13 +39,6 @@
                 <span
                   v-if="!disabled"
                   class="el-upload-list__item-delete"
-                  @click="handleDownload(file)"
-                >
-                  <i class="el-icon-download"></i>
-                </span>
-                <span
-                  v-if="!disabled"
-                  class="el-upload-list__item-delete"
                   @click="handleRemove(file)"
                 >
                   <i class="el-icon-delete"></i>
@@ -51,6 +46,9 @@
               </span>
             </div>
           </el-upload>
+          <el-dialog :visible.sync="dialogVisible">
+            <img width="100%" :src="dialogImageUrl" alt="" />
+          </el-dialog>
         </el-col>
 
         <el-col :sm="24">
@@ -94,35 +92,23 @@ export default {
       uploadValue: 0,
       dialogVisible: false,
       dialogImageUrl: "",
+      disabled: false,
+      showUpload: true,
     };
   },
   methods: {
-    onUpload() {
-      this.picture = null;
-      this.$store.commit("setLogo", this.imageData.name);
-      const storageRef = storage.ref(`${this.imageData.name}`).put(this.imageData);
-      storageRef.on(
-        `state_changed`,
-        (snapshot) => {
-          this.uploadValue = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        },
-        (error) => {
-          console.log(error.message);
-        },
-        () => {
-          this.uploadValue = 100;
-          storageRef.snapshot.ref.getDownloadURL().then((url) => {
-            this.picture = url;
-          });
-        }
-      );
-    },
-    previewImage(file) {
+    handleRemove(file) {
       console.log(file);
-      this.uploadValue = 0;
-      this.picture = null;
-      this.imageData = event.target.files[0];
+    },
+    handlePictureCardPreview(file) {
+      this.dialogImageUrl = file.url;
       this.dialogVisible = true;
+    },
+    handleDownload(file) {
+      console.log(file);
+    },
+    toggleUpload() {
+      this.showUpload = !this.showUpload;
     },
   },
 };
@@ -131,5 +117,8 @@ export default {
 <style>
 img.preview {
   width: 200px;
+}
+.hideUpload > div {
+  display: none;
 }
 </style>
