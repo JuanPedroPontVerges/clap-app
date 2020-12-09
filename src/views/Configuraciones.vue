@@ -1,10 +1,9 @@
 <template>
   <div class="container">
-    <el-row>
-      <el-col :sm="8">
+    <el-row :gutter="20">
+      <el-col :sm="5">
         <el-tabs
           tab-position="left"
-          style="height: 200px"
           @tab-click="handleClick"
         >
           <el-tab-pane
@@ -12,17 +11,17 @@
           </el-tab-pane>
           <el-tab-pane
             ><span slot="label"
-              ><i class="el-icon-question"></i> Preferencias</span
+              ><i class="el-icon-s-tools"></i> Preferencias</span
             >
           </el-tab-pane>
           <el-tab-pane
             ><span slot="label"
-              ><i class="el-icon-office-building"></i> Departamentos</span
+              ><i class="el-icon-menu"></i> Departamentos</span
             >
           </el-tab-pane>
           <el-tab-pane
             ><span slot="label"
-              ><i class="el-icon-receiving"></i> Almacenamiento</span
+              ><i class="el-icon-s-data"></i> Almacenamiento</span
             >
           </el-tab-pane>
           <el-tab-pane
@@ -32,7 +31,7 @@
           </el-tab-pane>
         </el-tabs>
       </el-col>
-      <el-col :sm="16">
+      <el-col :sm="19">
         <component :is="currentTab"></component>
       </el-col>
     </el-row>

@@ -1,11 +1,13 @@
 <template>
   <div>
-    <el-row>
+    <el-row
+      class="settings-title"
+    >
       <el-col :sm="24">
-        <h1>General</h1>
+        <h2>General</h2>
       </el-col>
       <el-col :sm="24">
-        <div style="margin: 0 0 10px">
+        <div>
           <p>
             Indica la información sobre tu instituto que se le mostrará a los interesados.
           </p>
@@ -13,8 +15,8 @@
       </el-col>
     </el-row>
     <el-row
-      style="border: 1px solid black; padding: 20px; background-color: white"
       :gutter="20"
+      class="settings-body"
     >
       <el-form label-position="top">
         <el-col :sm="24">
