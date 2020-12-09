@@ -7,8 +7,7 @@
       <el-col :sm="24">
         <div style="margin: 0 0 10px">
           <p>
-            Indica la información sobre tu instituto que se le mostrará a los
-            interesados.
+            Indica la información sobre tu instituto que se le mostrará a los interesados.
           </p>
         </div>
       </el-col>
@@ -22,30 +21,34 @@
           <h3>Logo</h3>
         </el-col>
         <el-col :sm="24">
-          <div>
-            <input type="file" @change="previewImage" />
-          </div>
-          <p>
-            Progress: {{ uploadValue.toFixed() + "%" }}
-            <progress id="progress" :value="uploadValue" max="100"></progress>
-          </p>
-          <div v-if="picture == null">
-            <el-button @click="onUpload" type="primary">Guardar</el-button>
-          </div>
-          <div><img class="preview" :src="picture" /></div>
-
-          <!-- <el-upload
-            action="https://jsonplaceholder.typicode.com/posts/"
-            list-type="picture-card"
-            :on-preview="handlePictureCardPreview"
-            :on-remove="handleRemove"
-          >
-            <i class="el-icon-plus"></i>
+          <el-upload action="#" list-type="picture-card" :auto-upload="false">
+            <i slot="default" class="el-icon-plus"></i>
+            <div slot="file" slot-scope="{ file }">
+              <img class="el-upload-list__item-thumbnail" :src="file.url" alt="" />
+              <span class="el-upload-list__item-actions">
+                <span
+                  class="el-upload-list__item-preview"
+                  @click="handlePictureCardPreview(file)"
+                >
+                  <i class="el-icon-zoom-in"></i>
+                </span>
+                <span
+                  v-if="!disabled"
+                  class="el-upload-list__item-delete"
+                  @click="handleDownload(file)"
+                >
+                  <i class="el-icon-download"></i>
+                </span>
+                <span
+                  v-if="!disabled"
+                  class="el-upload-list__item-delete"
+                  @click="handleRemove(file)"
+                >
+                  <i class="el-icon-delete"></i>
+                </span>
+              </span>
+            </div>
           </el-upload>
-          <el-dialog :visible.sync="dialogVisible">
-            <img width="100%" :src="dialogImageUrl" alt="" />
-          </el-dialog> -->
-          
         </el-col>
 
         <el-col :sm="24">
@@ -95,14 +98,11 @@ export default {
     onUpload() {
       this.picture = null;
       this.$store.commit("setLogo", this.imageData.name);
-      const storageRef = storage
-        .ref(`${this.imageData.name}`)
-        .put(this.imageData);
+      const storageRef = storage.ref(`${this.imageData.name}`).put(this.imageData);
       storageRef.on(
         `state_changed`,
         (snapshot) => {
-          this.uploadValue =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          this.uploadValue = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         },
         (error) => {
           console.log(error.message);

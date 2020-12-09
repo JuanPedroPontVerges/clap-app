@@ -8,10 +8,7 @@
         <el-input v-model="form.email" autocomplete="off"></el-input>
       </el-form-item>
       <el-form-item label="Departamento" label-width="50">
-        <el-select
-          v-model="form.departamento"
-          placeholder="Elija un Departamento"
-        >
+        <el-select v-model="form.departamento" placeholder="Elija un Departamento">
           <el-option
             v-for="(departamento, index) in getDepartamentos"
             :key="index"
@@ -41,6 +38,9 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
@@ -67,11 +67,10 @@ export default {
     },
     agregarPersona() {
       this.$store.commit("setAgregarPersona", this.form);
-      this.toggleDialog()
+      this.toggleDialog();
     },
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>
