@@ -60,7 +60,7 @@ export default {
           {
             type: "button",
             iconRight: '<i class="el-icon-user"></i>',
-            path: { name: "a" },
+            path: { name: "Tramites" },
             text: "logout",
           },
         ],
