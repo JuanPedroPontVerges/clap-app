@@ -60,8 +60,8 @@ export default {
           {
             type: "button",
             iconRight: '<i class="el-icon-user"></i>',
-            path: { name: "signout" },
-            text:'logout'
+            path: { name: "a" },
+            text: "logout",
           },
         ],
       },
@@ -69,8 +69,26 @@ export default {
   },
   methods: {
     click(text) {
-      if(text == 'logout') {
-        this.$store.dispatch('logout')
+      this.navbarOptions.menuOptionsRight[6].path.name = this.$route.name;
+      if (text == "logout") {
+        this.$confirm("Esta a punto de cerrar sesión", "Atención", {
+          confirmButtonText: "OK",
+          cancelButtonText: "Cancelar",
+          type: "warning",
+        })
+          .then(() => {
+            this.$message({
+              type: "success",
+              message: "Sesión cerrada correctamente",
+            });
+            this.signout();
+          })
+          .catch(() => {
+            this.$message({
+              type: "info",
+              message: "Cancelado",
+            });
+          });
       }
     },
     signout() {
@@ -79,10 +97,6 @@ export default {
   },
   computed: {},
   components: {},
-  /*beforeCreate(){
-    this.brandImage =  require(`../assets/${this.$store.state.logo}`)
-  }
-  */
 };
 </script>
 
