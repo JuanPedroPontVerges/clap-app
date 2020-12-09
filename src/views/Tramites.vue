@@ -104,7 +104,7 @@
         </el-table>
         <el-divider></el-divider>
 
-        <div style="text-align: center">
+        <div style="text-align: right">
           <el-pagination
             background
             layout="prev, pager, next"

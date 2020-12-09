@@ -24,7 +24,7 @@
           <el-option label="Proovedor" value="Proovedor"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item>
+      <el-form-item v-if="form.tipo == 'Coolaborador'">
         <el-checkbox v-model="form.empleadoTramites"
           >Permitir crear tramites como empleado</el-checkbox
         >

@@ -7,7 +7,8 @@
       <el-col :sm="24">
         <div>
           <p>
-            Indica la información sobre tu instituto que se le mostrará a los interesados.
+            Indica la información sobre tu instituto que se le mostrará a los
+            interesados.
           </p>
         </div>
       </el-col>
@@ -28,7 +29,11 @@
           >
             <i slot="default" class="el-icon-plus"></i>
             <div slot="file" slot-scope="{ file }">
-              <img class="el-upload-list__item-thumbnail" :src="file.url" alt="" />
+              <img
+                class="el-upload-list__item-thumbnail"
+                :src="file.url"
+                alt=""
+              />
               <span class="el-upload-list__item-actions">
                 <span
                   class="el-upload-list__item-preview"
@@ -53,7 +58,13 @@
 
         <el-col :sm="24">
           <el-form-item label="Nombre Institución" label-width="50px">
-            <el-input v-model="form.nombre"></el-input>
+            <el-input v-model="form.nombre" v-if="!getForm.nombre"></el-input>
+            <el-input
+              disabled
+              v-if="getForm.disabled"
+              v-model="getForm.nombre"
+              style="margin-top: 10px"
+            ></el-input>
           </el-form-item>
           <el-form-item label="Descripción">
             <el-input
@@ -61,15 +72,30 @@
               v-model="form.descripcion"
               maxlength="50"
               show-word-limit
+              v-if="!getForm.descripcion"
+            >
+            </el-input>
+            <el-input
+              type="textarea"
+              v-model="getForm.descripcion"
+              maxlength="50"
+              show-word-limit
+              disabled
+              v-if="getForm.disabled"
             >
             </el-input>
           </el-form-item>
           <el-form-item label="URL Institución" label-width="50px">
-            <el-input v-model="form.url">
+            <el-input v-model="form.url" v-if="!getForm.url">
+              <template slot="append">.pulpo.com.ar</template>
+            </el-input>
+            <el-input v-model="getForm.url" v-if="getForm.disabled" disabled>
               <template slot="append">.pulpo.com.ar</template>
             </el-input>
           </el-form-item>
-          <el-button type="primary">Validar</el-button>
+          <el-button type="primary" @click="guardarCambios" v-if="getForm"
+            >Validar</el-button
+          >
         </el-col>
       </el-form>
     </el-row>
@@ -86,6 +112,7 @@ export default {
         nombre: "",
         descripcion: "",
         url: "",
+        disabled: false,
       },
       imageData: null,
       picture: null,
@@ -109,6 +136,18 @@ export default {
     },
     toggleUpload() {
       this.showUpload = !this.showUpload;
+    },
+    guardarCambios() {
+      if (!this.form) return;
+      else this.setDisabled = true;
+      this.form.disabled = true;
+      this.$store.commit("setConfigGeneral", this.form);
+      console.log(this.setDisabled);
+    },
+  },
+  computed: {
+    getForm() {
+      return this.$store.state.configuraciones.general;
     },
   },
 };

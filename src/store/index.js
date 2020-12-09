@@ -9,6 +9,21 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   plugins: [createPersistedState()],
   state: {
+    configuraciones: {
+      general: {
+        logo: '',
+        nombre: '',
+        descripcion: '',
+        url: '',
+        disabled: false
+      },
+      preferencias: {
+        empleados: '',
+        zonaHoraria: '',
+        diasDeTrabajo: null,
+        disabled: false
+      }
+    },
     userProfile: {},
     loginOrRegister: false,
     component: 'AppLogin',
@@ -105,8 +120,17 @@ export default new Vuex.Store({
     setAgregarPersona(state, payload) {
       state.personas.push(payload)
     },
+    deletePersona(state, payload) {
+      state.personas.splice(payload, 1)
+    },
     setFilteredTable(state, payload) {
       state.tramites = payload
+    },
+    setConfigGeneral(state, payload) {
+      state.configuraciones.general = payload
+    },
+    setConfigPreferencias(state, payload) {
+      state.configuraciones.preferencias = payload
     }
   },
   actions: {
@@ -119,6 +143,7 @@ export default new Vuex.Store({
           user
         }) => {
           this.commit('setErrorMessage', ' ')
+          router.push('/')
           dispatch('fetchUserProfile', user)
         })
         .catch(err => {
@@ -180,6 +205,11 @@ export default new Vuex.Store({
       // clear userProfile and redirect to /login
       commit('setUserProfile', {})
       router.push('/login')
+    },
+    changeDialogState({
+      commit
+    }) {
+      commit('setAgregarPersonaDialogo')
     }
   },
   modules: {}

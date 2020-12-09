@@ -1,10 +1,10 @@
 <template>
   <el-container type="flex" justify="center">
     <el-header>
-      <vue-navigation-bar :options="navbarOptions" />
+      <vue-navigation-bar :options="navbarOptions" @vnb-item-clicked="click" />
     </el-header>
     <el-main>
-      <slot/>
+      <slot />
     </el-main>
   </el-container>
 </template>
@@ -59,14 +59,20 @@ export default {
           },
           {
             type: "button",
-            path: { name: "login" },
             iconRight: '<i class="el-icon-user"></i>',
+            path: { name: "signout" },
+            text:'logout'
           },
         ],
       },
     };
   },
   methods: {
+    click(text) {
+      if(text == 'logout') {
+        this.$store.dispatch('logout')
+      }
+    },
     signout() {
       this.$store.dispatch("logout");
     },

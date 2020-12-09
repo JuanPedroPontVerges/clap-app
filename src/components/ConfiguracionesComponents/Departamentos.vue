@@ -35,7 +35,7 @@
             align="center"
             label="Operaciones"
             prop="accion"
-            width="100"
+            width="120"
           >
             <!--  -->
             <template slot-scope="scope">
