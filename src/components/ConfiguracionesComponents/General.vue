@@ -94,7 +94,7 @@
             </el-input>
           </el-form-item>
           <el-button type="primary" @click="guardarCambios" v-if="getForm"
-            >Validar</el-button
+            >Guardar</el-button
           >
         </el-col>
       </el-form>

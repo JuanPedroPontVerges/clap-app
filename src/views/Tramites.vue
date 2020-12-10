@@ -4,15 +4,13 @@
       <el-col :sm="24" :lg="24">
         <h1>Trámites</h1>
         <p>
-          Aquí verás las solicitudes generadas por alumnos, familiares, empleados o
-          proveedores de tu institución.
+          Aquí verás las solicitudes generadas por alumnos familiares, empleados
+          <br />
+          o proveedores de tu institución.
         </p>
       </el-col>
     </el-row>
     <el-row>
-      <el-col :sm="12">
-        <el-button type="danger" @click="eliminarTramite">Eliminar</el-button>
-      </el-col>
       <el-col :sm="12">
         <el-input
           placeholder="Nombre solicitante"
@@ -33,7 +31,6 @@
           @current-change="handleCurrentChange"
           @selection-change="handleSelectionChange"
           empty-text
-          stripe
         >
           <div slot="empty">
             <p>No se encontraron resultados</p>
@@ -62,7 +59,8 @@
             :filter-method="filterHandler"
           >
           </el-table-column>
-          <el-table-column prop="fecha" label="Fecha" width="120px"> </el-table-column>
+          <el-table-column prop="fecha" label="Fecha" width="120px">
+          </el-table-column>
           <el-table-column prop="pasosCompletados" label="Pasos" width="120px">
           </el-table-column>
           <el-table-column
@@ -95,7 +93,9 @@
                   <i class="el-icon-more" style="transform: rotate(90deg)"></i>
                 </el-button>
                 <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item command="eliminar">Eliminar</el-dropdown-item>
+                  <el-dropdown-item command="eliminar"
+                    >Eliminar</el-dropdown-item
+                  >
                   <el-dropdown-item command="editar">Editar</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
@@ -103,7 +103,9 @@
           </el-table-column>
         </el-table>
         <el-divider></el-divider>
-
+        <el-col :sm="12">
+          <el-button type="danger" @click="eliminarTramite">Eliminar</el-button>
+        </el-col>
         <div style="text-align: right">
           <el-pagination
             background
