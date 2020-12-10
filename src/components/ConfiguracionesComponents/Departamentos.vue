@@ -13,7 +13,10 @@
         </div>
       </el-col>
     </el-row>
-    <el-row style="border: 1px solid black; padding: 20px; background-color:white;" :gutter="20">
+    <el-row
+      style="border: 1px solid black; padding: 20px; background-color: white"
+      :gutter="20"
+    >
       <el-col :sm="24">
         <el-form :inline="true" ref="form">
           <el-form-item>
@@ -39,21 +42,32 @@
           >
             <!--  -->
             <template slot-scope="scope">
-              <el-dropdown
-                @command="handleCommand"
-                trigger="click"
-                @click.native.prevent="
-                  deleteDepartamento(scope.$index, getDepartamentos)
-                "
+              <el-tooltip
+                class="item"
+                effect="dark"
+                content="Editar"
+                placement="top-start"
               >
-                <i class="el-icon-more"></i>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item command="eliminar"
-                    >Eliminar</el-dropdown-item
-                  >
-                  <el-dropdown-item command="editar">Editar</el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
+                <el-button
+                  type="primary"
+                  icon="el-icon-edit"
+                  circle
+                  @click.stop="handleEdit(scope.$index)"
+                ></el-button>
+              </el-tooltip>
+              <el-tooltip
+                class="item"
+                effect="dark"
+                content="Eliminar"
+                placement="top-start"
+              >
+                <el-button
+                  type="danger"
+                  icon="el-icon-delete"
+                  circle
+                  @click.stop="handleDelete(scope.$index)"
+                ></el-button>
+              </el-tooltip>
             </template>
           </el-table-column>
         </el-table>
@@ -71,7 +85,7 @@ export default {
         personas: 1,
         accion: "",
       },
-      selectedRow:0
+      selectedRow: 0,
     };
   },
   methods: {
@@ -86,16 +100,12 @@ export default {
         accion: "",
       };
     },
-    handleCommand(command) {
-      if (command == "eliminar") {
-        this.$store.commit('deleteDepartamento',this.selectedRow)
-        console.log(command);
-      } else {
-        console.log(command);
-      }
+    handleEdit(command) {
+      console.log('Edit');
     },
-    deleteDepartamento(index, rows) {
-      this.selectedRow = index
+    handleDelete(index, rows) {
+      this.selectedRow = index;
+      this.$store.commit("deleteDepartamento", this.selectedRow);
     },
   },
   computed: {

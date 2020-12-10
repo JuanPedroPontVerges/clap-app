@@ -25,7 +25,6 @@ export default new Vuex.Store({
       }
     },
     userProfile: {},
-    loginOrRegister: false,
     component: 'AppLogin',
     errorMsg: '',
     loaded: false,
@@ -81,9 +80,6 @@ export default new Vuex.Store({
     setUserProfile(state, val) {
       state.userProfile = val
     },
-    setShowLogInOrRegister(state) {
-      state.loginOrRegister = !state.loginOrRegister;
-    },
     setCurrentComponent(state, payload) {
       state.component = payload
     },
@@ -131,7 +127,10 @@ export default new Vuex.Store({
     },
     setConfigPreferencias(state, payload) {
       state.configuraciones.preferencias = payload
-    }
+    },
+    setFilteredPersonaTable(state, payload) {
+      state.personas = payload
+    },
   },
   actions: {
     async login({
@@ -143,7 +142,6 @@ export default new Vuex.Store({
           user
         }) => {
           this.commit('setErrorMessage', ' ')
-          router.push('/')
           dispatch('fetchUserProfile', user)
         })
         .catch(err => {
@@ -158,6 +156,7 @@ export default new Vuex.Store({
       await fb.usersCollection.doc(user.uid).get()
         .then(userProfile => {
           commit('setUserProfile', userProfile.data())
+          router.push('/')
         })
         .catch(err => {
           commit('setErrorMessage', err.message)
@@ -166,11 +165,17 @@ export default new Vuex.Store({
     },
     async signup({
       dispatch
-    }, form) {
+    }, {
+      nombre,
+      email,
+      contrasena,
+      apellido,
+      telefono
+    }) {
       // sign user up
       const {
         user
-      } = await fb.auth.createUserWithEmailAndPassword(form.usuario.email, form.usuario.contrasena)
+      } = await fb.auth.createUserWithEmailAndPassword(email, contrasena)
       // set type of user depending of where this action is called from
       let tipo = ''
       if (router.currentRoute.fullPath == "/login") {
@@ -181,17 +186,12 @@ export default new Vuex.Store({
       // create user profile object in userCollections
       await fb.usersCollection.doc(user.uid).set({
         usuario: {
-          nombre: form.usuario.nombre,
-          email: form.usuario.email,
-          contrasena: form.usuario.contrasena,
-          apellido: form.usuario.apellido,
+          nombre,
+          email,
+          contrasena,
+          apellido,
+          telefono,
           type: tipo
-        },
-        institucion: {
-          nombre: form.institucion.nombre,
-          tieneSitioWeb: form.institucion.tieneSitioWeb,
-          web: form.institucion.web,
-          interesados: form.institucion.interesados
         }
       })
 

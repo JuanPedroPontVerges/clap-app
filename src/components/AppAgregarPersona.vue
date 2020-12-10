@@ -1,29 +1,44 @@
 <template>
-  <el-dialog title="Agregar Persona" :visible.sync="getAgregarPersonaDialog">
-    <el-form :model="form">
-      <el-form-item label="Nombre" label-width="50">
-        <el-input v-model="form.nombre" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="Email" label-width="50">
-        <el-input v-model="form.email" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="Departamento" label-width="50">
-        <el-select v-model="form.departamento" placeholder="Elija un Departamento">
-          <el-option
-            v-for="(departamento, index) in getDepartamentos"
-            :key="index"
-            :label="departamento.nombre"
-            :value="departamento.nombre"
-          ></el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="Tipo">
-        <el-select v-model="form.tipo" placeholder="Elija un Colaborador">
-          <el-option label="Coolaborador" value="Coolaborador"></el-option>
-          <el-option label="Empleado" value="Empleado"></el-option>
-          <el-option label="Proovedor" value="Proovedor"></el-option>
-        </el-select>
-      </el-form-item>
+  <el-dialog title="Agregar Persona" :visible.sync="getAgregarPersonaDialog" width="550px">
+    <el-form :model="form" label-position="top">
+      <el-row :gutter="20">
+        <el-col :sm="12">
+          <el-form-item label="Nombre" label-width="50">
+            <el-input v-model="form.nombre" autocomplete="off"></el-input>
+          </el-form-item>
+        </el-col>
+        <el-col :sm="12">
+          <el-form-item label="Email" label-width="50">
+            <el-input v-model="form.email" autocomplete="off"></el-input>
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :sm="12">
+          <el-form-item label="Departamento">
+            <el-select
+              v-model="form.departamento"
+              placeholder="Elija un Departamento"
+            >
+              <el-option
+                v-for="(departamento, index) in getDepartamentos"
+                :key="index"
+                :label="departamento.nombre"
+                :value="departamento.nombre"
+              ></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+        <el-col :sm="12">
+          <el-form-item label="Tipo">
+            <el-select v-model="form.tipo" placeholder="Elija un Colaborador">
+              <el-option label="Coolaborador" value="Coolaborador"></el-option>
+              <el-option label="Empleado" value="Empleado"></el-option>
+              <el-option label="Proovedor" value="Proovedor"></el-option>
+            </el-select>
+          </el-form-item>
+        </el-col>
+      </el-row>
       <el-form-item v-if="form.tipo == 'Coolaborador'">
         <el-checkbox v-model="form.empleadoTramites"
           >Permitir crear tramites como empleado</el-checkbox
@@ -67,6 +82,7 @@ export default {
     },
     agregarPersona() {
       this.$store.commit("setAgregarPersona", this.form);
+      this.form = {}
       this.toggleDialog();
     },
   },

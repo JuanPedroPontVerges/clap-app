@@ -9,29 +9,42 @@
           <el-col :xs="24">
             <h1>La Metro</h1>
           </el-col>
-          <el-row>
+          <el-row v-if="getCurrentComponent === 'AppLogin'">
             <el-col :xs="24">
               <h3>Iniciar sesiòn</h3>
               <p>Acceso {{ this.$route.query.user }}</p>
             </el-col>
           </el-row>
+          <el-row v-else>
+            <el-col :xs="24">
+              <h3>Registrar Usuario</h3>
+              <p>Acceso {{ this.$route.query.user }}</p>
+            </el-col>
+          </el-row>
           <el-row>
             <el-col :xs="24">
-              <AppLogin></AppLogin>
+              <component :is="getCurrentComponent"></component>
             </el-col>
           </el-row>
         </el-col>
         <!-- separacion de contenidos -->
         <el-col :xs="24" :sm="6" class="aside">
           <el-col :xs="24" class="center">
-            <el-row type="flex" align="middle" justify="center" style="margin:20px 0;">
+            <el-row
+              type="flex"
+              align="middle"
+              justify="center"
+              style="margin: 20px 0"
+            >
               <img src="../assets/logo.png" alt="" />
-              <h1>Pulpo</h1>
+              <h1 style="color: white">Pulpo</h1>
             </el-row>
           </el-col>
           <el-row>
             <el-col :lg="24" class="center">
-              <h4>Gestión administrativa de institutos educativos</h4>
+              <h4 style="color: white">
+                Gestión administrativa de institutos educativos
+              </h4>
             </el-col>
           </el-row>
           <el-row class="center">
@@ -52,6 +65,7 @@
 import LoginOrSignupLayout from "../layouts/LoginOrSignupLayout";
 import LogInOrRegister from "../components/LogInOrRegister";
 import AppLogin from "../components/AppLogin";
+import AppRegister from "../components/AppRegister";
 
 export default {
   data() {
@@ -70,7 +84,11 @@ export default {
       alert("a");
     },
   },
-  computed: {},
+  computed: {
+    getCurrentComponent() {
+      return this.$store.state.component;
+    },
+  },
   created() {
     this.$emit(`update:layout`, LoginOrSignupLayout);
   },
@@ -81,6 +99,7 @@ export default {
   components: {
     LogInOrRegister,
     AppLogin,
+    AppRegister,
   },
 };
 </script>

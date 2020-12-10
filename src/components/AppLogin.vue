@@ -11,13 +11,22 @@
       <el-row>
         <el-col :sm="12">
           <el-form-item label="Contraseña">
-            <el-input v-model="loginForm.contrasena" type="password">
+            <el-input
+              v-model="loginForm.contrasena"
+              :type="icono ? 'password' : 'text'"
+            >
+              <el-button
+                slot="append"
+                @click="showPassword"
+                :icon="icono ? 'el-icon-lock' : 'el-icon-unlock'"
+              >
+              </el-button>
             </el-input>
           </el-form-item>
         </el-col>
       </el-row>
     </el-form>
-    <div slot="footer" class="dialog-footer" style="margin: 16px 0">
+    <div style="margin: 16px 0">
       <el-button type="primary" @click="loguearse()">Ingresar</el-button>
     </div>
     <p v-if="errMsg">
@@ -25,9 +34,9 @@
     </p>
     <div class="extras">
       ¿No tienes cuenta?
-      <router-link @click.native="setRegister()" to="/register">
-        <span>Crear Cuenta</span></router-link
-      >
+      <a @click="toggleRegister()">
+        <span>Crear Cuenta</span>
+      </a>
     </div>
   </div>
 </template>
@@ -36,26 +45,35 @@
 export default {
   data() {
     return {
+      isLogin: true,
+      icono: true,
+      contrasena: "",
       loginForm: {
         email: "",
         contrasena: "",
       },
+      registerForm: {
+        nombre: "",
+        contrasena: "",
+        apellido: "",
+        email: "",
+        telefono: "",
+      },
     };
   },
   methods: {
-    setRegister() {
+    toggleRegister() {
       this.$store.commit("setCurrentComponent", "AppRegister");
     },
-    setShowLogInOrRegister() {
-      this.$store.commit("setShowLogInOrRegister");
-      this.$store.commit("setCurrentComponent", "AppLogin");
-    },
     loguearse() {
-      console.log('logeo');
+      console.log("logeo");
       this.$store.dispatch("login", {
         email: this.loginForm.email,
         password: this.loginForm.contrasena,
       });
+    },
+    showPassword() {
+      this.icono = !this.icono;
     },
   },
   computed: {
@@ -70,11 +88,11 @@ export default {
 <style scoped>
 span {
   cursor: pointer;
-  color:#0049ff;
+  color: #0049ff;
   text-decoration: none !important;
   font-weight: 600;
 }
- a {
+a {
   text-decoration: none !important;
 }
 </style>

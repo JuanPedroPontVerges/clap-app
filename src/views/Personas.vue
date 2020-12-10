@@ -21,9 +21,6 @@
     </el-row>
     <el-row>
       <el-col :sm="12">
-        <el-button type="danger" @click="eliminarPersona">Eliminar</el-button>
-      </el-col>
-      <el-col :sm="12">
         <el-input
           placeholder="Buscar..."
           suffix-icon="el-icon-search"
@@ -40,7 +37,7 @@
           ref="tab"
           highlight-current-row
           empty-text
-          stripe
+          @selection-change="handleSelectionChange"
         >
           <div slot="empty">
             <p>No se encontraron resultados</p>
@@ -60,26 +57,44 @@
           </el-table-column>
           <el-table-column align="right">
             <template slot-scope="scope">
-              <el-dropdown trigger="click" @command="handleCommand">
+              <el-tooltip
+                class="item"
+                effect="dark"
+                content="Editar"
+                placement="top-start"
+              >
                 <el-button
                   type="primary"
-                  size="mini"
-                  @click.stop="handleAccion(scope.$index)"
-                >
-                  <i class="el-icon-more" style="transform: rotate(90deg)"></i>
-                </el-button>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item command="eliminar"
-                    >Eliminar</el-dropdown-item
-                  >
-                  <el-dropdown-item command="editar">Editar</el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
+                  icon="el-icon-edit"
+                  circle
+                  @click.stop="handleEdit(scope.$index)"
+                ></el-button>
+              </el-tooltip>
+              <el-tooltip
+                class="item"
+                effect="dark"
+                content="Eliminar"
+                placement="top-start"
+              >
+                <el-button
+                  type="danger"
+                  icon="el-icon-delete"
+                  circle
+                  @click.stop="handleDelete(scope.$index)"
+                ></el-button>
+              </el-tooltip>
             </template>
           </el-table-column>
         </el-table>
         <el-divider></el-divider>
-
+        <el-col :sm="12">
+          <el-button
+            type="danger"
+            @click="eliminarPersona"
+            :disabled="selected ? false : true"
+            >Eliminar</el-button
+          >
+        </el-col>
         <div style="text-align: right">
           <el-pagination
             background
@@ -103,11 +118,12 @@ export default {
   data() {
     return {
       search: "",
-      filtered: null,
       page: 1,
       pageSize: 15,
       total: 0,
       filtered: [],
+      selected: false,
+      selectionFiltr: [],
     };
   },
   created() {
@@ -127,9 +143,12 @@ export default {
         this.$store.commit("deletePersona", this.currentRow);
       }
     },
-    handleAccion(index) {
+    handleDelete(index) {
       this.currentRow = index;
-      console.log(index);
+      this.$store.commit("deletePersona", this.currentRow);
+    },
+    handleEdit(index) {
+      this.currentRow = index;
     },
     filterTag(value, row) {
       return row.estado === value;
@@ -139,10 +158,17 @@ export default {
       return row[property] === value;
     },
     eliminarPersona() {
-      this.$store.commit("setFilteredPersonaTable", this.filtered);
+      this.$store.commit("setFilteredPersonaTable", this.selectionFiltr);
     },
     handlePaginationChange(val) {
       this.page = val;
+    },
+    handleSelectionChange(val) {
+      //this.multipleSelection = val;
+      let toRemove = new Set(val);
+      if (toRemove.size > 0) this.selected = true;
+      else this.selected = false;
+      this.selectionFiltr = this.getTableData.filter((el) => !toRemove.has(el));
     },
   },
   computed: {
@@ -157,6 +183,9 @@ export default {
         this.pageSize * this.page - this.pageSize,
         this.pageSize * this.page
       );
+    },
+    getTableData() {
+      return this.$store.state.personas;
     },
   },
 };

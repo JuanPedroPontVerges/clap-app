@@ -84,27 +84,43 @@
           </el-table-column>
           <el-table-column align="center">
             <template slot-scope="scope">
-              <el-dropdown trigger="click" @command="handleCommand">
+              <el-tooltip
+                class="item"
+                effect="dark"
+                content="Editar"
+                placement="top-start"
+              >
                 <el-button
                   type="primary"
-                  size="mini"
-                  @click.stop="handleAccion(scope.$index)"
-                >
-                  <i class="el-icon-more" style="transform: rotate(90deg)"></i>
-                </el-button>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item command="eliminar"
-                    >Eliminar</el-dropdown-item
-                  >
-                  <el-dropdown-item command="editar">Editar</el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
+                  icon="el-icon-edit"
+                  circle
+                  @click.stop="handleEdit(scope.$index)"
+                ></el-button>
+              </el-tooltip>
+              <el-tooltip
+                class="item"
+                effect="dark"
+                content="Eliminar"
+                placement="top-start"
+              >
+                <el-button
+                  type="danger"
+                  icon="el-icon-delete"
+                  circle
+                  @click.stop="handleDelete(scope.$index)"
+                ></el-button>
+              </el-tooltip>
             </template>
           </el-table-column>
         </el-table>
         <el-divider></el-divider>
         <el-col :sm="12">
-          <el-button type="danger" @click="eliminarTramite">Eliminar</el-button>
+          <el-button
+            type="danger"
+            @click="eliminarTramite"
+            :disabled="selected ? false : true"
+            >Eliminar</el-button
+          >
         </el-col>
         <div style="text-align: right">
           <el-pagination
@@ -139,6 +155,8 @@ export default {
       pageSize: 15,
       total: 0,
       filtered: [],
+      selected: false,
+      selectionFiltr: [],
     };
   },
   created() {
@@ -168,17 +186,21 @@ export default {
     },
   },
   methods: {
-    handleAccion(index) {
+    handleDelete(index) {
       this.currentRow = index;
-      console.log(index);
+      this.$store.commit("deleteTramite", this.currentRow);
+    },
+    handleEdit(index) {
+      this.currentRow = index;
     },
     handleSelectionChange(val) {
       //this.multipleSelection = val;
       let toRemove = new Set(val);
-      let filtered = this.getTableData.filter((el) => !toRemove.has(el));
+      if (toRemove.size > 0) this.selected = true;
+      else this.selected = false;
+      this.selectionFiltr = this.getTableData.filter((el) => !toRemove.has(el));
     },
     handleCommand(command) {
-      console.log(`click en ${command}`);
       if (command === "eliminar") {
         this.$store.commit("deleteTramite", this.currentRow);
       }
@@ -207,7 +229,7 @@ export default {
       return row[property] === value;
     },
     eliminarTramite() {
-      this.$store.commit("setFilteredTable", this.filtered);
+      this.$store.commit("setFilteredTable", this.selectionFiltr);
     },
     handlePaginationChange(val) {
       this.page = val;

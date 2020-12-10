@@ -4,7 +4,6 @@ import Home from "../views/Home.vue";
 import Landing from "../views/Landing.vue";
 import Login from "../views/Login.vue";
 import Forms from "../views/Forms.vue";
-import Register from "../views/Register.vue";
 import Descripcion from "../views/Descripcion.vue";
 import Tramites from "../views/Tramites.vue";
 import Configuraciones from "../views/Configuraciones.vue";
@@ -73,14 +72,6 @@ const routes = [{
     component: Forms,
     meta: {
       requiresAuth: true,
-    }
-  },
-  {
-    path: "/register",
-    name: "Register",
-    component: Register,
-    meta: {
-      requiresAuth: false,
     }
   },
   {
