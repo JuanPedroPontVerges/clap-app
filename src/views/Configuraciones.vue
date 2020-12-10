@@ -5,6 +5,35 @@
         <el-tabs
           tab-position="left"
           @tab-click="handleClick"
+          class="hidden-xs-only"
+        >
+          <el-tab-pane
+            ><span slot="label"><i class="el-icon-info"></i> General</span>
+          </el-tab-pane>
+          <el-tab-pane
+            ><span slot="label"
+              ><i class="el-icon-s-tools"></i> Preferencias</span
+            >
+          </el-tab-pane>
+          <el-tab-pane
+            ><span slot="label"
+              ><i class="el-icon-menu"></i> Departamentos</span
+            >
+          </el-tab-pane>
+          <el-tab-pane
+            ><span slot="label"
+              ><i class="el-icon-s-data"></i> Almacenamiento</span
+            >
+          </el-tab-pane>
+          <el-tab-pane
+            ><span slot="label"
+              ><i class="el-icon-s-custom"></i> Colaboradores</span
+            >
+          </el-tab-pane>
+        </el-tabs>
+        <el-tabs
+          @tab-click="handleClick"
+          class="hidden-sm-and-up"
         >
           <el-tab-pane
             ><span slot="label"><i class="el-icon-info"></i> General</span>
@@ -44,7 +73,7 @@ import Colaboradores from "../components/ConfiguracionesComponents/Colaboradores
 import Departamentos from "../components/ConfiguracionesComponents/Departamentos";
 import General from "../components/ConfiguracionesComponents/General";
 import Preferencias from "../components/ConfiguracionesComponents/Preferencias";
-import HomeLayout from "../layouts/HomeLayout"
+import HomeLayout from "../layouts/HomeLayout";
 
 export default {
   data() {

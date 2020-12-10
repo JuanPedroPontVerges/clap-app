@@ -24,7 +24,6 @@ export default {
         collapseButtonCloseColor: "#661c23",
         showBrandImageInMobilePopup: true,
         ariaLabelMainNav: "Navegacion",
-        tooltipAnimationType: "shift-away",
         menuOptionsRight: [
           {
             type: "link",

@@ -21,16 +21,16 @@
       </el-col>
       <el-col :sm="24">
         <el-row>
-          <el-col :sm="10">
+          <el-col :xs="10" :sm="10">
             <div style="text-align:center; float:right">
               <h4>3 GB</h4>
               <p>UTILIZADOS</p>
             </div>
           </el-col>
-          <el-col :sm="4">
-            <div class="linea hidden-xs-only"></div>
+          <el-col :xs="4" :sm="4">
+            <div class="linea"></div>
           </el-col>
-          <el-col :sm="10">
+          <el-col :xs="10" :sm="10">
             <div style="text-align:center; float:left">
               <h4>10 GB</h4>
               <p>TOTAL</p>
