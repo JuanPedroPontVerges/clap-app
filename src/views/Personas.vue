@@ -35,6 +35,7 @@
           style="margin-top: 20px; width: 100%"
           :data="displayData"
           ref="tab"
+          :header-cell-style="getRowClass"
           highlight-current-row
           empty-text
           @selection-change="handleSelectionChange"
@@ -169,6 +170,13 @@ export default {
       if (toRemove.size > 0) this.selected = true;
       else this.selected = false;
       this.selectionFiltr = this.getTableData.filter((el) => !toRemove.has(el));
+    },
+    getRowClass({ row, column, rowIndex, columnIndex }) {
+      if (rowIndex === 0) {
+        return "background-color: #B3BEE5;";
+      } else {
+        return "";
+      }
     },
   },
   computed: {

@@ -1,5 +1,9 @@
 <template>
-  <el-dialog title="Agregar Persona" :visible.sync="getAgregarPersonaDialog" width="550px">
+  <el-dialog
+    title="Agregar Persona"
+    :visible.sync="getAgregarPersonaDialog"
+    width="550px"
+  >
     <el-form :model="form" label-position="top">
       <el-row :gutter="20">
         <el-col :sm="12">
@@ -81,9 +85,23 @@ export default {
       this.$store.commit("setAgregarPersonaDialogo");
     },
     agregarPersona() {
-      this.$store.commit("setAgregarPersona", this.form);
-      this.form = {}
-      this.toggleDialog();
+      if (!this.form.nombre || !this.form.email || !this.form.tipo) {
+        this.$message({
+          message: "Error al agregar, complete los campos",
+          type: "error",
+          duration: 4000,
+        });
+        return;
+      } else {
+        this.$store.commit("setAgregarPersona", this.form);
+        this.form = {};
+        this.toggleDialog();
+        this.$message({
+          message: "Agregado correctamente",
+          type: "success",
+          duration: 4000,
+        });
+      }
     },
   },
 };

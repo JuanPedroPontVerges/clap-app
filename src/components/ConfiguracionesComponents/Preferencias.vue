@@ -78,6 +78,11 @@ export default {
   methods: {
     guardarForm() {
       this.$store.commit("setConfigPreferencias", this.getForm);
+      this.$message({
+        message: "Cambios guardados",
+        type: "success",
+        duration: 4000,
+      });
     },
   },
   created() {

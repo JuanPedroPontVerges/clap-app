@@ -26,6 +26,7 @@
           style="margin-top: 20px; width: 100%"
           :data="displayData"
           ref="tab"
+          :header-cell-style="getRowClass"
           highlight-current-row
           @cell-click="getNumeroFila"
           @current-change="handleCurrentChange"
@@ -36,7 +37,7 @@
             <p>No se encontraron resultados</p>
           </div>
           <el-table-column type="selection"> </el-table-column>
-          <el-table-column prop="tramite" label="Trámite" width="200px">
+          <el-table-column prop="tramite" label="Trámite" width="160px">
           </el-table-column>
           <el-table-column
             prop="departamento"
@@ -61,7 +62,7 @@
           </el-table-column>
           <el-table-column prop="fecha" label="Fecha" width="120px">
           </el-table-column>
-          <el-table-column prop="pasosCompletados" label="Pasos" width="120px">
+          <el-table-column prop="pasosCompletados" label="Pasos" width="100px">
           </el-table-column>
           <el-table-column
             prop="estado"
@@ -82,7 +83,7 @@
               > </template
             >>
           </el-table-column>
-          <el-table-column align="center" width="120px">
+          <el-table-column align="center" width="150px">
             <template slot-scope="scope">
               <el-tooltip
                 class="item"
@@ -234,6 +235,13 @@ export default {
     handlePaginationChange(val) {
       this.page = val;
     },
+    getRowClass({ row, column, rowIndex, columnIndex }) {
+      if (rowIndex === 0) {
+        return "background-color: #B3BEE5;";
+      } else {
+        return "";
+      }
+    }
   },
   components: {},
 };

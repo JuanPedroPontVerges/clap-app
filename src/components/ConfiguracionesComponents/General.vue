@@ -125,6 +125,11 @@ export default {
     guardarCambios() {
       this.$store.commit("setDialogImageUrl", this.dialogImageUrl);
       this.$store.commit("setConfigGeneral", this.getForm);
+      this.$message({
+        message: "Cambios guardados",
+        type: "success",
+        duration: 4000,
+      });
     },
   },
   computed: {
