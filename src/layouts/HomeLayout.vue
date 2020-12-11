@@ -59,7 +59,7 @@ export default {
           {
             type: "button",
             iconRight: '<i class="el-icon-user"></i>',
-            path: { name: "Tramites" },
+            path: { name: "" },
             text: "logout",
           },
         ],
@@ -93,6 +93,9 @@ export default {
     signout() {
       this.$store.dispatch("logout");
     },
+  },
+  created() {
+    this.navbarOptions.menuOptionsRight[6].path.name = this.$route.name;
   },
   computed: {},
   components: {},

@@ -82,7 +82,7 @@
               > </template
             >>
           </el-table-column>
-          <el-table-column align="center">
+          <el-table-column align="center" width="120px">
             <template slot-scope="scope">
               <el-tooltip
                 class="item"

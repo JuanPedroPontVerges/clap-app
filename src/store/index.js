@@ -11,17 +11,15 @@ export default new Vuex.Store({
   state: {
     configuraciones: {
       general: {
-        logo: '',
         nombre: '',
         descripcion: '',
         url: '',
-        disabled: false
+        dialogImageUrl: ''
       },
       preferencias: {
         empleados: '',
         zonaHoraria: '',
-        diasDeTrabajo: null,
-        disabled: false
+        diasDeTrabajo: [],
       }
     },
     userProfile: {},
@@ -99,10 +97,7 @@ export default new Vuex.Store({
       state.logo = payload
     },
     setDepartamento(state, payload) {
-      console.log('payload', payload);
       state.departamentos.push(payload)
-      //state.departamentos.push(payload)
-      console.log('departamentos:', state.departamentos);
     },
     deleteDepartamento(state, payload) {
       state.departamentos.splice(payload, 1)
@@ -131,6 +126,9 @@ export default new Vuex.Store({
     setFilteredPersonaTable(state, payload) {
       state.personas = payload
     },
+    setDialogImageUrl(state, payload) {
+      state.configuraciones.general.dialogImageUrl = payload
+    },
   },
   actions: {
     async login({
@@ -143,6 +141,7 @@ export default new Vuex.Store({
         }) => {
           this.commit('setErrorMessage', ' ')
           dispatch('fetchUserProfile', user)
+          router.push('/')
         })
         .catch(err => {
           this.commit('setErrorMessage', err.message)
@@ -156,7 +155,6 @@ export default new Vuex.Store({
       await fb.usersCollection.doc(user.uid).get()
         .then(userProfile => {
           commit('setUserProfile', userProfile.data())
-          router.push('/')
         })
         .catch(err => {
           commit('setErrorMessage', err.message)
