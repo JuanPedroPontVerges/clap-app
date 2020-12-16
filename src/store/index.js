@@ -141,6 +141,7 @@ export default new Vuex.Store({
         }) => {
           this.commit('setErrorMessage', ' ')
           dispatch('fetchUserProfile', user)
+          router.push('/')
         })
         .catch(err => {
           this.commit('setErrorMessage', err.message)
@@ -154,7 +155,6 @@ export default new Vuex.Store({
       await fb.usersCollection.doc(user.uid).get()
         .then(userProfile => {
           commit('setUserProfile', userProfile.data())
-          router.push('/')
         })
         .catch(err => {
           commit('setErrorMessage', err.message)
@@ -192,9 +192,9 @@ export default new Vuex.Store({
           type: tipo
         }
       })
-
       // fetch user profile and set in state
       dispatch('fetchUserProfile', user)
+      router.push('/')
     },
     async logout({
       commit
