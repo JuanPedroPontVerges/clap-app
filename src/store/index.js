@@ -162,7 +162,8 @@ export default new Vuex.Store({
       commit('setLoaded', true)
     },
     async signup({
-      dispatch
+      dispatch,
+      commit
     }, {
       nombre,
       email,
@@ -194,6 +195,12 @@ export default new Vuex.Store({
       })
       // fetch user profile and set in state
       dispatch('fetchUserProfile', user)
+      commit('setAgregarPersona', {
+        nombre,
+        email,
+        departamento: '',
+        tipo: 'Empleado'
+      })
       router.push('/')
     },
     async logout({
