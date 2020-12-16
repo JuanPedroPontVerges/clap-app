@@ -7,7 +7,69 @@
       <el-col :sm="4">
         <el-button type="primary" @click="toggleDialog">Agregar</el-button>
       </el-col>
-      <AppAgregarPersona></AppAgregarPersona>
+      <el-dialog
+        title="Agregar Persona"
+        :visible.sync="dialogVisible"
+        width="550px"
+      >
+        <el-form :model="form" label-position="top">
+          <el-row :gutter="20">
+            <el-col :sm="12">
+              <el-form-item label="Nombre" label-width="50">
+                <el-input v-model="form.nombre" autocomplete="off"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :sm="12">
+              <el-form-item label="Email" label-width="50">
+                <el-input v-model="form.email" autocomplete="off"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :sm="12">
+              <el-form-item label="Departamento">
+                <el-select
+                  v-model="form.departamento"
+                  placeholder="Elija un Departamento"
+                >
+                  <el-option
+                    v-for="(departamento, index) in getDepartamentos"
+                    :key="index"
+                    :label="departamento.nombre"
+                    :value="departamento.nombre"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :sm="12">
+              <el-form-item label="Tipo">
+                <el-select
+                  v-model="form.tipo"
+                  placeholder="Elija un Colaborador"
+                >
+                  <el-option
+                    label="Coolaborador"
+                    value="Coolaborador"
+                  ></el-option>
+                  <el-option label="Empleado" value="Empleado"></el-option>
+                  <el-option label="Proovedor" value="Proovedor"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-form-item v-if="form.tipo == 'Coolaborador'">
+            <el-checkbox v-model="form.empleadoTramites"
+              >Permitir crear tramites como empleado</el-checkbox
+            >
+          </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="toggleDialog">Cancelar</el-button>
+          <el-button type="primary" @click="agregarPersona()"
+            >Agregar</el-button
+          >
+        </span>
+      </el-dialog>
     </el-row>
     <el-row>
       <el-col :sm="24">
@@ -44,19 +106,19 @@
             <p>No se encontraron resultados</p>
           </div>
           <el-table-column type="selection"> </el-table-column>
-          <el-table-column prop="nombre" label="Nombre" width="200px">
+          <el-table-column prop="nombre" label="Nombre" min-width="140px">
           </el-table-column>
-          <el-table-column prop="email" label="Email" width="200px">
+          <el-table-column prop="email" label="Email" min-width="220px">
           </el-table-column>
           <el-table-column
             prop="departamento"
             label="Departamento"
-            width="200px"
+            min-width="200px"
           >
           </el-table-column>
-          <el-table-column prop="tipo" label="Tipo" width="200px">
+          <el-table-column prop="tipo" label="Tipo" min-width="140px">
           </el-table-column>
-          <el-table-column align="right">
+          <el-table-column align="right" min-width="200px">
             <template slot-scope="scope">
               <el-tooltip
                 class="item"
@@ -118,6 +180,13 @@ import HomeLayout from "../layouts/HomeLayout";
 export default {
   data() {
     return {
+      form: {
+        nombre: "",
+        email: "",
+        departamento: "",
+        tipo: "",
+        empleadoTramites: false,
+      },
       search: "",
       page: 1,
       pageSize: 15,
@@ -125,6 +194,7 @@ export default {
       filtered: [],
       selected: false,
       selectionFiltr: [],
+      dialogVisible: false,
     };
   },
   created() {
@@ -178,6 +248,28 @@ export default {
         return "";
       }
     },
+    agregarPersona() {
+      if (!this.form.nombre || !this.form.email || !this.form.tipo) {
+        this.$message({
+          message: "Error al agregar, complete los campos",
+          type: "error",
+          duration: 4000,
+        });
+        return;
+      } else {
+        this.$store.commit("setAgregarPersona", this.form);
+        this.form = {};
+        this.toggleDialog();
+        this.$message({
+          message: "Agregado correctamente",
+          type: "success",
+          duration: 4000,
+        });
+      }
+    },
+    toggleDialog() {
+      this.dialogVisible = !this.dialogVisible;
+    },
   },
   computed: {
     displayData() {
@@ -194,6 +286,9 @@ export default {
     },
     getTableData() {
       return this.$store.state.personas;
+    },
+    getDepartamentos() {
+      return this.$store.state.departamentos;
     },
   },
 };

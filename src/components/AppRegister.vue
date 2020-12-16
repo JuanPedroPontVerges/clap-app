@@ -135,14 +135,6 @@ export default {
 };
 </script>
 
-<style scoped>
-span {
-  cursor: pointer;
-  color: #0049ff;
-  text-decoration: none !important;
-  font-weight: 600;
-}
-a {
-  text-decoration: none !important;
-}
+<style>
+
 </style>

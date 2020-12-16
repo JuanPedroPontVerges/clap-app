@@ -26,8 +26,8 @@
         </el-col>
       </el-row>
     </el-form>
-    <div style="margin: 16px 0">
-      <el-button type="primary" @click="loguearse()">Ingresar</el-button>
+    <div>
+      <el-button type="primary" @click="loguearse()" style="width:40%;">Ingresar</el-button>
     </div>
     <p v-if="errMsg">
       {{ errMsg }}
@@ -85,14 +85,6 @@ export default {
 </script>
 
 
-<style scoped>
-span {
-  cursor: pointer;
-  color: #0049ff;
-  text-decoration: none !important;
-  font-weight: 600;
-}
-a {
-  text-decoration: none !important;
-}
+<style>
+
 </style>

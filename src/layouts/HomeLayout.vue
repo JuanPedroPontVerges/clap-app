@@ -5,11 +5,26 @@
     </el-header>
     <el-main>
       <slot />
+      <SocialChat icon :attendants="attendants">
+        <p slot="header">
+          ¿Necesitas una mano?
+        </p>
+        <AppPulpoButton slot="button"></AppPulpoButton>
+        <image
+          style="width: 100px; height: 100px; border-radius: 100%"
+          src="/src/assets/logo.png"
+          slot="button"
+        ></image>
+        <small slot="footer">Chatea con Pulpo</small>
+      </SocialChat>
     </el-main>
   </el-container>
 </template>
 
 <script>
+import { SocialChat } from "vue-social-chat";
+import AppPulpoButton from "../components/AppPulpoButton";
+
 export default {
   data() {
     return {
@@ -64,6 +79,18 @@ export default {
           },
         ],
       },
+      // PULPO BUTTON
+      attendants: [
+        {
+          app: "whatsapp",
+          name: "Pulpo",
+          number: "3516866950",
+          avatar: {
+            src: "../assets/logo.png",
+            alt: "Pulpo",
+          },
+        },
+      ],
     };
   },
   methods: {
@@ -97,8 +124,10 @@ export default {
   created() {
     this.navbarOptions.menuOptionsRight[6].path.name = this.$route.name;
   },
-  computed: {},
-  components: {},
+  components: {
+    SocialChat,
+    AppPulpoButton,
+  },
 };
 </script>
 

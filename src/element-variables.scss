@@ -10,6 +10,7 @@ $--color-background:#EEF2FF;
 $--table-header-background-color: #EEF2FF;
 $--table-header-font-color: black;
 $--input-border-radius: 1px;
+$assetPath : "./assets";
 
 
 /* icon font path, required */
@@ -107,6 +108,10 @@ body::-webkit-scrollbar-thumb {
 
 /* CONFIG GENERAL */
 
+.text-center {
+    text-align: center;
+}
+
 h1,
 h2,
 h3,
@@ -184,17 +189,17 @@ html {
 
             z-index: 100;
         }
+
+        .el-image__inner,
+        .el-image__placeholder,
+        .el-image__error {
+            height: 40px;
+            width: auto;
+        }
     }
 }
 
-/* TRAMITES */
-.tramites {
-
-    .el-table {}
-
-}
-
-/* DESCRIPCION DE TRAMITES */
+/* CONTENEDOR */
 
 @media only screen and (max-width: 768px) {
     .container {
@@ -224,6 +229,14 @@ html {
     .container {
         width: 1200px;
     }
+}
+
+
+/* TRAMITES */
+.tramites {
+
+    .el-table {}
+
 }
 
 /* CONFIGURACIÓN */
@@ -265,4 +278,51 @@ html {
     margin-bottom: 30px;
     border: 1px solid rgb(204, 204, 204);
     margin: 0px !important;
+}
+
+/* LANDING */
+.landing-header {
+    background-color: $--color-background;
+}
+
+/* LOGIN */
+.login-main {
+    padding: 0 40px 40px 40px;
+}
+
+.login-aside {
+    background-image: url('./assets/login-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.extras span {
+    cursor: pointer;
+    color: #0049ff;
+    text-decoration: none !important;
+    font-weight: 600;
+}
+
+.extras a {
+    text-decoration: none !important;
+    width: 20px;
+}
+
+.login-aside h1,
+p,
+h4 {
+    color: white;
+}
+
+.login-aside h4 {
+    font-size: 1.2em;
+}
+
+.login-aside-title {
+    font-family: 'Geomanist', sans-serif;
+    font-weight: bold;
+    color: white;
+    font-size: 2em;
+    margin-block-end: 0em;
 }

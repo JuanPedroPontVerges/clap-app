@@ -27,7 +27,6 @@
           :data="displayData"
           ref="tab"
           :header-cell-style="getRowClass"
-          highlight-current-row
           @cell-click="getNumeroFila"
           @current-change="handleCurrentChange"
           @selection-change="handleSelectionChange"
@@ -37,22 +36,22 @@
             <p>No se encontraron resultados</p>
           </div>
           <el-table-column type="selection"> </el-table-column>
-          <el-table-column prop="tramite" label="Trámite" width="160px">
+          <el-table-column prop="tramite" label="Trámite" min-width="160px">
           </el-table-column>
           <el-table-column
             prop="departamento"
             label="Departamento"
-            width="130px"
+            min-width="130px"
             :filters="departamentos"
             :filter-method="filterHandler"
           >
           </el-table-column>
-          <el-table-column prop="interesado" label="Solicitante" width="120px">
+          <el-table-column prop="interesado" label="Solicitante" min-width="120px">
           </el-table-column>
           <el-table-column
             prop="tipo"
             label="Tipo"
-            width="120px"
+            min-width="120px"
             :filters="[
               { text: 'Proveedor', value: 'Proveedor' },
               { text: 'Interesado', value: 'Interesado' },
@@ -60,14 +59,14 @@
             :filter-method="filterHandler"
           >
           </el-table-column>
-          <el-table-column prop="fecha" label="Fecha" width="120px">
+          <el-table-column prop="fecha" label="Fecha" min-width="120px">
           </el-table-column>
-          <el-table-column prop="pasosCompletados" label="Pasos" width="100px">
+          <el-table-column prop="pasosCompletados" label="Pasos" min-width="100px">
           </el-table-column>
           <el-table-column
             prop="estado"
             label="Estado"
-            width="100"
+            min-width="100"
             :filters="[
               { text: 'Activo', value: 'Activo' },
               { text: 'Cancelado', value: 'Cancelado' },
@@ -83,7 +82,7 @@
               > </template
             >>
           </el-table-column>
-          <el-table-column align="center" width="150px">
+          <el-table-column align="center" min-width="150px">
             <template slot-scope="scope">
               <el-tooltip
                 class="item"
@@ -114,25 +113,27 @@
             </template>
           </el-table-column>
         </el-table>
-        <el-divider></el-divider>
-        <el-col :sm="12">
-          <el-button
-            type="danger"
-            @click="eliminarTramite"
-            :disabled="selected ? false : true"
-            >Eliminar</el-button
-          >
-        </el-col>
-        <div style="text-align: right">
-          <el-pagination
-            background
-            layout="prev, pager, next"
-            @current-change="handlePaginationChange"
-            :page-size="pageSize"
-            :total="total"
-          >
-          </el-pagination>
-        </div>
+      </el-col>
+    </el-row>
+    <el-divider></el-divider>
+    <el-row type="flex" align="center">
+      <el-col :sm="12">
+        <el-button
+          type="danger"
+          @click="eliminarTramite"
+          :disabled="selected ? false : true"
+          >Eliminar</el-button
+        >
+      </el-col>
+      <el-col :sm="12" style="text-align: right">
+        <el-pagination
+          background
+          layout="prev, pager, next"
+          @current-change="handlePaginationChange"
+          :page-size="pageSize"
+          :total="total"
+        >
+        </el-pagination>
       </el-col>
     </el-row>
   </div>
@@ -241,7 +242,7 @@ export default {
       } else {
         return "";
       }
-    }
+    },
   },
   components: {},
 };

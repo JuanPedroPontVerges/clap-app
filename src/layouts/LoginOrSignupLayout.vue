@@ -1,7 +1,7 @@
 <template>
-  <el-container style="background-color: #dfddeb; height=100vh;">
+  <div>
     <slot />
-  </el-container>
+  </div>
 </template>
 
 <script>

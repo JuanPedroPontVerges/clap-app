@@ -99,9 +99,14 @@ export default {
         personas: 1,
         accion: "",
       };
+      this.$message({
+        message: "Cambios guardados",
+        type: "success",
+        duration: 4000,
+      });
     },
     handleEdit(command) {
-      console.log('Edit');
+      console.log("Edit");
     },
     handleDelete(index, rows) {
       this.selectedRow = index;

@@ -7,7 +7,7 @@
             <i class="el-icon-back">Volver</i>
           </div>
           <el-col :xs="24">
-            <h1>La Metro</h1>
+            <img src="../assets/logo-lametro.png" alt="">
           </el-col>
           <el-row v-if="getCurrentComponent === 'AppLogin'">
             <el-col :xs="24">
@@ -28,7 +28,7 @@
           </el-row>
         </el-col>
         <!-- separacion de contenidos -->
-        <el-col :xs="24" :sm="6" class="aside">
+        <el-col :xs="24" :sm="6" class="login-aside">
           <el-col :xs="24" class="center">
             <el-row
               type="flex"
@@ -60,6 +60,7 @@
     </el-main>
   </el-container>
 </template>
+
 
 <script>
 import LoginOrSignupLayout from "../layouts/LoginOrSignupLayout";
@@ -108,16 +109,7 @@ export default {
 .center {
   text-align: center;
 }
-
 .button-volver {
   cursor: pointer;
-}
-
-.aside {
-  background-image: url("../assets/login-bg.png");
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100%;
-  color: white;
 }
 </style>

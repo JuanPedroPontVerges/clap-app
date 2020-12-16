@@ -3,7 +3,6 @@
     <router-view :layout.sync="layout" />
   </component>
 </template>
-
 <script>
 export default {
   data() {
