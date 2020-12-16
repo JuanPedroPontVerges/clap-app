@@ -282,7 +282,12 @@ html {
 
 /* LANDING */
 .landing-header {
-    background-color: $--color-background;
+    background-color: $--color-primary-dark;
+    padding: 10px !important;
+}
+
+.landing-header-login {
+    text-align: right;
 }
 
 /* LOGIN */

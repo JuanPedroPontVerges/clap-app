@@ -1,11 +1,11 @@
 <template>
   <el-container>
     <el-header class="landing-header">
-      <el-row type="flex" align="middle">
+      <el-row type="flex" justify="center">
         <el-col :lg="10">
-          <h1>CLAP</h1>
+          <img src="../assets/logo.png" alt="">
         </el-col>
-        <el-col :lg="12">
+        <el-col :lg="12" class="landing-header-login">
           <el-button>Ingresar como Admin</el-button>
         </el-col>
       </el-row>
