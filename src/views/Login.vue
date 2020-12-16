@@ -82,7 +82,7 @@ export default {
       this.$store.commit("setShowLogInOrRegister");
     },
     volver() {
-      alert("a");
+      this.$router.push('/landing')
     },
   },
   computed: {
