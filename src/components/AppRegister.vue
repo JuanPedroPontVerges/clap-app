@@ -123,6 +123,7 @@ export default {
     },
     registrar(formName) {
       this.$refs[formName].validate((valid) => {
+        console.log(valid);
         if (valid) {
           this.$store.dispatch("signup", this.registerForm);
         } else {
