@@ -9,6 +9,7 @@ import Tramites from "../views/Tramites.vue";
 import Configuraciones from "../views/Configuraciones.vue";
 import Personas from "../views/Personas.vue";
 import Procesos from "../views/Procesos.vue";
+import ProcesosDetalle from "../views/ProcesosDetalle.vue";
 import Reportes from "../views/Reportes.vue";
 import {
   auth
@@ -78,6 +79,14 @@ const routes = [{
     path: "/descripcion/:id",
     name: "Descipcion",
     component: Descripcion,
+    meta: {
+      requiresAuth: true,
+    }
+  },
+  {
+    path: "/detalle/:id",
+    name: "Detalle Procesos",
+    component: ProcesosDetalle,
     meta: {
       requiresAuth: true,
     }

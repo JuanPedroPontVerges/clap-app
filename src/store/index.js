@@ -71,6 +71,35 @@ export default new Vuex.Store({
         estado: 'Activo'
       }
     ],
+    procesos: [{
+        id: 1,
+        proceso: "Inscripción Carrera",
+        departamento: "Secretaría de Alumnos",
+        tipoSolicitante: "Alumnos / Padres",
+        pasos: "7"
+      },
+      {
+        id: 2,
+        proceso: "Pedido de ausencia",
+        departamento: "Recursos Humanos",
+        tipoSolicitante: "Empleados / Proveedor",
+        pasos: "2"
+      },
+      {
+        id: 3,
+        proceso: "Alta Proveedor",
+        departamento: "Administración",
+        tipoSolicitante: "Empleados / Proveedor",
+        pasos: "2"
+      },
+      {
+        id: 4,
+        proceso: "Pago Proveedor",
+        departamento: "Secretaría de Alumnos",
+        tipoSolicitante: "Empleados / Proveedor",
+        pasos: "2"
+      }
+    ],
     departamentos: [],
     personas: [],
     selectedPersona: null
@@ -91,6 +120,9 @@ export default new Vuex.Store({
     setTramiteActual(state, payload) {
       state.tramiteActual = payload
     },
+    setProcesoActual(state, payload) {
+      state.procesoActual = payload
+    },
     setFormDialog(state) {
       state.formDialog = !state.formDialog
     },
@@ -106,6 +138,9 @@ export default new Vuex.Store({
     deleteTramite(state, payload) {
       state.tramites.splice(payload, 1)
     },
+    deleteProceso(state, payload) {
+      state.procesos.splice(payload, 1)
+    },
     setAgregarPersonaDialogo(state) {
       state.agregarPersonaDialog = !state.agregarPersonaDialog
     },
@@ -117,6 +152,9 @@ export default new Vuex.Store({
     },
     setFilteredTable(state, payload) {
       state.tramites = payload
+    },
+    setFilteredTable(state, payload) {
+      state.procesos = payload
     },
     setConfigGeneral(state, payload) {
       state.configuraciones.general = payload
