@@ -1,64 +1,66 @@
 <template>
-  <el-container>
-    <el-main>
-      <el-row :gutter="10" style="height: 100vh">
-        <el-col :xs="24" :sm="18" style="padding: 0 50px">
-          <div class="button-volver" @click="volver">
-            <i class="el-icon-back">Volver</i>
-          </div>
-          <el-col :xs="24">
-            <img src="../assets/logo-lametro.png" alt="">
-          </el-col>
-          <el-row v-if="getCurrentComponent === 'AppLogin'">
-            <el-col :xs="24">
-              <h3>Iniciar sesiòn</h3>
-              <p>Acceso {{ this.$route.query.user }}</p>
-            </el-col>
-          </el-row>
-          <el-row v-else>
-            <el-col :xs="24">
-              <h3>Registrar Usuario</h3>
-              <p>Acceso {{ this.$route.query.user }}</p>
-            </el-col>
-          </el-row>
-          <el-row>
-            <el-col :xs="24">
-              <component :is="getCurrentComponent"></component>
-            </el-col>
-          </el-row>
-        </el-col>
-        <!-- separacion de contenidos -->
-        <el-col :xs="24" :sm="6" class="login-aside-color">
-          <el-col :xs="24" class="center">
-            <el-row
-              type="flex"
-              align="middle"
-              justify="center"
-              style="margin: 20px 0"
-            >
-              <img src="../assets/logo.png" alt="" />
-              <h1 style="color: white">Pulpo</h1>
+  <div class="login">
+    <el-container>
+        <el-row :gutter="10" class="container-login">
+          <el-col :xs="24" :sm="18" class="form">
+            <div class="button-volver" @click="volver">
+              <i class="el-icon-back">Volver</i>
+            </div>
+            <el-row v-if="getCurrentComponent === 'AppLogin'" class="header">
+              <el-col :xs="24">
+                <h1>Iniciar sesiòn</h1>
+                <p>Acceso {{ this.$route.query.user }}</p>
+              </el-col>
+            </el-row>
+            <el-row v-else>
+              <el-col :xs="24">
+                <h1>Registrar Usuario</h1>
+                <p>Acceso {{ this.$route.query.user }}</p>
+              </el-col>
+            </el-row>
+            <el-row>
+              <el-col :xs="24">
+                <component :is="getCurrentComponent"></component>
+              </el-col>
             </el-row>
           </el-col>
-          <el-row>
-            <el-col :lg="24" class="center">
-              <h4 style="color: white">
-                Gestión administrativa de institutos educativos
-              </h4>
+          <!-- separacion de contenidos -->
+          <el-col :xs="24" :sm="6" class="login-aside-color">
+            <el-col :xs="24" class="center login-aside-col">
+              <el-row
+                type="flex"
+                align="middle"
+                justify="center"
+              >
+                <img class="aside-header-img" src="../assets/aside-header-img.jpg" alt="" />
+              </el-row>
+              <el-row
+                type="flex"
+                align="middle"
+                justify="center"
+              >
+                <img class="logo-pulpo" src="../assets/logo_full.png" alt="" />
+              </el-row>
             </el-col>
-          </el-row>
-          <el-row class="center">
-            <el-col :lg="24">
-              <p>
-                Solocita tramites, recibe notidicaciones y rcordatorios
-                automativos, comparte archivos y ¡mucho más!
-              </p>
-            </el-col>
-          </el-row>
-        </el-col>
-      </el-row>
-    </el-main>
-  </el-container>
+            <el-row>
+              <el-col :lg="24" class="center">
+                <h2 style="color: white">
+                  Gestión administrativa de institutos educativos
+                </h2>
+              </el-col>
+            </el-row>
+            <el-row class="center">
+              <el-col :lg="24">
+                <p>
+                  Solicita trámites, recibe notificaciones y recordatorios
+                  automáticos, comparte archivos y ¡mucho más!
+                </p>
+              </el-col>
+            </el-row>
+          </el-col>
+        </el-row>
+    </el-container>
+  </div>
 </template>
 
 
