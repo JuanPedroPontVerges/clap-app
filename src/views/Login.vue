@@ -28,7 +28,7 @@
           </el-row>
         </el-col>
         <!-- separacion de contenidos -->
-        <el-col :xs="24" :sm="6" class="login-aside">
+        <el-col :xs="24" :sm="6" class="login-aside-color">
           <el-col :xs="24" class="center">
             <el-row
               type="flex"

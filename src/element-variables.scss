@@ -239,6 +239,11 @@ html {
 
 }
 
+.numero-pasos {
+    border: 1px solid black;
+    padding: 2px 5px;
+}
+
 /* CONFIGURACIÓN */
 
 .el-tabs--left {
@@ -280,6 +285,8 @@ html {
     margin: 0px !important;
 }
 
+
+
 /* LANDING */
 .landing-header {
     background-color: $--color-primary-dark;
@@ -314,9 +321,7 @@ html {
     width: 20px;
 }
 
-.login-aside h1,
-p,
-h4 {
+.login-aside-color {
     color: white;
 }
 
@@ -330,4 +335,12 @@ h4 {
     color: white;
     font-size: 2em;
     margin-block-end: 0em;
+}
+
+.tramites-descripcion-header {
+    margin-bottom: 28px;
+}
+
+.el-checkbox.is-bordered.el-checkbox--small {
+    padding: 5px 10px 5px 10px;
 }
