@@ -1,4 +1,4 @@
-<template>
+<template class="process-description">
   <div class="container">
     <el-row>
       <el-col :sm="18">
@@ -12,7 +12,7 @@
             ></el-button>
           </el-col>
           <el-col :sm="16">
-            <h1>{{ getTramite.tramite }}</h1>
+            <h1>{{ getProceso.proceso }}</h1>
           </el-col>
           <el-col :sm="4">
             <el-dropdown trigger="click" @command="handleCommand">
@@ -34,42 +34,78 @@
         <el-row>
           <el-col :sm="24">
             <el-row type="flex" align="middle" justify="space-between">
-              <el-col :sm="12">
+              <el-col :sm="24">
+                <span class="process-header-title">Sobre el trámite</span>
                 <p>Lorem ipsum dolor sit amet consectetur.</p>
               </el-col>
-              <el-col :sm="6">
-                <el-button round icon="el-icon-check">Completado</el-button>
+            </el-row>
+            <el-row type="flex" align="middle" justify="space-between">
+              <el-col :sm="24">
+                <span class="process-header-title">Departamento</span>
+                <p>Lorem ipsum dolor sit amet consectetur.</p>
+              </el-col>
+            </el-row>
+            <el-row type="flex" align="middle" justify="space-between">
+              <el-col :sm="24">
+                <span class="process-steps-title">Pasos</span>
               </el-col>
             </el-row>
             <el-row style="border: 1px solid black; padding: 20px">
-              <el-col :sm="12">
-                <el-form label-position="top">
-                  <el-form-item label="Nombre">
-                    <el-input v-model="form.nombre"></el-input>
-                  </el-form-item>
-                  <el-form-item label="Id Empleado">
-                    <el-input v-model="form.id"></el-input>
-                  </el-form-item>
-                  <el-form-item label="Periodo">
-                    <el-input v-model="form.periodo"></el-input>
-                  </el-form-item>
-                </el-form>
+              <el-col :sm="24">
+                <el-table
+                  :data="displayData"
+                  style="width: 100%"
+                  :show-header="false"
+                  :span-method="objectSpanMethod">
+                  <el-table-column
+                    prop="paso1Numero"
+                    label="Paso"
+                    width="180">
+                  </el-table-column>
+                  <el-table-column
+                    prop="paso1Titulo"
+                    label="Título"
+                    width="180">
+                  </el-table-column>
+                  <el-table-column
+                    prop="paso1Responsable"
+                    label="Responsable">
+                  </el-table-column>
+                  <el-table-column>
+                    <template slot-scope="scope">
+                      <el-tooltip
+                          class="item"
+                          effect="dark"
+                          content="Editar"
+                          placement="top-start"
+                      >
+                          <el-button
+                          type="primary"
+                          icon="el-icon-edit"
+                          circle
+                          @click.stop="handleEdit(scope.$index)"
+                          ></el-button>
+                      </el-tooltip>
+                      <el-tooltip
+                          class="item"
+                          effect="dark"
+                          content="Eliminar"
+                          placement="top-start"
+                      >
+                          <el-button
+                          type="danger"
+                          icon="el-icon-delete"
+                          circle
+                          @click.stop="handleDelete(scope.$index)"
+                          ></el-button>
+                      </el-tooltip>
+                      </template>
+                  </el-table-column>
+                </el-table>
               </el-col>
             </el-row>
           </el-col>
         </el-row>
-      </el-col>
-      <el-col :sm="6">
-        <el-tabs v-model="activeName" @tab-click="handleClick" style="margin-top: 20px">
-          <el-tab-pane label="Pasos" name="first">
-            <AppPasos></AppPasos>
-          </el-tab-pane>
-          <el-tab-pane label="Archivos" name="second">
-            <AppArchivos></AppArchivos>
-          </el-tab-pane>
-          <el-tab-pane label="Chat" name="third">Chat</el-tab-pane>
-          <el-tab-pane label="Perfil" name="fourth">Perfil</el-tab-pane>
-        </el-tabs>
       </el-col>
     </el-row>
   </div>
@@ -77,12 +113,9 @@
 
 <script>
 import HomeLayout from "../layouts/HomeLayout";
-import AppModal from "../components/AppModal";
-import AppPasos from "../components/AppPasos";
-import AppArchivos from "../components/AppArchivos";
 
 export default {
-  name: "Descripcion",
+  name: "ProcesosDetalle",
   data() {
     return {
       active: 0,
@@ -101,9 +134,12 @@ export default {
     getLoaded() {
       return this.$store.state.loaded;
     },
-    getTramite() {
-      return this.$store.state.tramiteActual;
+    getProceso() {
+      return this.$store.state.procesoActual;
     },
+    displayData() {
+      return this.$store.state.procesosDetalle;
+    }
   },
   methods: {
     next() {
@@ -122,7 +158,7 @@ export default {
       //
     },
   },
-  components: { AppModal, AppPasos, AppArchivos },
+  
 };
 </script>
 

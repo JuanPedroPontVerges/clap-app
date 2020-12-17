@@ -145,6 +145,53 @@ export default new Vuex.Store({
         pasos: "2"
       }
     ],
+    procesosDetalle: [{
+        id: 1,
+        proceso: "Inscripción Carrera",
+        departamento: "Secretaría de Alumnos",
+        tipoSolicitante: "Alumnos / Padres",
+        pasos: "7"
+      },
+      {
+        id: 2,
+        proceso: "Pedido de ausencia",
+        departamento: "Recursos Humanos",
+        tipoSolicitante: "Empleados / Proveedor",
+        pasos: "2",
+        paso1Numero: "1",
+        paso1Titulo: "Recepción Solicitud",
+        paso1Responsable: "Interesado",
+        paso2Numero: "2",
+        paso2Titulo: "Respuesta",
+        paso2Responsable: "La Metro"
+      },
+      {
+        id: 3,
+        proceso: "Alta Proveedor",
+        departamento: "Administración",
+        tipoSolicitante: "Empleados / Proveedor",
+        pasos: "2",
+        paso1Numero: "1",
+        paso1Titulo: "Recepción Solicitud",
+        paso1Responsable: "Interesado",
+        paso2Numero: "2",
+        paso2Titulo: "Respuesta",
+        paso2Responsable: "La Metro"
+      },
+      {
+        id: 4,
+        proceso: "Pago Proveedor",
+        departamento: "Secretaría de Alumnos",
+        tipoSolicitante: "Empleados / Proveedor",
+        pasos: "2",
+        paso1Numero: "1",
+        paso1Titulo: "Recepción Solicitud",
+        paso1Responsable: "Interesado",
+        paso2Numero: "2",
+        paso2Titulo: "Respuesta",
+        paso2Responsable: "La Metro"
+      }
+    ],
     departamentos: [],
     personas: [],
     selectedPersona: null,
