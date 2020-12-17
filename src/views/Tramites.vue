@@ -1,149 +1,154 @@
-<template class="tramites">
-  <div class="container">
-    <el-row class="page-title">
-      <el-col :sm="24" :lg="24">
-        <h1>Trámites</h1>
-        <p>
-          Aquí verás las solicitudes generadas por alumnos familiares, empleados
-          <br />
-          o proveedores de tu institución.
-        </p>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :sm="12">
-        <el-input
-          placeholder="Nombre solicitante"
-          suffix-icon="el-icon-search"
-          v-model="search"
-        >
-        </el-input>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :sm="24" :lg="24">
-        <el-table
-          style="margin-top: 20px; width: 100%"
-          :data="displayData"
-          ref="tab"
-          :header-cell-style="getRowClass"
-          @cell-click="getNumeroFila"
-          @current-change="handleCurrentChange"
-          @selection-change="handleSelectionChange"
-          empty-text
-        >
-          <div slot="empty">
-            <p>No se encontraron resultados</p>
-          </div>
-          <el-table-column type="selection"> </el-table-column>
-          <el-table-column prop="tramite" label="Trámite" min-width="160px">
-          </el-table-column>
-          <el-table-column
-            prop="departamento"
-            label="Departamento"
-            min-width="130px"
-            :filters="departamentos"
-            :filter-method="filterHandler"
+<template>
+  <div class="tramites">
+    <div class="container">
+      <el-row class="page-title">
+        <el-col :sm="24" :lg="24">
+          <h1>Trámites</h1>
+          <p>
+            Aquí verás las solicitudes generadas por alumnos familiares, empleados o proveedores de tu institución.
+          </p>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :sm="12">
+          <el-input
+            placeholder="Nombre solicitante"
+            suffix-icon="el-icon-search"
+            v-model="search"
           >
-          </el-table-column>
-          <el-table-column
-            prop="interesado"
-            label="Solicitante"
-            min-width="120px"
+          </el-input>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :sm="24" :lg="24">
+          <el-table
+            style="margin-top: 20px; width: 100%"
+            :data="displayData"
+            ref="tab"
+            :header-cell-style="getRowClass"
+            @cell-click="getNumeroFila"
+            @current-change="handleCurrentChange"
+            @selection-change="handleSelectionChange"
+            empty-text
+            :cell-class-name="cellTramite"
           >
-          </el-table-column>
-          <el-table-column
-            prop="tipo"
-            label="Tipo"
-            min-width="120px"
-            :filters="[
-              { text: 'Proveedor', value: 'Proveedor' },
-              { text: 'Interesado', value: 'Interesado' },
-            ]"
-            :filter-method="filterHandler"
+            <div slot="empty">
+              <p>No se encontraron resultados</p>
+            </div>
+            <el-table-column type="selection"> </el-table-column>
+            <el-table-column 
+              prop="tramite" 
+              label="Trámite" 
+              min-width="160px" 
+            >
+            </el-table-column>
+            <el-table-column
+              prop="departamento"
+              label="Departamento"
+              min-width="130px"
+              :filters="departamentos"
+              :filter-method="filterHandler"
+            >
+            </el-table-column>
+            <el-table-column
+              prop="interesado"
+              label="Solicitante"
+              min-width="120px"
+            >
+            </el-table-column>
+            <el-table-column
+              prop="tipo"
+              label="Tipo"
+              min-width="100px"
+              :filters="[
+                { text: 'Proveedor', value: 'Proveedor' },
+                { text: 'Interesado', value: 'Interesado' },
+              ]"
+              :filter-method="filterHandler"
+            >
+            </el-table-column>
+            <el-table-column prop="fecha" label="Fecha" min-width="80px">
+            </el-table-column>
+            <el-table-column
+              prop="pasosCompletados"
+              label="Pasos"
+              min-width="50px"
+            >
+            </el-table-column>
+            <el-table-column
+              prop="estado"
+              label="Estado"
+              min-width="80"
+              :filters="[
+                { text: 'Activo', value: 'Activo' },
+                { text: 'Cancelado', value: 'Cancelado' },
+              ]"
+              :filter-method="filterTag"
+              filter-placement="bottom-end"
+            >
+              <template slot-scope="scope">
+                <el-tag
+                  :type="scope.row.estado === 'Cancelado' ? 'danger' : 'success'"
+                  disable-transitions
+                  >{{ scope.row.estado }}</el-tag
+                > </template
+              >>
+            </el-table-column>
+            <el-table-column align="center" min-width="100px">
+              <template slot-scope="scope">
+                <el-tooltip
+                  class="item"
+                  effect="dark"
+                  content="Editar"
+                  placement="top-start"
+                >
+                  <el-button
+                    type="primary"
+                    icon="el-icon-edit"
+                    circle
+                    @click.stop="handleEdit(scope.$index)"
+                  ></el-button>
+                </el-tooltip>
+                <el-tooltip
+                  class="item"
+                  effect="dark"
+                  content="Eliminar"
+                  placement="top-start"
+                >
+                  <el-button
+                    type="danger"
+                    icon="el-icon-delete"
+                    circle
+                    @click.stop="handleDelete(scope.$index)"
+                  ></el-button>
+                </el-tooltip>
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-col>
+      </el-row>
+      <el-divider></el-divider>
+      <el-row type="flex" align="center">
+        <el-col :sm="12">
+          <el-button
+            type="danger"
+            @click="eliminarTramite"
+            :disabled="selected ? false : true"
+            >Eliminar</el-button
           >
-          </el-table-column>
-          <el-table-column prop="fecha" label="Fecha" min-width="120px">
-          </el-table-column>
-          <el-table-column
-            prop="pasosCompletados"
-            label="Pasos"
-            min-width="100px"
+        </el-col>
+        <el-col :sm="12" style="text-align: right">
+          <el-pagination
+            background
+            layout="prev, pager, next"
+            @current-change="handlePaginationChange"
+            :page-size="pageSize"
+            :total="total"
           >
-          </el-table-column>
-          <el-table-column
-            prop="estado"
-            label="Estado"
-            min-width="100"
-            :filters="[
-              { text: 'Activo', value: 'Activo' },
-              { text: 'Cancelado', value: 'Cancelado' },
-            ]"
-            :filter-method="filterTag"
-            filter-placement="bottom-end"
-          >
-            <template slot-scope="scope">
-              <el-tag
-                :type="scope.row.estado === 'Cancelado' ? 'danger' : 'success'"
-                disable-transitions
-                >{{ scope.row.estado }}</el-tag
-              > </template
-            >>
-          </el-table-column>
-          <el-table-column align="center" min-width="150px">
-            <template slot-scope="scope">
-              <el-tooltip
-                class="item"
-                effect="dark"
-                content="Editar"
-                placement="top-start"
-              >
-                <el-button
-                  type="primary"
-                  icon="el-icon-edit"
-                  circle
-                  @click.stop="handleEdit(scope.$index)"
-                ></el-button>
-              </el-tooltip>
-              <el-tooltip
-                class="item"
-                effect="dark"
-                content="Eliminar"
-                placement="top-start"
-              >
-                <el-button
-                  type="danger"
-                  icon="el-icon-delete"
-                  circle
-                  @click.stop="handleDelete(scope.$index)"
-                ></el-button>
-              </el-tooltip>
-            </template>
-          </el-table-column>
-        </el-table>
-      </el-col>
-    </el-row>
-    <el-divider></el-divider>
-    <el-row type="flex" align="center">
-      <el-col :sm="12">
-        <el-button
-          type="danger"
-          @click="eliminarTramite"
-          :disabled="selected ? false : true"
-          >Eliminar</el-button
-        >
-      </el-col>
-      <el-col :sm="12" style="text-align: right">
-        <el-pagination
-          background
-          layout="prev, pager, next"
-          @current-change="handlePaginationChange"
-          :page-size="pageSize"
-          :total="total"
-        >
-        </el-pagination>
-      </el-col>
-    </el-row>
+          </el-pagination>
+        </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 
@@ -254,6 +259,13 @@ export default {
         return "";
       }
     },
+    cellTramite({row, column, rowIndex, columnIndex}) {
+        if (columnIndex === 1) {
+          return 'cell-tramite';
+        } else  {
+          return '';
+        }
+      }
   },
   components: {},
 };

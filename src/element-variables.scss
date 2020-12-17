@@ -365,7 +365,27 @@ html {
 /* TRAMITES */
 .tramites {
 
-    .el-table {}
+    .el-table {
+
+        tr.el-table__row:hover {
+            cursor: pointer;
+        }
+
+        .cell-tramite{
+            .cell{
+                text-align: left;
+            }
+        }
+        .cell{
+            word-break: break-word !important;
+            text-align: center;
+
+            .el-tag{
+                height: 23px;
+                line-height: 23px;
+            }
+        }
+    }
 
 }
 
