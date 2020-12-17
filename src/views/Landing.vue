@@ -1,23 +1,21 @@
 <template>
-  <div>
-    <el-row style="text-align:center;">
+  <div class="landing">
+    <el-row class="header">
       <el-col :lg="24">
-        <h1>La Metro</h1>
+        <img src="../assets/logoMetro.png" alt="">
       </el-col>
       <el-col :lg="24">
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime
-          minus<br />
-          corporis voluptates sunt. Quo, rerum.
+          Bienvenido al panel de gestión de la institución. Desde aqui podrás solicitar y dar seguimiento de tus trámites.
         </p>
       </el-col>
     </el-row>
-    <el-row>
+    <el-row class="contenedor">
       <el-col :xs="24" :sm="11" class="centrado">
         <div>
-          <h3>Alumnos/Profesores</h3>
+          <h2>Alumnos/Padres</h2>
           <router-link to="/login?user=Alumno/Profesores">
-            <el-button>Ingresar</el-button>
+            <el-button class="btn-blue">Ingresar</el-button>
           </router-link>
         </div>
       </el-col>
@@ -27,9 +25,9 @@
       </el-col>
       <el-col :xs="24" :sm="11" :md="11" class="centrado">
         <div>
-          <h3>Empelados/Proveedores</h3>
+          <h2>Empleados/Proveedores</h2>
           <router-link to="/login?user=Empleados/Proveedores">
-            <el-button>Ingresar</el-button>
+            <el-button class="btn-blue">Ingresar</el-button>
           </router-link>
         </div>
       </el-col>
