@@ -55,7 +55,6 @@
               </el-col>
             </el-row>
             <component :is="getComponent"></component>
-            <!-- Aca van los pasos -->
           </el-col>
         </el-row>
       </el-col>
@@ -127,16 +126,12 @@ export default {
     },
     getComponent() {
       if (this.getNumeroDeTramite == 1 && this.getCurrentPaso == 1) {
-        console.log(this.getNumeroDeTramite, this.getCurrentPaso);
         return "AppPaso1";
       } else if (this.getNumeroDeTramite == 1 && this.getCurrentPaso == 2) {
-        console.log(this.getNumeroDeTramite, this.getCurrentPaso);
         return "AppPaso12";
       } else if (this.getNumeroDeTramite == 2 && this.getCurrentPaso == 1) {
-        console.log(this.getNumeroDeTramite, this.getCurrentPaso);
         return "AppPaso2";
       } else if (this.getNumeroDeTramite == 2 && this.getCurrentPaso == 2) {
-        console.log(this.getNumeroDeTramite, this.getCurrentPaso);
         return "AppPaso21";
       }
     },
@@ -149,7 +144,10 @@ export default {
       //
     },
     completarPaso() {
-      this.$store.commit("setCompletadoPaso", this.getCurrentPaso);
+      this.$store.commit("setCompletadoPaso", {
+        paso: this.getCurrentPaso,
+        tramite: this.getNumeroDeTramite,
+      });
     },
   },
   components: {
