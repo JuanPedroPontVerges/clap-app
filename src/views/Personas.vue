@@ -10,7 +10,7 @@
       <el-dialog
         title="Agregar Persona"
         :visible.sync="dialogVisible"
-        width="550px"
+        width="350px"
       >
         <el-form :model="form" label-position="top">
           <el-row :gutter="20">
@@ -70,6 +70,73 @@
           >
         </span>
       </el-dialog>
+
+
+      <el-dialog
+        title="Editar Persona"
+        :visible.sync="dialogEditVisible"
+        width="350px"
+      >
+        <el-form :model="formEdit" label-position="top">
+          <el-row :gutter="20">
+            <el-col :sm="12">
+              <el-form-item label="Nombre" label-width="50">
+                <el-input v-model="formEdit.nombre" autocomplete="off"></el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :sm="12">
+              <el-form-item label="Email" label-width="50">
+                <el-input v-model="formEdit.email" autocomplete="off"></el-input>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-row :gutter="20">
+            <el-col :sm="12">
+              <el-form-item label="Departamento">
+                <el-select
+                  v-model="formEdit.departamento"
+                  placeholder="Elija un Departamento"
+                >
+                  <el-option
+                    v-for="(departamento, index) in getDepartamentos"
+                    :key="index"
+                    :label="departamento.nombre"
+                    :value="departamento.nombre"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :sm="12">
+              <el-form-item label="Tipo">
+                <el-select
+                  v-model="formEdit.tipo"
+                  placeholder="Elija un Colaborador"
+                >
+                  <el-option
+                    label="Coolaborador"
+                    value="Coolaborador"
+                  ></el-option>
+                  <el-option label="Empleado" value="Empleado"></el-option>
+                  <el-option label="Proovedor" value="Proovedor"></el-option>
+                </el-select>
+              </el-form-item>
+            </el-col>
+          </el-row>
+          <el-form-item v-if="formEdit.tipo == 'Coolaborador'">
+            <el-checkbox v-model="formEdit.empleadoTramites"
+              >Permitir crear tramites como empleado</el-checkbox
+            >
+          </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="toggleDialog">Cancelar</el-button>
+          <el-button type="primary" @click="guardarPersona()"
+            >Guardar</el-button
+          >
+        </span>
+      </el-dialog>
+
+
     </el-row>
     <el-row>
       <el-col :sm="24">
@@ -174,13 +241,19 @@
 </template>
 
 <script>
-import AppAgregarPersona from "../components/AppAgregarPersona";
 import HomeLayout from "../layouts/HomeLayout";
 
 export default {
   data() {
     return {
       form: {
+        nombre: "",
+        email: "",
+        departamento: "",
+        tipo: "",
+        empleadoTramites: false,
+      },
+      formEdit: {
         nombre: "",
         email: "",
         departamento: "",
@@ -195,13 +268,14 @@ export default {
       selected: false,
       selectionFiltr: [],
       dialogVisible: false,
+      dialogEditVisible: false,
+      currentRow: 0,
     };
   },
   created() {
     this.$emit(`update:layout`, HomeLayout);
   },
   components: {
-    AppAgregarPersona,
     HomeLayout,
   },
   methods: {
@@ -220,6 +294,13 @@ export default {
     },
     handleEdit(index) {
       this.currentRow = index;
+      this.$store.commit("getPersonaPersonas", this.currentRow);
+      this.formEdit = this.getSelectedPersona
+      this.dialogEditVisible = true
+    },
+    guardarPersona() {
+      this.$store.commit('setGuardarPersona', this.formEdit)
+      this.dialogEditVisible = false
     },
     filterTag(value, row) {
       return row.estado === value;
@@ -289,6 +370,9 @@ export default {
     },
     getDepartamentos() {
       return this.$store.state.departamentos;
+    },
+    getSelectedPersona() {
+      return this.$store.state.selectedPersona;
     },
   },
 };

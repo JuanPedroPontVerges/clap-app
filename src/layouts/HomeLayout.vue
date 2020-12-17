@@ -5,19 +5,14 @@
     </el-header>
     <el-main>
       <slot />
-      <SocialChat icon :attendants="attendants">
-        <p slot="header">
-          ¿Necesitas una mano?
-        </p>
-        <AppPulpoButton slot="button"></AppPulpoButton>
-        <image
-          style="width: 100px; height: 100px; border-radius: 100%"
-          src="/src/assets/logo.png"
-          slot="button"
-        ></image>
-        <small slot="footer">Chatea con Pulpo</small>
-      </SocialChat>
     </el-main>
+    <a
+      href="https://api.whatsapp.com/send?phone=51955081075&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Varela%202."
+      class="float"
+      target="_blank"
+    >
+      <i class="el-icon-s-tools my-float"></i>
+    </a>
   </el-container>
 </template>
 
@@ -79,18 +74,6 @@ export default {
           },
         ],
       },
-      // PULPO BUTTON
-      attendants: [
-        {
-          app: "whatsapp",
-          name: "Pulpo",
-          number: "3516866950",
-          avatar: {
-            src: "../assets/logo.png",
-            alt: "Pulpo",
-          },
-        },
-      ],
     };
   },
   methods: {
@@ -139,5 +122,25 @@ export default {
 
 i {
   margin: 0 !important;
+}
+
+.float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  font-size: 30px;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 100;
+  text-align: center;
+}
+
+.my-float {
+  margin-top: 16px;
 }
 </style>

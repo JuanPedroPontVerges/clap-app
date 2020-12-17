@@ -72,7 +72,8 @@ export default new Vuex.Store({
       }
     ],
     departamentos: [],
-    personas: []
+    personas: [],
+    selectedPersona: null
   },
   mutations: {
     setUserProfile(state, val) {
@@ -129,6 +130,23 @@ export default new Vuex.Store({
     setDialogImageUrl(state, payload) {
       state.configuraciones.general.dialogImageUrl = payload
     },
+    getPersonaPersonas(state, payload) {
+      state.selectedPersona = state.personas[payload]
+    },
+    //en revision 
+    setGuardarPersona(state, payload) {
+      let index = state.personas.indexOf(state.selectedPersona);
+      state.personas[index] = payload
+    },
+    getDepartamentos(state, payload) {
+      let cont = 0;
+      state.departamentos.map((department) => {
+        cont++
+        department.personas = state.personas.filter((person) => person.departamento === department.nombre).length;
+        console.log(department);
+        return department
+      })
+    }
   },
   actions: {
     async login({

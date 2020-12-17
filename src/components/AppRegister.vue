@@ -123,9 +123,9 @@ export default {
     },
     registrar(formName) {
       this.$refs[formName].validate((valid) => {
-        console.log(valid);
         if (valid) {
           this.$store.dispatch("signup", this.registerForm);
+          this.toogleLogin()
         } else {
           alert("error submit!!");
           return false;

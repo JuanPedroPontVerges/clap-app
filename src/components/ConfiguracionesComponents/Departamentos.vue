@@ -25,7 +25,9 @@
               placeholder="Nombre departamento"
             ></el-input>
           </el-form-item>
-          <el-button type="primary" @click="addDepartamento">Agregar</el-button>
+          <el-button type="primary" @click.prevent="addDepartamento"
+            >Agregar</el-button
+          >
         </el-form>
       </el-col>
       <el-col :sm="24">
@@ -48,12 +50,6 @@
                 content="Editar"
                 placement="top-start"
               >
-                <el-button
-                  type="primary"
-                  icon="el-icon-edit"
-                  circle
-                  @click.stop="handleEdit(scope.$index)"
-                ></el-button>
               </el-tooltip>
               <el-tooltip
                 class="item"
@@ -96,7 +92,7 @@ export default {
       this.$store.commit("setDepartamento", this.form);
       this.form = {
         nombre: "",
-        personas: 1,
+        personas: 0,
         accion: "",
       };
       this.$message({
@@ -104,9 +100,6 @@ export default {
         type: "success",
         duration: 4000,
       });
-    },
-    handleEdit(command) {
-      console.log("Edit");
     },
     handleDelete(index, rows) {
       this.selectedRow = index;
@@ -117,6 +110,9 @@ export default {
     getDepartamentos() {
       return this.$store.state.departamentos;
     },
+  },
+  created() {
+    this.$store.commit("getDepartamentos");
   },
 };
 </script>
