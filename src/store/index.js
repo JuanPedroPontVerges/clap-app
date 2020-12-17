@@ -98,89 +98,15 @@ export default new Vuex.Store({
         ]
       },
     ],
-    procesos: [{
-        id: 1,
-        proceso: "Inscripción Carrera",
-        departamento: "Secretaría de Alumnos",
-        tipoSolicitante: "Alumnos / Padres",
-        pasos: "7"
-      },
-      {
-        id: 2,
-        proceso: "Pedido de ausencia",
-        departamento: "Recursos Humanos",
-        tipoSolicitante: "Empleados / Proveedor",
-        pasos: "2"
-      },
-      {
-        id: 3,
-        proceso: "Alta Proveedor",
-        departamento: "Administración",
-        tipoSolicitante: "Empleados / Proveedor",
-        pasos: "2"
-      },
-      {
-        id: 4,
-        proceso: "Pago Proveedor",
-        departamento: "Secretaría de Alumnos",
-        tipoSolicitante: "Empleados / Proveedor",
-        pasos: "2"
-      }
-    ],
-    procesosDetalle: [{
-        id: 1,
-        proceso: "Inscripción Carrera",
-        departamento: "Secretaría de Alumnos",
-        tipoSolicitante: "Alumnos / Padres",
-        pasos: "7"
-      },
-      {
-        id: 2,
-        proceso: "Pedido de ausencia",
-        departamento: "Recursos Humanos",
-        tipoSolicitante: "Empleados / Proveedor",
-        pasos: "2",
-        paso1Numero: "1",
-        paso1Titulo: "Recepción Solicitud",
-        paso1Responsable: "Interesado",
-        paso2Numero: "2",
-        paso2Titulo: "Respuesta",
-        paso2Responsable: "La Metro"
-      },
-      {
-        id: 3,
-        proceso: "Alta Proveedor",
-        departamento: "Administración",
-        tipoSolicitante: "Empleados / Proveedor",
-        pasos: "2",
-        paso1Numero: "1",
-        paso1Titulo: "Recepción Solicitud",
-        paso1Responsable: "Interesado",
-        paso2Numero: "2",
-        paso2Titulo: "Respuesta",
-        paso2Responsable: "La Metro"
-      },
-      {
-        id: 4,
-        proceso: "Pago Proveedor",
-        departamento: "Secretaría de Alumnos",
-        tipoSolicitante: "Empleados / Proveedor",
-        pasos: "2",
-        paso1Numero: "1",
-        paso1Titulo: "Recepción Solicitud",
-        paso1Responsable: "Interesado",
-        paso2Numero: "2",
-        paso2Titulo: "Respuesta",
-        paso2Responsable: "La Metro"
-      }
-    ],
+    procesos: null,
     departamentos: [],
     personas: [],
     selectedPersona: null,
     currentPaso: 0,
     currentTramite: 0,
     currentNumeroDeTramite: 0,
-    procesos: [{}]
+    procesos: [{}],
+    procesoActual: null
   },
   mutations: {
     setUserProfile(state, val) {
@@ -277,6 +203,9 @@ export default new Vuex.Store({
     },
     setNumeroDeTramite(state, payload) {
       state.currentNumeroDeTramite = payload
+    },
+    setAgregarProceso(state, payload) {
+      state.procesos.push(payload)
     }
   },
   actions: {
