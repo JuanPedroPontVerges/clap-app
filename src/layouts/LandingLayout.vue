@@ -4,10 +4,14 @@
       <el-header class="landing-header">
         <el-row type="flex" justify="end">
           <el-col :span="6" class="logo">
-            <img src="../assets/logo.png" alt="">
+            <img src="../assets/logo.png" alt="" />
           </el-col>
           <el-col :span="6" class="landing-header-login">
-            <el-button class="btn-violet">Ingreso Administrador</el-button>
+            <el-button class="btn-violet">
+              <router-link to="/login?user=Administrador" tag="div">
+                Ingreso Administrador
+              </router-link>
+            </el-button>
           </el-col>
         </el-row>
       </el-header>

@@ -9,7 +9,7 @@
           @click="handleBack()"
         ></el-button>
         <h2 style="display: inline">
-          {{ getNewProceso.nombre }}
+          {{ getNewProceso.titulo }}
         </h2>
       </el-col>
       <el-col :xs="22" style="text-align: right">
@@ -46,7 +46,6 @@
           <el-row style="border: 1px solid black">
             <el-col :xs="24" style="padding: 0 20px">
               <h2 style="text-align: center">Pasos</h2>
-              <p>{{ getNewProceso.departamento }}</p>
             </el-col>
           </el-row>
         </el-col>
@@ -156,17 +155,18 @@
                 <el-col :lg="3">
                   <p>{{ index + 1 }}</p>
                 </el-col>
-                <el-col :xs="9" :lg="9">
+                <el-col :xs="9" :lg="8">
                   <el-form-item label="Nombre">
                     <el-input v-model="paso.nombre"></el-input>
                   </el-form-item>
                 </el-col>
-                <el-col :xs="9" :lg="9">
+                <el-col :xs="9" :lg="8">
                   <el-form-item label="Tipo">
                     <el-select v-model="paso.tipo">
-                      <el-option value="1">1</el-option>
-                      <el-option value="1">1</el-option>
-                      <el-option value="1">1</el-option>
+                      <el-option value="TextInput">TextInput</el-option>
+                      <el-option value="TextArea">TextArea</el-option>
+                      <el-option value="DatePicker">DatePicker</el-option>
+                      <el-option value="NumberInput">NumberInput</el-option>
                     </el-select>
                   </el-form-item>
                 </el-col>
@@ -177,8 +177,58 @@
                     @click="eliminarProcesoPaso(index)"
                   ></el-button>
                 </el-col>
+                <el-col :lg="3">
+                  <el-button
+                    icon="el-icon-setting"
+                    circle
+                    @click="dialogForm = true"
+                  ></el-button>
+                </el-col>
               </div>
             </el-form>
+
+            <!-- DIALOG FOOOOOOOOOOOOOOOOOOOOOOOOOORRRMM -->
+
+            <el-dialog
+              title="Configuraciones"
+              :visible.sync="dialogForm"
+              width="35%"
+              :modal="false"
+            >
+              <el-form :model="formSettings">
+                <h3>Aca podras configurar tus campos</h3>
+                <el-form-item label="Caracteres minimos">
+                  <el-input-number
+                    size="small"
+                    v-model="formSettings.min"
+                    :min="1"
+                    :max="10"
+                  ></el-input-number>
+                </el-form-item>
+                <el-form-item label="Caracteres máximos">
+                  <el-input-number
+                    size="small"
+                    v-model="formSettings.max"
+                    :min="25"
+                    :max="250"
+                  ></el-input-number>
+                </el-form-item>
+                <el-form-item label="Descripción">
+                  <el-input
+                    type="textarea"
+                    :rows="2"
+                    v-model="formSettings.description"
+                  >
+                  </el-input>
+                </el-form-item>
+              </el-form>
+              <span slot="footer" class="dialog-footer">
+                <el-button @click="dialogForm = false">Cancel</el-button>
+                <el-button type="primary" @click="saveForm()"
+                  >Save changes</el-button
+                >
+              </span>
+            </el-dialog>
             <el-col :xs="24" style="text-align: center; padding: 20px">
               <div>
                 <el-button
@@ -200,7 +250,9 @@
                 text-align: center;
               "
             >
-              <el-button type="danger" @click="drawer = false">Cancelar</el-button>
+              <el-button type="danger" @click="drawer = false"
+                >Cancelar</el-button
+              >
               <el-button type="primary" @click="agregarPaso">Agregar</el-button>
             </el-col>
           </el-row>
@@ -229,6 +281,12 @@ export default {
         nombre: "",
         tipo: "",
       },
+      formSettings: {
+        min: 0,
+        max: 0,
+        description: "",
+      },
+      dialogForm: false,
     };
   },
   methods: {
@@ -259,12 +317,12 @@ export default {
       }, 10);
       this.drawer = true;
     },
+    handleBack() {
+      this.$router.back();
+    },
   },
   created() {
     this.$emit(`update:layout`, HomeLayout);
-    this.$store.state.departamentos.forEach((depto) => {
-      this.departamentos.push({ text: depto.nombre, value: depto.nombre });
-    });
   },
   computed: {
     getNewProceso() {

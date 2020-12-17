@@ -98,14 +98,13 @@ export default new Vuex.Store({
         ]
       },
     ],
-    procesos: null,
+    procesos: [{}],
     departamentos: [],
     personas: [],
     selectedPersona: null,
     currentPaso: 0,
     currentTramite: 0,
     currentNumeroDeTramite: 0,
-    procesos: [{}],
     procesoActual: null,
     procesosPasos: [{
       nombre: "Paso N°1",
@@ -136,6 +135,7 @@ export default new Vuex.Store({
     },
     setProcesoActual(state, payload) {
       state.procesoActual = payload
+      console.log(state.procesoActual);
     },
     setFormDialog(state) {
       state.formDialog = !state.formDialog
@@ -235,6 +235,9 @@ export default new Vuex.Store({
         header: state.pasos[payload],
         campos: state.procesosPasos[payload]
       }
+      setTimeout(() => {
+        console.log(state.pasoActual);
+      }, 10)
     }
   },
   actions: {
