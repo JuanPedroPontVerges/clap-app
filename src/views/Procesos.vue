@@ -17,7 +17,7 @@
         <el-button type="primary" @click="toggleDialog">Agregar</el-button>
       </el-col>
       <el-dialog
-        title="Agregar Persona"
+        title="Agregar Proceso"
         :visible.sync="dialogVisible"
         width="350px"
       >

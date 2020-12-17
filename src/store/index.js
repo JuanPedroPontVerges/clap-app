@@ -106,7 +106,17 @@ export default new Vuex.Store({
     currentTramite: 0,
     currentNumeroDeTramite: 0,
     procesos: [{}],
-    procesoActual: null
+    procesoActual: null,
+    procesosPasos: [{
+      nombre: "Paso N°1",
+      tipo: "Text Field",
+    }],
+    pasos: [{
+      titulo: 'Recepción Solicitud',
+      responsable: 'Interesado',
+      descripcion: 'Random description'
+    }],
+    pasoActual: {}
   },
   mutations: {
     setUserProfile(state, val) {
@@ -206,6 +216,25 @@ export default new Vuex.Store({
     },
     setAgregarProceso(state, payload) {
       state.procesos.push(payload)
+    },
+    setProcesosPasos(state, payload) {
+      state.procesosPasos.push(payload)
+    },
+    eliminarProcesoPaso(state, payload) {
+      state.procesosPasos.splice(payload, 1)
+    },
+    setPasos(state, {
+      header,
+      campos
+    }) {
+      state.pasos.push(header)
+      state.procesosPasos.push(campos)
+    },
+    setPasoActual(state, payload) {
+      state.pasoActual = {
+        header: state.pasos[payload],
+        campos: state.procesosPasos[payload]
+      }
     }
   },
   actions: {
