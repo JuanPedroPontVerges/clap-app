@@ -1,69 +1,71 @@
 <template>
   <div>
-    <el-form
-      ref="registerForm"
-      :model="registerForm"
-      :rules="rules"
-      status-icon
-    >
-      <el-row :gutter="20">
-        <el-col :sm="12">
-          <el-form-item label="Nombre">
-            <el-input v-model="registerForm.nombre" type="text"> </el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :sm="12">
-          <el-form-item label="Apellido">
-            <el-input v-model="registerForm.apellido" type="text"> </el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="20">
-        <el-col :sm="12">
-          <el-form-item label="Email">
-            <el-input v-model="registerForm.email" type="email"> </el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :sm="12">
-          <el-form-item label="Teléfono">
-            <el-input v-model="registerForm.telefono" type="number"> </el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-      <el-row :gutter="20">
-        <el-col :sm="12">
-          <el-form-item label="Contraseña" prop="contrasena">
-            <el-input
-              v-model="registerForm.contrasena"
-              :type="icono ? 'password' : 'text'"
-            >
-              <el-button
-                slot="append"
-                @click="showPassword"
-                :icon="icono ? 'el-icon-lock' : 'el-icon-unlock'"
-              >
-              </el-button>
-            </el-input>
-          </el-form-item>
-        </el-col>
-        <el-col :sm="12">
-          <el-form-item label="Repetir Contraseña" prop="checkPass">
-            <el-input v-model="registerForm.checkPass" :type="icono ? 'password' : 'text'">
-              <el-button
-                slot="append"
-                @click="showPassword"
-                :icon="icono ? 'el-icon-lock' : 'el-icon-unlock'"
-              >
-              </el-button>
-            </el-input>
-          </el-form-item>
-        </el-col>
-      </el-row>
-    </el-form>
-    <div style="margin: 16px 0">
-      <el-button type="primary" @click="registrar('registerForm')"
-        >Registrarse</el-button
+    <div class="login-form">
+      <el-form
+        ref="registerForm"
+        :model="registerForm"
+        :rules="rules"
+        status-icon
       >
+        <el-row :gutter="20">
+          <el-col :sm="12">
+            <el-form-item label="Nombre">
+              <el-input v-model="registerForm.nombre" type="text"> </el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :sm="12">
+            <el-form-item label="Apellido">
+              <el-input v-model="registerForm.apellido" type="text"> </el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :sm="12">
+            <el-form-item label="Email">
+              <el-input v-model="registerForm.email" type="email"> </el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :sm="12">
+            <el-form-item label="Teléfono">
+              <el-input v-model="registerForm.telefono" type="number"> </el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :sm="12">
+            <el-form-item label="Contraseña" prop="contrasena">
+              <el-input
+                v-model="registerForm.contrasena"
+                :type="icono ? 'password' : 'text'"
+              >
+                <el-button
+                  slot="append"
+                  @click="showPassword"
+                  :icon="icono ? 'el-icon-lock' : 'el-icon-unlock'"
+                >
+                </el-button>
+              </el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :sm="12">
+            <el-form-item label="Repetir Contraseña" prop="checkPass">
+              <el-input v-model="registerForm.checkPass" :type="icono ? 'password' : 'text'">
+                <el-button
+                  slot="append"
+                  @click="showPassword"
+                  :icon="icono ? 'el-icon-lock' : 'el-icon-unlock'"
+                >
+                </el-button>
+              </el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-form>
+      <div style="margin: 16px 0">
+        <el-button type="primary" @click="registrar('registerForm')"
+          >Registrarse</el-button
+        >
+      </div>
     </div>
     <div class="extras">
       ¿Ya tenes cuenta?

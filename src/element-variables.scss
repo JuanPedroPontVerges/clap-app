@@ -226,6 +226,19 @@ html {
     }
 }
 
+.button-volver{
+    display: block;
+    width: fit-content;
+    padding: 20px 0px;
+    font-weight: bold;
+
+        .el-icon-back{
+            font-weight: bolder;
+            text-transform: uppercase;
+            font-family: 'Geomanist', sans-serif;
+        }
+}
+
 /* CONTENEDOR */
 
 @media only screen and (max-width: 768px) {
@@ -292,6 +305,59 @@ html {
         padding: 60px 20px;
         border-radius: 10px;
         box-shadow: 0 8px 16px 1px rgba(0,0,0,.08);
+    }
+}
+
+/* LOGIN */
+.login{
+
+    .container-login{
+        width: 100%;
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+
+        .form{
+            padding: 80px;
+            padding-left: 100px !important;
+            padding-right: 100px !important;
+
+            .header{
+                margin-bottom: 50px;
+            }
+
+            .login-form{
+                background-color: #fff;
+                padding: 40px;
+                max-width: 500px;
+                border-radius: 10px;
+                margin-bottom: 30px;
+                box-shadow: 0 8px 16px 1px rgba(0,0,0,.08);
+
+                .el-form-item__label{
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .login-aside-color{
+            padding: 50px 20px;
+            background-color: #000;
+            background-image: url("./assets/img_aside_bg.jpg");
+            height: 100vh;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            .aside-header-img{
+                width: 104%;
+                margin-top: -50px;
+            }
+
+            .logo-pulpo{
+                width: 180px;
+                margin-bottom: 40px;
+            }
+        }
+
     }
 }
 
