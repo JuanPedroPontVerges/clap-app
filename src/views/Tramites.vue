@@ -46,7 +46,11 @@
             :filter-method="filterHandler"
           >
           </el-table-column>
-          <el-table-column prop="interesado" label="Solicitante" min-width="120px">
+          <el-table-column
+            prop="interesado"
+            label="Solicitante"
+            min-width="120px"
+          >
           </el-table-column>
           <el-table-column
             prop="tipo"
@@ -61,7 +65,11 @@
           </el-table-column>
           <el-table-column prop="fecha" label="Fecha" min-width="120px">
           </el-table-column>
-          <el-table-column prop="pasosCompletados" label="Pasos" min-width="100px">
+          <el-table-column
+            prop="pasosCompletados"
+            label="Pasos"
+            min-width="100px"
+          >
           </el-table-column>
           <el-table-column
             prop="estado"
@@ -218,7 +226,10 @@ export default {
         tramite,
       };
       this.$store.commit("setTramiteActual", valores);
-      this.$router.push(`/descripcion/id=${this.nroFila}`);
+      setTimeout(() => {
+        this.$router.push(`/descripcion/id=${this.nroFila}`);
+        this.$store.commit("setNumeroDeTramite", this.nroFila + 1);
+      }, 10);
     },
     getNumeroFila(row, column, cell, event) {
       this.nroFila = this.getTableData.indexOf(row);
