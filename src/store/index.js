@@ -32,7 +32,7 @@ export default new Vuex.Store({
     agregarPersonaDialog: false,
     tramites: [{
         id: 1,
-        fecha: "2016-05-03",
+        fecha: "03-05-2020",
         tramite: "Proceso pedido de ausencia",
         interesado: "Agus",
         pasosCompletados: "2/3",
@@ -52,7 +52,8 @@ export default new Vuex.Store({
           },
           {
             numeroDePaso: 2,
-            nombreCompleto: ' ',
+            nombre: ' ',
+            razonSocial: 'La Metro',
             departamento: ' ',
             decision: '',
             comentarios: '',
@@ -64,7 +65,7 @@ export default new Vuex.Store({
       },
       {
         id: 2,
-        fecha: "2017-06-13",
+        fecha: "13-06-2020",
         tramite: "Solicitud pago proveedor",
         interesado: "Juan Pedro",
         pasosCompletados: "3/5",
@@ -74,6 +75,7 @@ export default new Vuex.Store({
         pasos: [{
             numeroDePaso: 1,
             razonSocial: 'Razon social',
+            nombreCompleto: 'Razon social',
             cuit: 20415220120,
             departamento: '',
             comentarios: 'Un comentarioo',
@@ -84,7 +86,7 @@ export default new Vuex.Store({
           },
           {
             numeroDePaso: 2,
-            nombreCompleto: ' ',
+            nombre: ' ',
             departamento: ' ',
             decision: '',
             comentarios: '',
@@ -95,26 +97,6 @@ export default new Vuex.Store({
           }
         ]
       },
-      {
-        id: 3,
-        fecha: "2020-05-03",
-        tramite: "Inscripcion alumno",
-        interesado: "Lauti",
-        pasosCompletados: "4/4",
-        tipo: 'Proveedor',
-        departamento: 'Administracion',
-        estado: 'Cancelado'
-      },
-      {
-        id: 4,
-        fecha: "2018-02-21",
-        tramite: "Pagar cuota",
-        interesado: "Ivan",
-        pasosCompletados: "2/5",
-        tipo: 'Proveedor',
-        departamento: 'Administracion',
-        estado: 'Activo'
-      }
     ],
     procesos: [{
         id: 1,
@@ -197,7 +179,8 @@ export default new Vuex.Store({
     selectedPersona: null,
     currentPaso: 0,
     currentTramite: 0,
-    currentNumeroDeTramite: 0
+    currentNumeroDeTramite: 0,
+    procesos: [{}]
   },
   mutations: {
     setUserProfile(state, val) {
@@ -275,16 +258,19 @@ export default new Vuex.Store({
       state.departamentos.map((department) => {
         cont++
         department.personas = state.personas.filter((person) => person.departamento === department.nombre).length;
-        console.log(department);
         return department
       })
     },
     setCurrentPaso(state, payload) {
       state.currentPaso = payload
     },
-    setCompletadoPaso(state, payload) {
-      console.log(payload - 1);
-      state.tramites[state.currentTramite].pasos[payload - 1].completado = true
+    setCompletadoPaso(state, {
+      paso,
+      tramite
+    }) {
+      console.log(tramite - 1, paso - 1);
+      state.tramites[tramite - 1].pasos[paso - 1].completado = true
+      state.tramites[tramite - 1].estado = "Aprobado"
     },
     setCurrentTramite(state, payload) {
       state.currentTramite = payload

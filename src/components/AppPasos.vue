@@ -12,8 +12,7 @@
         <p class="numero-pasos">{{ paso.numeroDePaso }}</p>
       </el-col>
       <el-col :sm="16">
-        <p>{{ paso.titulo }}</p>
-        <p>Ejecutado por {{ paso.nombreCompleto }}</p>
+        <p>Ejecutado por {{ paso.nombreCompleto  || 'La Metro' }}</p>
       </el-col>
       <el-col :sm="6">
         <el-checkbox

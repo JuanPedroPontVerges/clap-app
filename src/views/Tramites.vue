@@ -84,7 +84,7 @@
           >
             <template slot-scope="scope">
               <el-tag
-                :type="scope.row.estado === 'Activo' ? 'success' : 'danger'"
+                :type="scope.row.estado === 'Cancelado' ? 'danger' : 'success'"
                 disable-transitions
                 >{{ scope.row.estado }}</el-tag
               > </template
