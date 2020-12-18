@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
 import Landing from "../views/Landing.vue";
 import Login from "../views/Login.vue";
 import Forms from "../views/Forms.vue";
@@ -12,6 +11,9 @@ import Procesos from "../views/Procesos.vue";
 import ProcesosDetalle from "../views/ProcesosDetalle.vue";
 import Reportes from "../views/Report.vue";
 import NuevoProceso from "../views/NuevoProceso.vue";
+import Empleados from "../views/Empleados.vue"
+import Tramites_Empleados from "../views/Tramites_Empleados.vue"
+import Descripcion_Tramite from "../views/Descripcion_Tramite.vue"
 import {
   auth
 } from '../firebase';
@@ -28,6 +30,10 @@ const routes = [{
   },
   {
     path: "/",
+    redirect: "/tramites"
+  },
+  {
+    path: "/tramites",
     name: "Tramites",
     component: Tramites,
     meta: {
@@ -42,6 +48,15 @@ const routes = [{
       requiresAuth: true
     }
   },
+  {
+    path: "/tramites_empleados",
+    name: "Tramites_Empleados",
+    component: Tramites_Empleados,
+    meta: {
+      requiresAuth: true
+    }
+  },
+
   {
     path: "/reportes",
     name: "Reportes",
@@ -77,6 +92,14 @@ const routes = [{
     component: Login,
   },
   {
+    path: "/empleados",
+    name: "Empleados",
+    component: Empleados,
+    meta: {
+      requiresAuth: false
+    }
+  },
+  {
     path: "/forms",
     name: "Forms",
     component: Forms,
@@ -93,6 +116,14 @@ const routes = [{
     }
   },
   {
+    path: "/descripcion_tramite/:id",
+    name: "Descipcion_Tramite",
+    component: Descripcion_Tramite,
+    meta: {
+      requiresAuth: true,
+    }
+  },
+  {
     path: "/detalle/:id",
     name: "Detalle Procesos",
     component: ProcesosDetalle,
@@ -101,6 +132,7 @@ const routes = [{
     }
   },
 ];
+
 
 const router = new VueRouter({
   mode: "history",
@@ -116,5 +148,6 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
+
 
 export default router;

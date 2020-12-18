@@ -27,7 +27,8 @@
           </el-col>
           <el-col :sm="12">
             <el-form-item label="Teléfono">
-              <el-input v-model="registerForm.telefono" type="number"> </el-input>
+              <el-input v-model="registerForm.telefono" type="number">
+              </el-input>
             </el-form-item>
           </el-col>
         </el-row>
@@ -49,7 +50,10 @@
           </el-col>
           <el-col :sm="12">
             <el-form-item label="Repetir Contraseña" prop="checkPass">
-              <el-input v-model="registerForm.checkPass" :type="icono ? 'password' : 'text'">
+              <el-input
+                v-model="registerForm.checkPass"
+                :type="icono ? 'password' : 'text'"
+              >
                 <el-button
                   slot="append"
                   @click="showPassword"
@@ -127,7 +131,6 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$store.dispatch("signup", this.registerForm);
-          this.toogleLogin()
         } else {
           alert("error submit!!");
           return false;
@@ -139,5 +142,4 @@ export default {
 </script>
 
 <style>
-
 </style>

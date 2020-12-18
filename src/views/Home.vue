@@ -10,7 +10,6 @@
 
 <script>
 import HomeLayout from "../layouts/HomeLayout";
-
 export default {
   name: "Home",
   data() {

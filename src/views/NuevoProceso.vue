@@ -282,8 +282,6 @@ export default {
           break;
         }
       }
-      console.log(this.formCampos.campos[index].tipo);
-      console.log(this.currentComponent);
     },
     agregarCampo() {
       console.log(this.formCampos);
