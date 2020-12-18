@@ -69,11 +69,41 @@
             <el-tab-pane label="Pasos" name="first">
               <AppPasos></AppPasos>
             </el-tab-pane>
-            <el-tab-pane label="Archivos" name="second">
-              <AppArchivos></AppArchivos>
+            <el-tab-pane label="Timeline" name="third">
+              <div class="block timeline">
+                <el-timeline :reverse="reverse">
+                  <el-timeline-item
+                    v-for="(activity, index) in activities"
+                    :key="index"
+                    :timestamp="activity.timestamp">
+                    {{activity.content}}
+                  </el-timeline-item>
+                </el-timeline>
+              </div>
             </el-tab-pane>
-            <el-tab-pane label="Chat" name="third">Chat</el-tab-pane>
-            <el-tab-pane label="Perfil" name="fourth">Perfil</el-tab-pane>
+            <el-tab-pane label="Perfil" name="fourth">
+              <el-row>
+                <el-col :sm="24">
+                  <p>
+                    <span class="title">Nombre</span>
+                    <span class="description">Gonzalo Sosa</span>  
+                  </p>
+                  <p>
+                    <span class="title">Email</span>
+                    <span class="description">gonzalo@sosaimprenta.com.ar</span>  
+                  </p>
+                  <p>
+                    <span class="title">Teléfono</span>
+                    <span class="description">3513555898</span>  
+                  </p>
+                  <p>
+                    <span class="title">Tipo</span>
+                    <span class="description">Proveedor</span>  
+                  </p>
+                  <span class=""></span>
+                </el-col>
+              </el-row>
+            </el-tab-pane>
           </el-tabs>
         </el-col>
       </el-row>
@@ -102,6 +132,14 @@ export default {
         periodo: "",
       },
       activeName: "first",
+      reverse: true,
+        activities: [{
+          content: 'Paso 2 Completado',
+          timestamp: '07-11-2020'
+        }, {
+          content: 'Trámite Recibido',
+          timestamp: '03-11-2020'
+        }],
     };
   },
   created() {
@@ -125,6 +163,7 @@ export default {
         this.$router.currentRoute.params.id.slice(3, 4)
       ].pasos[this.getCurrentPaso - 1];
     },
+    
     getCurrentPaso() {
       return this.$store.state.currentPaso + 1;
     },

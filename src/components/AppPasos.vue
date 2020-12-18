@@ -8,11 +8,11 @@
       @click.native="changePaso(index)"
     >
       <el-col :sm="2">
-        <p class="numero-pasos">{{ paso.numeroDePaso }}</p>
+        <span class="numero-pasos">{{ paso.numeroDePaso }}</span>
       </el-col>
       <el-col :sm="16">
-        <p>{{paso.nombre}}</p>
-        <p>Responsable {{ paso.responsablePaso  || 'La Metro' }}</p>
+        <p class="nombre-paso">{{paso.nombre}}</p>
+        <p class="responsable-paso">Responsable: {{ paso.responsablePaso }}</p>
       </el-col>
       <el-col :sm="6">
         <el-checkbox
@@ -20,7 +20,10 @@
           :border="true"
           v-model="getPasos[index].completado"
           disabled
-        ></el-checkbox>
+        >
+        <i class="el-icon-success"></i>
+        <i class="el-icon-circle-check"></i>
+        </el-checkbox>
       </el-col>
     </el-row>
   </div>

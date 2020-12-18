@@ -32,7 +32,7 @@ export default new Vuex.Store({
     agregarPersonaDialog: false,
     tramites: [{
         id: 1,
-        fecha: "03-05-2020",
+        fecha: "03-11-2020",
         tramite: "Alta Proveedor",
         interesado: "Gonzalo Sosa",
         pasosCompletados: "2/2",
@@ -63,9 +63,16 @@ export default new Vuex.Store({
             departamento: 'La Metro',
             decision: '',
             comentarios: '',
-            responsablePaso: '',
+            responsablePaso: 'Instituto',
             editable: true,
             completado: false
+          }
+        ],
+        perfil: [{
+            nombre:'Gonzalo Sosa',
+            email: 'gonzalo@sosaimprenta.com.ar',
+            telefono: '3513555898',
+            tipo: 'Proveedor'
           }
         ]
       },
