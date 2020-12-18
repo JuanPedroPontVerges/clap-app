@@ -98,6 +98,24 @@ export default new Vuex.Store({
         ]
       },
     ],
+    pruebaProcesos: [{
+      id: 0,
+      titulo: '',
+      departamento: '',
+      tipoInteresado: '',
+      descripcion: '',
+      pasos: [{
+        id: 0,
+        titulo: '',
+        repsonsable: '',
+        descripcion: '',
+        campos: [{
+          id: 0,
+          nombre: '',
+          tipo: ''
+        }]
+      }]
+    }],
     procesos: [{}],
     departamentos: [],
     personas: [],
