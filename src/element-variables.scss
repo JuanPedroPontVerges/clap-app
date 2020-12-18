@@ -812,8 +812,12 @@ html {
         }
     }
 
+    
+    
     .el-drawer__wrapper{
         z-index: 9999 !important;
+
+        
 
         .el-drawer{
             background-color:#EEF2FF;
@@ -955,6 +959,10 @@ html {
         }
     }
 
+}
+
+.el-select-dropdown{
+    z-index: 9999 !important;
 }
 
 
