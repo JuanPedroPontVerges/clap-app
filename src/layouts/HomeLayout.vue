@@ -47,11 +47,6 @@ export default {
           },
           {
             type: "link",
-            text: "Reportes",
-            path: { name: "Reportes" },
-          },
-          {
-            type: "link",
             text: "Configuración",
             path: { name: "Configuraciones" },
           },
@@ -59,7 +54,7 @@ export default {
             type: "button",
             iconRight: '<i class="el-icon-user"></i>',
             path: { name: "Tramites" },
-            text: "logout",
+            text: "Cerrar Sesión",
           },
         ],
       },
@@ -95,34 +90,6 @@ export default {
   },
   created() {
     this.navbarOptions.menuOptionsRight[5].path.name = this.$route.name;
-  },
-  mounted() {
-    if (this.getTypeOfUser == "Proveedor") {
-      this.navbarOptions.menuOptionsRight = [
-        {
-          type: "link",
-          text: "Trámites",
-          path: { name: "Tramites" },
-        },
-        {
-          type: "link",
-          text: "Configuración",
-          path: { name: "Configuraciones" },
-        },
-        {
-          type: "button",
-          path: { name: "signup" },
-          class: "button-red",
-          iconRight: '<i class="el-icon-bell"></i>',
-        },
-        {
-          type: "button",
-          iconRight: '<i class="el-icon-user"></i>',
-          path: { name: "" },
-          text: "logout",
-        },
-      ];
-    }
   },
   components: {
     getTypeOfUser() {

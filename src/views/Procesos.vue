@@ -1,175 +1,165 @@
-<template class="procesos">
-  <div class="container">
-    <el-row
-      class="page-title"
-      type="flex"
-      justify="space-between"
-      align="middle"
-    >
-      <el-col :sm="20" >
-        <h1>Procesos</h1>
-        <p>
-          Son los procesos que ofrece tu institución a sus interesados para
-          solicitar trámites.
-        </p>
-      </el-col>
-      <el-col :sm="4" type="flex" align="end">
-        <el-button type="primary" @click="toggleDialog">Agregar</el-button>
-      </el-col>
-      <el-dialog
-        title="Agregar Proceso"
-        :visible.sync="dialogVisible"
-        width="350px"
+<template >
+  <div class="procesos">
+    <div class="container">
+      <el-row
+        class="page-title"
+        type="flex"
+        justify="space-between"
+        align="middle"
       >
-        <el-form :model="form" label-position="top">
-          <el-row :gutter="20">
-            <el-col :sm="12">
-              <el-form-item label="Nombre" label-width="50">
-                <el-input v-model="form.titulo" autocomplete="off"></el-input>
-              </el-form-item>
-            </el-col>
-            <el-col :sm="12">
-              <el-form-item label="Departamento">
-                <el-select
-                  v-model="form.departamento"
-                  placeholder="Elija un Departamento"
-                >
-                  <el-option
-                    v-for="(departamento, index) in getDepartamentos"
-                    :key="index"
-                    :label="departamento.nombre"
-                    :value="departamento.nombre"
-                  ></el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row :gutter="20">
-            <el-col :sm="24">
-              <el-form-item label="Tipo Interesado">
-                <el-select
-                  v-model="form.tipoInteresado"
-                  placeholder="Interesado"
-                >
-                  <el-option
-                    label="Alumno / Familiar"
-                    value="Alumno/Familiar"
-                  ></el-option>
-                  <el-option
-                    label="Empleado / Proveedor"
-                    value="Empleado/Proveedor"
-                  ></el-option>
-                </el-select>
-              </el-form-item>
-            </el-col>
-          </el-row>
-          <el-row :gutter="20">
-            <el-col :sm="24">
-              <el-form-item label="Descripción" label-width="50">
-                <el-input
-                  type="textarea"
-                  v-model="form.descripcion"
-                  autocomplete="off"
-                ></el-input>
-              </el-form-item>
-            </el-col>
-          </el-row>
-        </el-form>
-        <span slot="footer" class="dialog-footer">
-          <el-button @click="toggleDialog">Cancelar</el-button>
-          <el-button type="primary" @click="agregarProceso()"
-            >Agregar</el-button
-          >
-        </span>
-      </el-dialog>
-    </el-row>
-    <el-row>
-      <el-col :sm="24" :lg="24">
-        <el-table
-          style="margin-top: 20px; width: 100%"
-          :data="displayData"
-          ref="tab"
-          :header-cell-style="getRowClass"
-          @cell-click="getNumeroFila"
-          @current-change="handleCurrentChange"
-          @selection-change="handleSelectionChange"
-          empty-text
+        <el-col :sm="20" >
+          <h1>Procesos</h1>
+          <p>
+            Son los procesos que ofrece tu institución a sus interesados para
+            solicitar trámites.
+          </p>
+        </el-col>
+        <el-col :sm="4" type="flex" align="end">
+          <el-button type="primary" @click="toggleDialog">Agregar</el-button>
+        </el-col>
+        <el-dialog
+          title="Agregar Proceso"
+          :visible.sync="dialogVisible"
+          width="350px"
         >
-          <div slot="empty">
-            <p>No se encontraron resultados</p>
-          </div>
-          <el-table-column prop="titulo" label="Proceso" min-width="160px">
-          </el-table-column>
-          <el-table-column
-            prop="departamento"
-            label="Departamento"
-            min-width="80px"
-            :filters="departamentos"
-            :filter-method="filterHandler"
+          <el-form :model="form" label-position="top">
+            <el-row :gutter="20">
+              <el-col :sm="12">
+                <el-form-item label="Nombre" label-width="50">
+                  <el-input v-model="form.titulo" autocomplete="off"></el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :sm="12">
+                <el-form-item label="Departamento">
+                  <el-select
+                    v-model="form.departamento"
+                    placeholder="Elija un Departamento"
+                  >
+                    <el-option
+                      v-for="(departamento, index) in getDepartamentos"
+                      :key="index"
+                      :label="departamento.nombre"
+                      :value="departamento.nombre"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :sm="24">
+                <el-form-item label="Tipo Interesado">
+                  <el-select
+                    v-model="form.tipoInteresado"
+                    placeholder="Interesado"
+                  >
+                    <el-option
+                      label="Alumno / Familiar"
+                      value="Alumno/Familiar"
+                    ></el-option>
+                    <el-option
+                      label="Empleado / Proveedor"
+                      value="Empleado/Proveedor"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row :gutter="20">
+              <el-col :sm="24">
+                <el-form-item label="Descripción" label-width="50">
+                  <el-input
+                    type="textarea"
+                    v-model="form.descripcion"
+                    autocomplete="off"
+                  ></el-input>
+                </el-form-item>
+              </el-col>
+            </el-row>
+          </el-form>
+          <span slot="footer" class="dialog-footer">
+            <el-button @click="toggleDialog">Cancelar</el-button>
+            <el-button type="primary" @click="agregarProceso()"
+              >Agregar</el-button
+            >
+          </span>
+        </el-dialog>
+      </el-row>
+      <el-row>
+        <el-col :sm="24" :lg="24">
+          <el-table
+            style="margin-top: 20px; width: 100%"
+            :data="displayData"
+            ref="tab"
+            :header-cell-style="getRowClass"
+            @cell-click="getNumeroFila"
+            @current-change="handleCurrentChange"
+            @selection-change="handleSelectionChange"
+            empty-text
           >
-          </el-table-column>
-          <el-table-column
-            prop="tipoInteresado"
-            label="Tipo Solicitante"
-            min-width="120px"
-            :filters="[
-              { text: 'Alumnos/Padres', value: 'Alumnos / Padres' },
-              {
-                text: 'Empleados/Proveedores',
-                value: 'Empleados / Proveedores',
-              },
-            ]"
-            :filter-method="filterHandler"
+            <div slot="empty">
+              <p>No se encontraron resultados</p>
+            </div>
+            <el-table-column prop="titulo" label="Proceso" min-width="80px">
+            </el-table-column>
+            <el-table-column
+              prop="departamento"
+              label="Departamento"
+              min-width="80px"
+              :filters="departamentos"
+              :filter-method="filterHandler"
+            >
+            </el-table-column>
+            <el-table-column
+              prop="tipoInteresado"
+              label="Tipo Solicitante"
+              min-width="80px"
+              :filters="[
+                { text: 'Alumnos/Padres', value: 'Alumnos / Padres' },
+                {
+                  text: 'Empleados/Proveedores',
+                  value: 'Empleados / Proveedores',
+                },
+              ]"
+              :filter-method="filterHandler"
+            >
+            </el-table-column>
+            <el-table-column prop="paso" label="Pasos" min-width="60px">
+            </el-table-column>
+            <el-table-column align="center" min-width="60px">
+              <template slot-scope="scope">
+                
+                <el-tooltip
+                  class="item"
+                  effect="dark"
+                  content="Eliminar"
+                  placement="top-start"
+                >
+                  <el-button
+                    type="danger"
+                    icon="el-icon-delete"
+                    circle
+                    @click.stop="handleDelete(scope.$index)"
+                  ></el-button>
+                </el-tooltip>
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-col>
+      </el-row>
+      <el-divider></el-divider>
+      <el-row type="flex" align="center">
+        <el-col :sm="12" style="text-align: right">
+          <el-pagination
+            background
+            layout="prev, pager, next"
+            @current-change="handlePaginationChange"
+            :page-size="pageSize"
+            :total="total"
           >
-          </el-table-column>
-          <el-table-column prop="paso" label="Pasos" min-width="60px">
-          </el-table-column>
-          <el-table-column align="center" min-width="60px">
-            <template slot-scope="scope">
-              <el-tooltip
-                class="item"
-                effect="dark"
-                content="Editar"
-                placement="top-start"
-              >
-                <el-button
-                  type="primary"
-                  icon="el-icon-edit"
-                  circle
-                  @click.stop="handleEdit(scope.$index)"
-                ></el-button>
-              </el-tooltip>
-              <el-tooltip
-                class="item"
-                effect="dark"
-                content="Eliminar"
-                placement="top-start"
-              >
-                <el-button
-                  type="danger"
-                  icon="el-icon-delete"
-                  circle
-                  @click.stop="handleDelete(scope.$index)"
-                ></el-button>
-              </el-tooltip>
-            </template>
-          </el-table-column>
-        </el-table>
-      </el-col>
-    </el-row>
-    <el-divider></el-divider>
-    <el-row type="flex" align="center">
-      <el-col :sm="12" style="text-align: right">
-        <el-pagination
-          background
-          layout="prev, pager, next"
-          @current-change="handlePaginationChange"
-          :page-size="pageSize"
-          :total="total"
-        >
-        </el-pagination>
-      </el-col>
-    </el-row>
+          </el-pagination>
+        </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 

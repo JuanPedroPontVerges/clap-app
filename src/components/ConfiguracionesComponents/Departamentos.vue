@@ -1,20 +1,19 @@
 <template>
-  <div>
-    <el-row>
+  <div class="configuracion-departamentos">
+    <el-row class="settings-title">
       <el-col :sm="24">
-        <h1>Departamentos</h1>
+        <h2>Departamentos</h2>
       </el-col>
       <el-col :sm="24">
         <div style="margin: 0 0 10px">
-          <i
-            >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo
-            officiis impedit cum!
-          </i>
+          <p>
+            Indica los departamentos que van a manejar los trámites.
+          </p>
         </div>
       </el-col>
     </el-row>
     <el-row
-      style="border: 1px solid black; padding: 20px; background-color: white"
+      class="settings-body"
       :gutter="20"
     >
       <el-col :sm="24">
@@ -32,13 +31,12 @@
       </el-col>
       <el-col :sm="24">
         <el-table :data="getDepartamentos" style="width: 100%">
-          <el-table-column prop="nombre" label="Departamento" width="180">
+          <el-table-column prop="nombre" label="Departamento" min-width="180">
           </el-table-column>
           <el-table-column prop="personas" label="Personas" width="180">
           </el-table-column>
           <el-table-column
             align="center"
-            label="Operaciones"
             prop="accion"
             width="120"
           >
