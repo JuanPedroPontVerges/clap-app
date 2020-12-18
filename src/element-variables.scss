@@ -990,6 +990,19 @@ html {
 }
 
 
+/* Personas */
+
+.personas{
+    button{
+
+        &.danger{
+            color: #F56C6C;
+            margin-right: 30px;
+
+        }
+    }
+}
+
 /* CONFIGURACIÓN */
 
 .el-tabs--left {
