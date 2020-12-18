@@ -36,7 +36,7 @@ export default {
     return {
       checked: [],
       tramiteID: 0,
-      selected: undefined,
+      selected: 1,
     };
   },
   computed: {
