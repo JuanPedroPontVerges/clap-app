@@ -13,7 +13,7 @@
       <el-row>
         <el-col :sm="12">
           <el-input
-            placeholder="Nombre solicitante"
+            placeholder="Nombre tramite"
             suffix-icon="el-icon-search"
             v-model="search"
           >
@@ -38,7 +38,7 @@
               <p>No se encontraron resultados</p>
             </div>
             <el-table-column type="selection"> </el-table-column>
-            <el-table-column prop="tramite" label="Trámite" min-width="160px">
+            <el-table-column prop="tramite" label="Trámite" min-width="70px">
             </el-table-column>
             <el-table-column
               prop="departamento"
@@ -48,29 +48,12 @@
               :filter-method="filterHandler"
             >
             </el-table-column>
-            <el-table-column
-              prop="interesado"
-              label="Solicitante"
-              min-width="120px"
-            >
-            </el-table-column>
-            <el-table-column
-              prop="tipo"
-              label="Tipo"
-              min-width="100px"
-              :filters="[
-                { text: 'Proveedor', value: 'Proveedor' },
-                { text: 'Interesado', value: 'Interesado' },
-              ]"
-              :filter-method="filterHandler"
-            >
-            </el-table-column>
             <el-table-column prop="fecha" label="Fecha" min-width="80px">
             </el-table-column>
             <el-table-column
               prop="pasosCompletados"
               label="Pasos"
-              min-width="50px"
+              min-width="60px"
             >
             </el-table-column>
             <el-table-column
@@ -103,12 +86,6 @@
                   content="Editar"
                   placement="top-start"
                 >
-                  <el-button
-                    type="primary"
-                    icon="el-icon-edit"
-                    circle
-                    @click.stop="handleEdit(scope.$index)"
-                  ></el-button>
                 </el-tooltip>
                 <el-tooltip
                   class="item"
@@ -192,7 +169,7 @@ export default {
       this.filtered = this.$store.state.tramites.filter(
         (data) =>
           !this.search ||
-          data.interesado.toLowerCase().includes(this.search.toLowerCase())
+          data.tramite.toLowerCase().includes(this.search.toLowerCase())
       );
       this.total = this.filtered.length;
       return this.filtered.slice(

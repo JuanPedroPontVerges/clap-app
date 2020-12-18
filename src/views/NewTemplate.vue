@@ -1,5 +1,5 @@
 <template>
-<AppTablero></AppTablero> 
+  <AppTablero></AppTablero>
 </template>
 
 <script>
@@ -14,8 +14,8 @@ export default {
     this.$emit(`update:layout`, HomeLayout);
   },
   components: {
-    AppTablero
-  }
+    AppTablero,
+  },
 };
 </script>
 
