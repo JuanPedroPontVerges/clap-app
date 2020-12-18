@@ -14,6 +14,7 @@ import NuevoProceso from "../views/NuevoProceso.vue";
 import Tramites_Empleados from "../views/Tramites_Empleados.vue"
 import Descripcion_Tramite from "../views/Descripcion_Tramite.vue"
 import Configuracion_Empleado from "../views/Configuracion_Empleado.vue"
+import Descripcion_Inicio_Tramite from "../views/Descripcion_Inicio_Tramite.vue"
 import {
   auth
 } from '../firebase';
@@ -44,6 +45,14 @@ const routes = [{
     path: "/procesos",
     name: "Procesos",
     component: Procesos,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: "/inicio_tramite",
+    name: "Inicio_Tramite",
+    component: Descripcion_Inicio_Tramite,
     meta: {
       requiresAuth: true
     }

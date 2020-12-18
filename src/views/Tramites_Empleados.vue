@@ -18,6 +18,22 @@
             v-model="search"
           >
           </el-input>
+          <el-col :sm="12">
+            <el-select v-model="chooseTramite" placeholder="Iniciar tramite">
+              <el-option
+                @click.native="iniciarTramite('Descripcion_Inicio_Tramite1')"
+                label="Pago Proovedor"
+                value="Pago Proovedor"
+              >
+              </el-option>
+              <el-option
+                @click.native="iniciarTramite('Descripcion_Inicio_Tramite1')"
+                label="Alta Proovedor"
+                value="Alta Proovedor"
+              >
+              </el-option>
+            </el-select>
+          </el-col>
         </el-col>
       </el-row>
       <el-row>
@@ -150,6 +166,7 @@ export default {
       filtered: [],
       selected: false,
       selectionFiltr: [],
+      chooseTramite: "",
     };
   },
   created() {
@@ -246,6 +263,10 @@ export default {
       } else {
         return "";
       }
+    },
+    iniciarTramite(tramite) {
+      this.$store.commit("setInicioTramite", tramite);
+      this.$router.push("/inicio_tramite");
     },
   },
   components: {},

@@ -300,7 +300,8 @@ export default new Vuex.Store({
       responsable: "Interesado",
       titulo: "Recepción Solicitud",
       generatedID: 0,
-    }
+    },
+    currentInicioTramite: ''
   },
   mutations: {
     setUserProfile(state, val) {
@@ -432,6 +433,13 @@ export default new Vuex.Store({
     setProcesoActualPaso(state, payload) {
       console.log(payload);
       state.procesoActual[0].pasos.push(payload)
+    },
+    setInicioTramite(state, payload) {
+      if (payload == 'Descripcion_Inicio_Tramite1') {
+        state.currentInicioTramite = 'Descripcion_Inicio_Tramite1'
+      } else {
+        state.currentInicioTramite = 'Descripcion_Inicio_Tramite2'
+      }
     }
   },
   actions: {
@@ -498,10 +506,10 @@ export default new Vuex.Store({
       } = await fb.auth.createUserWithEmailAndPassword(email, contrasena)
       // set type of user depending of where this action is called from
       let tipo = ''
-      if (router.currentRoute.fullPath == "/login") {
-        tipo = "admin-user"
+      if (router.currentRoute.fullPath == "/login?user=Empleados%2FProveedores") {
+        tipo = "empleado-user"
       } else {
-        tipo = "normal-user"
+        tipo = "admin-user"
       }
       // create user profile object in userCollections
       await fb.usersCollection.doc(user.uid).set({
