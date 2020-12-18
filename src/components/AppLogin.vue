@@ -34,7 +34,7 @@
         {{ errMsg }}
       </p>
     </div>
-    <div class="extras">
+    <div class="extras" v-if="this.$route.query.user == 'Alumno/Profesores'">
       ¿No tienes cuenta?
       <a @click="toggleRegister()">
         <span>Crear Cuenta</span>

@@ -104,15 +104,25 @@ export default new Vuex.Store({
         ]
       },
     ],
-    procesos: null,
+    procesos: [{}],
     departamentos: [],
     personas: [],
     selectedPersona: null,
     currentPaso: 0,
     currentTramite: 0,
     currentNumeroDeTramite: 0,
-    procesos: [{}],
-    procesoActual: null
+    procesoActual: null,
+    procesosPasos: [{
+      nombre: "Paso N°1",
+      tipo: "Text Field",
+    }],
+    pasos: [{
+      titulo: 'Recepción Solicitud',
+      responsable: 'Interesado',
+      descripcion: 'Random description'
+    }],
+    pasoActual: {},
+    generatedID: 0,
   },
   mutations: {
     setUserProfile(state, val) {
@@ -132,6 +142,7 @@ export default new Vuex.Store({
     },
     setProcesoActual(state, payload) {
       state.procesoActual = payload
+      console.log(state.procesoActual);
     },
     setFormDialog(state) {
       state.formDialog = !state.formDialog
@@ -212,6 +223,31 @@ export default new Vuex.Store({
     },
     setAgregarProceso(state, payload) {
       state.procesos.push(payload)
+    },
+    setProcesosPasos(state, payload) {
+      state.procesosPasos.push(payload)
+    },
+    eliminarProcesoPaso(state, payload) {
+      state.procesosPasos.splice(payload, 1)
+    },
+    setPasos(state, {
+      header,
+      campos
+    }) {
+      state.pasos.push(header)
+      state.procesosPasos.push(campos)
+    },
+    setPasoActual(state, payload) {
+      state.pasoActual = {
+        header: state.pasos[payload],
+        campos: state.procesosPasos[payload]
+      }
+      setTimeout(() => {
+        console.log(state.pasoActual);
+      }, 10)
+    },
+    setGeneratedID(state) {
+      state.generatedID++;
     }
   },
   actions: {

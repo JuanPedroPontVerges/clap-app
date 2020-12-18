@@ -10,7 +10,7 @@ import Configuraciones from "../views/Configuraciones.vue";
 import Personas from "../views/Personas.vue";
 import Procesos from "../views/Procesos.vue";
 import ProcesosDetalle from "../views/ProcesosDetalle.vue";
-import Reportes from "../views/Reportes.vue";
+import Reportes from "../views/Report.vue";
 import NuevoProceso from "../views/NuevoProceso.vue";
 import {
   auth
@@ -59,7 +59,7 @@ const routes = [{
     }
   },
   {
-    path: "/nuevo_proceso",
+    path: "/nuevo_proceso/:id",
     name: "Nuevo_Proceso",
     component: NuevoProceso,
     meta: {

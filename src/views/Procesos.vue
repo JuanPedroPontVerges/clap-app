@@ -17,7 +17,7 @@
         <el-button type="primary" @click="toggleDialog">Agregar</el-button>
       </el-col>
       <el-dialog
-        title="Agregar Persona"
+        title="Agregar Proceso"
         :visible.sync="dialogVisible"
         width="350px"
       >
@@ -25,7 +25,7 @@
           <el-row :gutter="20">
             <el-col :sm="12">
               <el-form-item label="Nombre" label-width="50">
-                <el-input v-model="form.nombre" autocomplete="off"></el-input>
+                <el-input v-model="form.titulo" autocomplete="off"></el-input>
               </el-form-item>
             </el-col>
             <el-col :sm="12">
@@ -47,7 +47,10 @@
           <el-row :gutter="20">
             <el-col :sm="24">
               <el-form-item label="Tipo Interesado">
-                <el-select v-model="form.tipo" placeholder="Interesado">
+                <el-select
+                  v-model="form.tipoInteresado"
+                  placeholder="Interesado"
+                >
                   <el-option
                     label="Alumno / Familiar"
                     value="Alumno/Familiar"
@@ -95,7 +98,9 @@
           <div slot="empty">
             <p>No se encontraron resultados</p>
           </div>
-          <el-table-column prop="nombre" label="Proceso" min-width="160px">
+          <el-table-column prop="id" label="ID" min-width="160px">
+          </el-table-column>
+          <el-table-column prop="titulo" label="Proceso" min-width="160px">
           </el-table-column>
           <el-table-column
             prop="departamento"
@@ -106,13 +111,7 @@
           >
           </el-table-column>
           <el-table-column
-            prop="tipoSolicitante"
-            label="Tipo Solicitante"
-            min-width="120px"
-          >
-          </el-table-column>
-          <el-table-column
-            prop="tipoSolicitante"
+            prop="tipoInteresado"
             label="Tipo Solicitante"
             min-width="120px"
             :filters="[
@@ -184,10 +183,26 @@ export default {
   data() {
     return {
       form: {
-        nombre: "",
+        titulo: "",
         descripcion: "",
         departamento: "",
-        tipo: "",
+        tipoInteresado: "",
+        id: 0,
+        pasos: [
+          {
+            id: 0,
+            titulo: "",
+            responsable: "",
+            dscripcion: "",
+            campos: [
+              {
+                id: 0,
+                nombre: "",
+                tipo: "",
+              },
+            ],
+          },
+        ],
       },
       search: "",
       currentRow: null,
@@ -230,6 +245,9 @@ export default {
     getDepartamentos() {
       return this.$store.state.departamentos;
     },
+    getGeneratedID() {
+      return this.$store.state.generatedID;
+    },
   },
   methods: {
     handleDelete(index) {
@@ -252,16 +270,16 @@ export default {
       }
     },
     handleCurrentChange(val) {
-      let { id, proceso, departamento, tipoSolicitante, pasos } = val;
-      let valores = {
-        id,
-        proceso,
-        departamento,
-        tipoSolicitante,
-        pasos,
-      };
-      this.$store.commit("setProcesoActual", valores);
-      this.$router.push(`/detalle/id=${this.nroFila}`);
+      this.$store.commit("setProcesoActual", {
+        departamento: val.departamento,
+        descripcion: val.descripcion,
+        tipoInteresado: val.tipoInteresado,
+        titulo: val.titulo,
+        id: val.id,
+      });
+      setTimeout(() => {
+        this.$router.push(`/nuevo_proceso/id?=${val.id}`);
+      }, 10);
     },
     getNumeroFila(row, column, cell, event) {
       this.nroFila = this.getTableData.indexOf(row);
@@ -292,8 +310,10 @@ export default {
     agregarProceso() {
       this.$store.commit("setAgregarProceso", this.form);
       this.$store.commit("setProcesoActual", this.form);
+      this.$store.commit("setGeneratedID");
+      this.form.id = this.$store.state.generatedID;
+      this.$router.push(`/nuevo_proceso/id?=${this.form.id}`);
       this.form = {};
-      this.$router.push(`/nuevo_proceso`);
     },
     handleBack() {
       this.$router.back();

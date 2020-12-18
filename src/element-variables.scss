@@ -593,3 +593,14 @@ html {
 .el-checkbox.is-bordered.el-checkbox--small {
     padding: 5px 10px 5px 10px;
 }
+
+/* MAKE DRAWER SCROLABLE */
+.el-drawer__body {
+    height: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+.el-drawer__body::-webkit-scrollbar {
+    width: 0.5em;
+}
