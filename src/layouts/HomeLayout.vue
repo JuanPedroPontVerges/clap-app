@@ -6,20 +6,16 @@
     <el-main>
       <slot />
     </el-main>
-    <a
-      href="https://api.whatsapp.com/send?phone=51955081075&text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Varela%202."
-      class="float"
-      target="_blank"
-    >
-      <i class="el-icon-s-tools my-float"></i>
+    <a href="https://wa.me/5493516866950" target="_blank" class="float" style="padding: 5px">
+      <div style="text-align: center; margin-top: 12px">
+        <img src="../assets/logo.png" alt="" />
+      </div>
     </a>
+    <div id="myDiv"></div>
   </el-container>
 </template>
 
 <script>
-import { SocialChat } from "vue-social-chat";
-import AppPulpoButton from "../components/AppPulpoButton";
-
 export default {
   data() {
     return {
@@ -107,10 +103,7 @@ export default {
   created() {
     this.navbarOptions.menuOptionsRight[6].path.name = this.$route.name;
   },
-  components: {
-    SocialChat,
-    AppPulpoButton,
-  },
+  components: {},
 };
 </script>
 
@@ -126,11 +119,11 @@ i {
 
 .float {
   position: fixed;
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   bottom: 40px;
   right: 40px;
-  background-color: #25d366;
+  background-color: #00185d;
   color: #fff;
   border-radius: 50px;
   text-align: center;
@@ -138,6 +131,13 @@ i {
   box-shadow: 2px 2px 3px #999;
   z-index: 100;
   text-align: center;
+}
+
+.float:hover {
+  height: 85px;
+  width: 85px;
+  margin:2px;
+  transition: 1ms all;
 }
 
 .my-float {

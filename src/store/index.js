@@ -56,7 +56,8 @@ export default new Vuex.Store({
             leidoTerminosContratacion: true,
             responsablePaso: 'Interesado',
             editable: false,
-            completado: true
+            completado: true,
+            id:1,
           },
           {
             numeroDePaso: 2,
@@ -68,7 +69,8 @@ export default new Vuex.Store({
             comentarios: '',
             responsablePaso: 'Instituto',
             editable: false,
-            completado: true
+            completado: true,
+            id:2,
           }
         ],
         perfil: [{
@@ -88,30 +90,32 @@ export default new Vuex.Store({
         departamento: 'Administracion',
         estado: 'Finalizado',
         pasos: [{
-          numeroDePaso: 1,
-          nombre:'Recepción Solicitud',
-          descripcionPaso: 'Es el inicio del trámite solicitado por el interesado.',
-          razonSocial: 'Imprenta HNOS Sosa',
-          cuit: '30-25454456-2',
-          departamentoAprobacion: 'Administración',
-          comentarios: 'Aceptamos efectivo, transferencias o cheques a 30 días únicamente.',
-          responsablePaso: 'Interesado',
-          editable: false,
-          completado: true
-        },
-        {
-          numeroDePaso: 2,
-          nombre: 'Respuesta Solicitud',
-          descripcionPaso: 'Validar los datos, cargarlos en el CRM de administración y confirmar alta.',
-          nombreResponsable: 'Leonela Ricompensa',
-          departamento: 'Administración',
-          decision: 'Si',
-          comentarios: 'Fue transferencia',
-          responsablePaso: 'Instituto',
-          editable: false,
-          completado: true
-        }
-      ]
+            numeroDePaso: 1,
+            nombre: 'Recepción Solicitud',
+            descripcionPaso: 'Es el inicio del trámite solicitado por el interesado.',
+            razonSocial: 'Imprenta HNOS Sosa',
+            cuit: '30-25454456-2',
+            departamentoAprobacion: 'Administración',
+            comentarios: 'Aceptamos efectivo, transferencias o cheques a 30 días únicamente.',
+            responsablePaso: 'Interesado',
+            editable: false,
+            completado: true,
+            id: 1
+          },
+          {
+            numeroDePaso: 2,
+            nombre: 'Respuesta Solicitud',
+            descripcionPaso: 'Validar los datos, cargarlos en el CRM de administración y confirmar alta.',
+            nombreResponsable: 'Leonela Ricompensa',
+            departamento: 'Administración',
+            decision: 'Si',
+            comentarios: 'Fue transferencia',
+            responsablePaso: 'Instituto',
+            editable: false,
+            completado: true,
+            id: 2
+          }
+        ]
       },
     ],
     procesos: [{
