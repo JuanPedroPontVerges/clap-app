@@ -400,16 +400,20 @@ export default {
       formPasosCodeados: {
         campos: [
           {
-            nombre: "Nombre",
+            nombre: "Nombre Responsable",
             tipo: "TextInput",
           },
           {
-            nombre: "Fecha",
-            tipo: "Selector de Fecha",
+            nombre: "Departamento",
+            tipo: "Dropdown",
           },
           {
-            nombre: "Foto carnet",
-            tipo: "Upload",
+            nombre: "Decisión",
+            tipo: "Checkbox",
+          },
+          {
+            nombre: "Comentarios",
+            tipo: "TextArea",
           },
         ],
       },
