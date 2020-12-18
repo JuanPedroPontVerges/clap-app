@@ -10,6 +10,70 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   plugins: [createPersistedState()],
   state: {
+    navbarOptions: {
+      elementId: "main-navbar",
+      isUsingVueRouter: true,
+      mobileBreakpoint: 992,
+      brandImagePath: "./",
+      brandImage: require(`../assets/logo.png`),
+      brandImageAltText: "brand-image",
+      collapseButtonOpenColor: "#661c23",
+      collapseButtonCloseColor: "#661c23",
+      showBrandImageInMobilePopup: true,
+      ariaLabelMainNav: "Navegacion",
+      menuOptionsRight: [{
+          type: "link",
+          text: "Trámites",
+          path: {
+            name: "Tramites"
+          },
+        },
+        {
+          type: "link",
+          text: "Procesos",
+          path: {
+            name: "Procesos"
+          },
+        },
+        {
+          type: "link",
+          text: "Personas",
+          path: {
+            name: "Personas"
+          },
+        },
+        {
+          type: "link",
+          text: "Reportes",
+          path: {
+            name: "Reportes"
+          },
+        },
+        {
+          type: "link",
+          text: "Configuración",
+          path: {
+            name: "Configuraciones"
+          },
+        },
+        {
+          type: "button",
+          path: {
+            name: "signup"
+          },
+          class: "button-red",
+          iconRight: '<i class="el-icon-bell"></i>',
+        },
+        {
+          type: "button",
+          iconRight: '<i class="el-icon-user"></i>',
+          path: {
+            name: ""
+          },
+          text: "logout",
+        },
+      ],
+    },
     configuraciones: {
       general: {
         nombre: '',
@@ -23,6 +87,7 @@ export default new Vuex.Store({
         diasDeTrabajo: [],
       }
     },
+    userType: '',
     userProfile: {},
     component: 'AppLogin',
     errorMsg: '',
@@ -57,7 +122,7 @@ export default new Vuex.Store({
             responsablePaso: 'Interesado',
             editable: false,
             completado: true,
-            id:1,
+            id: 1,
           },
           {
             numeroDePaso: 2,
@@ -70,7 +135,7 @@ export default new Vuex.Store({
             responsablePaso: 'Instituto',
             editable: false,
             completado: true,
-            id:2,
+            id: 2,
           }
         ],
         perfil: [{
@@ -335,6 +400,12 @@ export default new Vuex.Store({
     },
     setGeneratedID(state) {
       state.generatedID++;
+    },
+    setUserType(state, payload) {
+      state.userType = payload
+    },
+    setNavBar(state, payload) {
+      state.navbarOptions = payload
     }
   },
   actions: {
@@ -348,7 +419,24 @@ export default new Vuex.Store({
         }) => {
           this.commit('setErrorMessage', ' ')
           dispatch('fetchUserProfile', user)
-          router.push('/')
+          router.push('/tramites')
+        })
+        .catch(err => {
+          this.commit('setErrorMessage', err.message)
+
+        })
+    },
+    async loginEmpleados({
+      dispatch
+    }, form) {
+      // sign user in
+      await fb.auth.signInWithEmailAndPassword(form.email, form.password)
+        .then(({
+          user
+        }) => {
+          this.commit('setErrorMessage', ' ')
+          dispatch('fetchUserProfile', user)
+          router.push('/tramites_empleados')
         })
         .catch(err => {
           this.commit('setErrorMessage', err.message)
@@ -408,7 +496,8 @@ export default new Vuex.Store({
         departamento: '',
         tipo: 'Empleado'
       })
-      router.push('/')
+      router.push('/tramites')
+      this.state.component = "AppLogin"
     },
     async logout({
       commit

@@ -20,7 +20,56 @@
           </el-row>
           <el-row>
             <el-col :xs="24">
-              <component :is="getCurrentComponent"></component>
+              <div class="login-form">
+                <el-form ref="loginForm" :model="loginForm" @submit.prevent>
+                  <el-row>
+                    <el-col :sm="24">
+                      <el-form-item label="Email">
+                        <el-input v-model="loginForm.email" type="email">
+                        </el-input>
+                      </el-form-item>
+                    </el-col>
+                  </el-row>
+                  <el-row>
+                    <el-col :sm="24">
+                      <el-form-item label="Contraseña">
+                        <el-input
+                          v-model="loginForm.contrasena"
+                          :type="icono ? 'password' : 'text'"
+                        >
+                          <el-button
+                            slot="append"
+                            @click="showPassword"
+                            :icon="icono ? 'el-icon-lock' : 'el-icon-unlock'"
+                          >
+                          </el-button>
+                        </el-input>
+                      </el-form-item>
+                    </el-col>
+                  </el-row>
+                </el-form>
+                <div>
+                  <el-button
+                    type="primary"
+                    @click="loguearse()"
+                    style="width: 40%"
+                    class="btn-blue"
+                    >Ingresar</el-button
+                  >
+                </div>
+                <p v-if="errMsg">
+                  {{ errMsg }}
+                </p>
+              </div>
+              <div
+                class="extras"
+                v-if="this.$route.query.user == 'Alumno/Profesores'"
+              >
+                ¿No tienes cuenta?
+                <a @click="toggleRegister()">
+                  <span>Crear Cuenta</span>
+                </a>
+              </div>
             </el-col>
           </el-row>
         </el-col>
@@ -69,25 +118,25 @@ import AppRegister from "../components/AppRegister";
 export default {
   data() {
     return {
-      form: {
+      loginForm: {
         email: "",
         password: "",
       },
+      icono: true,
+      errMsg:''
     };
   },
   methods: {
-    toogleRegister() {
-      this.$store.commit("setShowLogInOrRegister");
-    },
     volver() {
       this.$router.push("/landing");
     },
     loguearse() {
-      this.$store.dispatch("login", {
+      console.log("logeo");
+      this.$store.dispatch("loginEmpleados", {
         email: this.loginForm.email,
         password: this.loginForm.contrasena,
       });
-      this.$store.commit("setUserType", this.$route.query.user);
+      this.$store.commit('setUserType', 'Proveedor')
     },
     showPassword() {
       this.icono = !this.icono;
@@ -100,10 +149,6 @@ export default {
   },
   created() {
     this.$emit(`update:layout`, LoginOrSignupLayout);
-  },
-  beforeRouteEnter(to, from, next) {
-    if (from.fullPath !== "/landing") next("/landing");
-    else next();
   },
   components: {
     LogInOrRegister,

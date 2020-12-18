@@ -154,7 +154,7 @@
 </template>
 
 <script>
-import HomeLayout from "../layouts/HomeLayout";
+import HomeEmpleadosLayout from "../layouts/HomeEmpleadosLayout";
 
 export default {
   name: "Home",
@@ -176,7 +176,7 @@ export default {
     };
   },
   created() {
-    this.$emit(`update:layout`, HomeLayout);
+    this.$emit(`update:layout`, HomeEmpleadosLayout);
     this.$store.state.departamentos.forEach((depto) => {
       this.departamentos.push({ text: depto.nombre, value: depto.nombre });
     });
@@ -236,7 +236,7 @@ export default {
       };
       this.$store.commit("setTramiteActual", valores);
       setTimeout(() => {
-        this.$router.push(`/descripcion/id=${this.nroFila}`);
+        this.$router.push(`/descripcion_tramite/id=${this.nroFila}`);
         this.$store.commit("setNumeroDeTramite", this.nroFila + 1);
       }, 10);
     },
