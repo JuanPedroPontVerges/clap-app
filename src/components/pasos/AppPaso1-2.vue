@@ -1,56 +1,29 @@
 <!-- PASOS DEL 2 TRAMITE !!!!!! -->
 <template>
   <div>
-    <el-row style="border: 1px solid black; padding: 20px">
-      <el-col :sm="12">
+    <el-row class="paso">
+      <el-col :sm="12" class="paso-column">
         <el-form label-position="top">
           <el-form-item label="Razón Social ">
             <el-input v-model="getPaso.razonSocial" :disabled="true"></el-input>
           </el-form-item>
           <el-form-item label="CUIT">
-            <el-input v-model="getPaso.cuit" type="number" :disabled="true"></el-input>
+            <el-input
+              v-model="getPaso.cuit"
+              :disabled="true"
+            ></el-input>
           </el-form-item>
-          <el-form-item label="Adjuntar Factura">
-            <el-upload action="#" list-type="picture-card" :auto-upload="false">
-              <i slot="default" class="el-icon-plus"></i>
-              <div slot="file" slot-scope="{ file }">
-                <img
-                  class="el-upload-list__item-thumbnail"
-                  :src="file.url"
-                  alt=""
-                />
-                <span class="el-upload-list__item-actions">
-                  <span
-                    class="el-upload-list__item-preview"
-                    @click="handlePictureCardPreview(file)"
-                  >
-                    <i class="el-icon-zoom-in"></i>
-                  </span>
-                  <span
-                    v-if="!disabled"
-                    class="el-upload-list__item-delete"
-                    @click="handleDownload(file)"
-                  >
-                    <i class="el-icon-download"></i>
-                  </span>
-                  <span
-                    v-if="!disabled"
-                    class="el-upload-list__item-delete"
-                    @click="handleRemove(file)"
-                  >
-                    <i class="el-icon-delete"></i>
-                  </span>
-                </span>
-              </div>
-            </el-upload>
-            <el-dialog :visible.sync="dialogVisible">
-              <img width="100%" :src="dialogImageUrl" alt="" />
-            </el-dialog>
+          <el-form-item label="Factura a cancelar">
+            <a href="https://made2.co/agu-borrar/factura.jpg" target="_blank" class="download">
+              <i class="el-icon-download"></i>
+              <span>Descargar</span>
+            </a>
           </el-form-item>
-          <el-form-item label="Departamento">
+          <el-form-item label="Departamento que debe aprobar el pago">
             <el-select
               v-model="getPaso.departamento"
-              placeholder="Elija un Departamento"
+              placeholder="Marketing"
+              disabled
             >
               <el-option
                 v-for="(departamento, index) in getDepartamentos"

@@ -491,7 +491,45 @@ html {
                                 cursor: auto;
                             }
                             
-                            
+                            a{
+                                text-decoration: none;
+                                color: #0062cc;
+                                i::before{
+                                    margin-right: 5px;
+                                    font-size: 18px;
+                                    margin-top: 2px;
+                                }
+                            }
+
+                            .el-textarea__inner{
+                                color: #606266;
+                            }
+
+                            .el-radio{
+                                margin-right: 0px;
+                                cursor: auto;
+
+                                .el-radio__label{
+                                    cursor: auto;
+                                }
+
+                                .el-radio__inner{
+                                    cursor: auto;
+
+                                    &::after{
+                                        cursor: auto;
+                                    }
+                                }
+                                
+                            }
+
+                            .el-textarea{
+                                
+                                .el-textarea__inner{
+                                    cursor: auto;
+                                }
+                            } 
+
                         }
                     }
 

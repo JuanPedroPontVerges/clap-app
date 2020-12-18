@@ -31,6 +31,7 @@
             @selection-change="handleSelectionChange"
             empty-text
             :cell-class-name="cellTramite"
+            :default-sort = "{prop: 'fecha', order: 'descending'}"
           >
             <div slot="empty">
               <p>No se encontraron resultados</p>

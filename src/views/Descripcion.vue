@@ -11,7 +11,7 @@
                   size="medium"
                   class="btn-blue"
                   @click="handleBack()"
-                ></el-button>
+                >Volver</el-button>
               </div>
               <div class="title">
                 <h2>{{ getTramite.tramite }}</h2>
@@ -20,7 +20,7 @@
                 <el-tag
                   type="success"
                   v-if="getPasos[getPasos.length - 1].completado === true"
-                  >Completado</el-tag
+                  >Finalizado</el-tag
                 >
               </div>
             </el-col>
@@ -35,7 +35,6 @@
                 </el-button>
                 <el-dropdown-menu slot="dropdown">
                   <el-dropdown-item command="eliminar">Eliminar</el-dropdown-item>
-                  <el-dropdown-item command="editar">Editar</el-dropdown-item>
                 </el-dropdown-menu>
               </el-dropdown>
             </el-col>
@@ -46,7 +45,7 @@
           <el-row>
             <el-col :sm="24">
               <el-row type="flex" align="middle" justify="space-between" class="header-box">
-                <el-col :sm="12">
+                <el-col :sm="24">
                   <p class="title">{{getPaso.nombre}}</p>
                   <p class="description">{{getPaso.descripcionPaso}}</p>
                 </el-col>

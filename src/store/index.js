@@ -39,7 +39,7 @@ export default new Vuex.Store({
         pasosCompletados: "2/2",
         tipo: 'Proveedor',
         departamento: 'Administración',
-        estado: 'Activo',
+        estado: 'Finalizado',
         pasos: [{
             numeroDePaso: 1,
             nombre:'Recepción Solicitud',
@@ -61,13 +61,14 @@ export default new Vuex.Store({
           {
             numeroDePaso: 2,
             nombre: 'Respuesta Solicitud',
-            nombreResponsable: ' ',
-            departamento: 'La Metro',
-            decision: '',
+            descripcionPaso: 'Validar los datos, cargarlos en el CRM de administración y confirmar alta.',
+            nombreResponsable: 'Leonela Ricompensa',
+            departamento: 'Administración',
+            decision: 'Si',
             comentarios: '',
             responsablePaso: 'Instituto',
-            editable: true,
-            completado: false
+            editable: false,
+            completado: true
           }
         ],
         perfil: [{
@@ -80,37 +81,38 @@ export default new Vuex.Store({
       },
       {
         id: 2,
-        fecha: "13-06-2020",
+        fecha: "13-11-2020",
         tramite: "Solicitud pago proveedor",
-        interesado: "Juan Pedro",
-        pasosCompletados: "3/5",
+        interesado: "Gonzalo Sosa",
+        pasosCompletados: "2/2",
         tipo: 'Proveedor',
         departamento: 'Administracion',
-        estado: 'Activo',
+        estado: 'Finalizado',
         pasos: [{
-            numeroDePaso: 1,
-            razonSocial: 'Razon social',
-            nombreCompleto: 'Razon social',
-            cuit: 20415220120,
-            departamento: '',
-            comentarios: 'Un comentarioo',
-            imgFactura: '',
-            editable: false,
-            responsable: '',
-            completado: true
-          },
-          {
-            numeroDePaso: 2,
-            nombre: ' ',
-            departamento: ' ',
-            decision: '',
-            comentarios: '',
-            responsable: '',
-            imgComprobante: '',
-            editable: true,
-            completado: false
-          }
-        ]
+          numeroDePaso: 1,
+          nombre:'Recepción Solicitud',
+          descripcionPaso: 'Es el inicio del trámite solicitado por el interesado.',
+          razonSocial: 'Imprenta HNOS Sosa',
+          cuit: '30-25454456-2',
+          departamentoAprobacion: 'Administración',
+          comentarios: 'Aceptamos efectivo, transferencias o cheques a 30 días únicamente.',
+          responsablePaso: 'Interesado',
+          editable: false,
+          completado: true
+        },
+        {
+          numeroDePaso: 2,
+          nombre: 'Respuesta Solicitud',
+          descripcionPaso: 'Validar los datos, cargarlos en el CRM de administración y confirmar alta.',
+          nombreResponsable: 'Leonela Ricompensa',
+          departamento: 'Administración',
+          decision: 'Si',
+          comentarios: 'Fue transferencia',
+          responsablePaso: 'Instituto',
+          editable: false,
+          completado: true
+        }
+      ]
       },
     ],
     procesos: [{

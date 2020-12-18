@@ -23,16 +23,16 @@
             ></el-input>
           </el-form-item>
           <el-form-item label="Constancia inscripción AFIP">
-            <el-input
-              v-model="getPaso.cuit"
-              :disabled="true"
-            ></el-input>
+            <a href="https://made2.co/agu-borrar/CONSTANCIA-AFIP.pdf" target="_blank" class="download">
+              <i class="el-icon-download"></i>
+              <span>Descargar</span>
+            </a>
           </el-form-item>
           <el-form-item label="Constancia CBU">
-            <el-input
-              v-model="getPaso.cuit"
-              :disabled="true"
-            ></el-input>
+            <a href="https://made2.co/agu-borrar/Contenido-AliasCBU2.jpg" target="_blank" class="download">
+              <i class="el-icon-download"></i>
+              <span>Descargar</span>
+            </a>
           </el-form-item>
           <el-form-item label="Email Contacto">
             <el-input
