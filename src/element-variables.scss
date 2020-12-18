@@ -1198,3 +1198,66 @@ html {
 
 }
 
+.collapse-mobile{
+    margin-top: 40px;
+    max-width: 900px;
+
+    .contenido{
+        padding: 20px;
+
+        .el-form-item{
+
+            .el-form-item__label{
+                padding: 0px;
+                line-height: 35px;
+                font-weight: bold;
+            }
+
+            .el-input__inner{
+                color: #606266;
+                cursor: auto;
+            }
+            
+            a{
+                text-decoration: none;
+                color: #0062cc;
+                i::before{
+                    margin-right: 5px;
+                    font-size: 18px;
+                    margin-top: 2px;
+                }
+            }
+
+            .el-textarea__inner{
+                color: #606266;
+            }
+
+            .el-radio{
+                margin-right: 0px;
+                cursor: auto;
+
+                .el-radio__label{
+                    cursor: auto;
+                }
+
+                .el-radio__inner{
+                    cursor: auto;
+
+                    &::after{
+                        cursor: auto;
+                    }
+                }
+                
+            }
+
+            .el-textarea{
+                
+                .el-textarea__inner{
+                    cursor: auto;
+                }
+            } 
+
+        }
+    }
+}
+

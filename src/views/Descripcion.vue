@@ -107,6 +107,106 @@
           </el-tabs>
         </el-col>
       </el-row>
+
+      <el-row class="collapse-mobile">
+        <el-collapse v-model="activeName" accordion>
+          <el-collapse-item title="Consistency" name="1">
+            <div class="contenido">
+              <el-form label-position="top">
+                <el-form-item label="Tipo Persona">
+                  <el-input
+                    v-model="getPaso.tipoPersona"
+                    :disabled="true"
+                  ></el-input>
+                </el-form-item>
+                <el-form-item label="Razón Social">
+                  <el-input
+                    v-model="getPaso.razonSocial"
+                    :disabled="true"
+                  ></el-input>
+                </el-form-item>
+                <el-form-item label="CUIT">
+                  <el-input
+                    v-model="getPaso.cuit"
+                    :disabled="true"
+                  ></el-input>
+                </el-form-item>
+                <el-form-item label="Constancia inscripción AFIP">
+                  <a href="https://made2.co/agu-borrar/CONSTANCIA-AFIP.pdf" target="_blank" class="download">
+                    <i class="el-icon-download"></i>
+                    <span>Descargar</span>
+                  </a>
+                </el-form-item>
+                <el-form-item label="Constancia CBU">
+                  <a href="https://made2.co/agu-borrar/Contenido-AliasCBU2.jpg" target="_blank" class="download">
+                    <i class="el-icon-download"></i>
+                    <span>Descargar</span>
+                  </a>
+                </el-form-item>
+                <el-form-item label="Email Contacto">
+                  <el-input
+                    v-model="getPaso.emailContacto"
+                    :disabled="true"
+                  ></el-input>
+                </el-form-item>
+                <el-form-item label="Teléfono Contacto">
+                  <el-input
+                    v-model="getPaso.telefonoContacto"
+                    :disabled="true"
+                  ></el-input>
+                </el-form-item>
+                <el-form-item label="Nombre Contacto">
+                  <el-input
+                    v-model="getPaso.nombreContacto"
+                    :disabled="true"
+                  ></el-input>
+                </el-form-item>
+                <el-form-item label="Área de Contratación">
+                  <el-input
+                    v-model="getPaso.areaContratacion"
+                    :disabled="true"
+                  ></el-input>
+                </el-form-item>
+              </el-form>
+
+            </div>
+          </el-collapse-item>
+          <el-collapse-item title="Feedback" name="2">
+            <div class="contenido">
+              <el-form label-position="top">
+                <el-form-item label="Nombre Responsable">
+                  <el-input disabled v-model="getPaso.nombreResponsable"></el-input>
+                </el-form-item>
+                <el-form-item label="Departamento">
+                  <el-select
+                    v-model="getPaso.departamento"
+                    placeholder="Administración"
+                    disabled
+                  >
+                    <el-option
+                      v-for="(departamento, index) in getDepartamentos"
+                      :key="index"
+                      :label="departamento.nombre"
+                      :value="departamento.nombre"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="Decisión" label-width="50px">
+                  <el-radio-group v-model="getPaso.decision" size="medium">
+                    <el-radio border disabled  label="Si"></el-radio>
+                    <el-radio border disabled  label="No"></el-radio>
+                  </el-radio-group>
+                </el-form-item>
+                <el-form-item label="Comentarios">
+                  <el-input disabled type="textarea" v-model="getPaso.comentarios"></el-input>
+                </el-form-item>
+              </el-form>
+            </div>
+          </el-collapse-item>
+        </el-collapse>
+      </el-row>
+
+
     </div>
   </div>
 </template>
