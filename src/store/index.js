@@ -56,7 +56,8 @@ export default new Vuex.Store({
             leidoTerminosContratacion: true,
             responsablePaso: 'Interesado',
             editable: false,
-            completado: true
+            completado: true,
+            id:1,
           },
           {
             numeroDePaso: 2,
@@ -68,7 +69,8 @@ export default new Vuex.Store({
             comentarios: '',
             responsablePaso: 'Instituto',
             editable: false,
-            completado: true
+            completado: true,
+            id:2,
           }
         ],
         perfil: [{
