@@ -211,7 +211,7 @@ html {
     color: #fff;
     font-weight: bold;
 
-    &:hover,&:active{
+    &:hover,&:active,&:focus{
         background: #635ac7;
         border: none;
         color: #fff;
@@ -225,7 +225,7 @@ html {
     padding: 16px 60px;
     border-radius: 52px;
 
-    &:hover,&:active{
+    &:hover,&:active,&:focus{
         background: #0f57db;
         border: none;
         color: #fff;
@@ -812,8 +812,12 @@ html {
         }
     }
 
+    
+    
     .el-drawer__wrapper{
         z-index: 9999 !important;
+
+        
 
         .el-drawer{
             background-color:#EEF2FF;
@@ -957,6 +961,27 @@ html {
 
 }
 
+.el-select-dropdown{
+    z-index: 9999 !important;
+}
+
+.el-dialog__wrapper{
+    .el-form-item__label{
+        display: block;
+        width: 100%;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    button{
+
+        &.danger{
+            color: #F56C6C;
+            margin-right: 30px;
+
+        }
+    }
+}
 
 
 /* CONFIGURACIÓN */
