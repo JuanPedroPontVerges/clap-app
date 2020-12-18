@@ -9,7 +9,7 @@
           @click="handleBack()"
         ></el-button>
         <h2 style="display: inline">
-          {{ getNewProceso.titulo }}
+          {{ getNewProceso.titulo || 'Error' }}
         </h2>
       </el-col>
       <el-col :xs="22" style="text-align: right">
@@ -54,7 +54,7 @@
         type="flex"
         style="border: 1px solid black"
         align="middle"
-        v-for="(paso, index) in getPasos"
+        v-for="(paso, index) in getNewProceso.pasos"
         :key="index"
       >
         <span
@@ -113,7 +113,7 @@
                 <el-form-item>
                   <el-input
                     placeholder="Respuesta"
-                    v-model="formHeader.titulo"
+                    v-model="getNewProceso.pasos[0].titulo"
                   ></el-input>
                 </el-form-item>
               </el-col>
@@ -126,7 +126,7 @@
                 <el-form-item label="Descripción paso">
                   <el-input
                     type="textarea"
-                    v-model="formHeader.descripcion"
+                    v-model="getNewProceso.pasos[0].descripcion"
                   ></el-input>
                 </el-form-item>
               </el-col>
@@ -304,6 +304,7 @@ export default {
       this.formCampos.splice(index, 1)
     },
     agregarPaso() {
+      console.log(this.formHeader);
       this.$store.commit("setPasos", {
         detalles: {
           titulo: this.formHeader.titulo,
@@ -338,16 +339,16 @@ export default {
   },
   computed: {
     getNewProceso() {
-      return this.$store.state.procesoActual;
+      return this.$store.state.procesoActual[0];
     },
     getProcesosPasos() {
       return this.$store.state.pruebaProcesos[this.getProcesoIndex()].pasos;
     },
     getPasos() {
-      return this.$store.state.pasos;
+      console.log(this.$store.state.procesoActual.pasos);
+      return this.$store.state.procesoActual[0].pasos;
     },
     getPasoActual() {
-      console.log(this.$store.pasoActual);
       return this.$store.pasoActual;
     },
   },

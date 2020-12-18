@@ -3,6 +3,7 @@ import Vuex from "vuex";
 import * as fb from '../firebase'
 import router from '../router/index'
 import createPersistedState from "vuex-persistedstate";
+import 'core-js/es/array'
 
 Vue.use(Vuex);
 
@@ -59,7 +60,7 @@ export default new Vuex.Store({
           },
           {
             numeroDePaso: 2,
-            nombre:'Respuesta Solicitud',
+            nombre: 'Respuesta Solicitud',
             nombreResponsable: ' ',
             departamento: 'La Metro',
             decision: '',
@@ -112,14 +113,91 @@ export default new Vuex.Store({
         ]
       },
     ],
-    procesos: [{}],
-    departamentos: [],
+    procesos: [{
+        titulo: "UN proceso",
+        descripcion: "Una descripción de un proceso",
+        departamento: "Administración",
+        tipoInteresado: "Empleado / Proveedor",
+        id: 1,
+        paso: '2',
+        pasos: [{
+            id: 1,
+            titulo: "Recepcion Solicitud",
+            responsable: "Interesado",
+            descripcion: "Descripción de Recepción Solicitud",
+            campos: [{
+              id: 0,
+              nombre: "",
+              tipo: "",
+            }],
+          },
+          {
+            id: 2,
+            titulo: "Otra respuesta de solicitud",
+            responsable: "Interesado",
+            descripcion: "Otra descripcion de respuesta de solicitud",
+            campos: [{
+              id: 0,
+              nombre: "",
+              tipo: "",
+            }],
+          }
+        ]
+      },
+      {
+        titulo: "Otro proceso",
+        descripcion: "Otra descripción de otro proceso",
+        departamento: "Administración",
+        tipoInteresado: "Alumno / Familiar",
+        id: 2,
+        paso: '3',
+        pasos: [{
+            id: 1,
+            titulo: "Recepcion Solicitud",
+            responsable: "Interesado",
+            descripcion: "Descripción de Recepción Solicitud",
+            campos: [{
+              id: 0,
+              nombre: "",
+              tipo: "",
+            }],
+          },
+          {
+            id: 2,
+            titulo: "Respuesta de Solicitud",
+            responsable: "Interesado",
+            descripcion: "Descripcion de Respuesta de Solicitud",
+            campos: [{
+              id: 0,
+              nombre: "",
+              tipo: "",
+            }],
+          },
+          {
+            id: 3,
+            titulo: "Confirmación de Solicitud",
+            responsable: "Interesado",
+            descripcion: "Otra descripción de confirmacion de solicitud",
+            campos: [{
+              id: 0,
+              nombre: "",
+              tipo: "",
+            }],
+          },
+        ]
+      }
+    ],
+    departamentos: [{
+      nombre: 'Administración',
+      personas: 1,
+      acción: ''
+    }],
     personas: [],
     selectedPersona: null,
     currentPaso: 0,
     currentTramite: 0,
     currentNumeroDeTramite: 0,
-    procesoActual: null,
+    procesoActual: {},
     procesosPasos: [{
       nombre: "Paso N°1",
       tipo: "Text Field",
@@ -149,8 +227,9 @@ export default new Vuex.Store({
       state.tramiteActual = payload
     },
     setProcesoActual(state, payload) {
-      state.procesoActual = payload
-      console.log(state.procesoActual);
+      let result = state.procesos.filter(ele => ele.id == payload)
+      state.procesoActual = result
+      console.log(result);
     },
     setFormDialog(state) {
       state.formDialog = !state.formDialog
