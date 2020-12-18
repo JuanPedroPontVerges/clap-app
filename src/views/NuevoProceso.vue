@@ -191,7 +191,7 @@
             >
               <component :is="getCurrentComponent"></component>
               <span slot="footer" class="dialog-footer">
-                <el-button @click="dialogForm = false">Cancel</el-button>
+                <el-button class="danger" type="text" @click="dialogForm = false">Cancel</el-button>
                 <el-button type="primary" @click="saveForm()"
                   >Guardar cambios</el-button
                 >

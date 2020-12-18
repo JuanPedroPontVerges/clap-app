@@ -1,6 +1,5 @@
 <template>
   <el-form :model="formSetting">
-    <h3>Aca podras configurar tus campos</h3>
     <el-form-item label="Archivos maximos">
       <el-input-number
         type="textarea"

@@ -965,6 +965,23 @@ html {
     z-index: 9999 !important;
 }
 
+.el-dialog__wrapper{
+    .el-form-item__label{
+        display: block;
+        width: 100%;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    button{
+
+        &.danger{
+            color: #F56C6C;
+            margin-right: 30px;
+
+        }
+    }
+}
 
 
 /* CONFIGURACIÓN */

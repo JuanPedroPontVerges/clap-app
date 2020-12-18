@@ -1,6 +1,5 @@
 <template>
   <el-form :model="formSettings">
-    <h3>Aca podras configurar tus campos</h3>
     <el-form-item label="Caracteres minimos">
       <el-input-number
         size="small"
