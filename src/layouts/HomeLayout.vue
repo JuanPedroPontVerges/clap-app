@@ -57,14 +57,8 @@ export default {
           },
           {
             type: "button",
-            path: { name: "signup" },
-            class: "button-red",
-            iconRight: '<i class="el-icon-bell"></i>',
-          },
-          {
-            type: "button",
             iconRight: '<i class="el-icon-user"></i>',
-            path: { name: "" },
+            path: { name: "Tramites" },
             text: "logout",
           },
         ],
@@ -73,7 +67,7 @@ export default {
   },
   methods: {
     click(text) {
-      this.navbarOptions.menuOptionsRight[6].path.name = this.$route.name;
+      this.navbarOptions.menuOptionsRight[5].path.name = this.$route.name;
       if (text == "logout") {
         this.$confirm("Esta a punto de cerrar sesión", "Atención", {
           confirmButtonText: "OK",
@@ -100,35 +94,7 @@ export default {
     },
   },
   created() {
-    this.navbarOptions.menuOptionsRight[6].path.name = this.$route.name;
-    setTimeout(() => {
-      if (this.getTypeOfUser == "Proveedor") {
-        this.navbarOptions.menuOptionsRight = [
-          {
-            type: "link",
-            text: "Trámites",
-            path: { name: "Tramites" },
-          },
-          {
-            type: "link",
-            text: "Configuración",
-            path: { name: "Configuraciones" },
-          },
-          {
-            type: "button",
-            path: { name: "signup" },
-            class: "button-red",
-            iconRight: '<i class="el-icon-bell"></i>',
-          },
-          {
-            type: "button",
-            iconRight: '<i class="el-icon-user"></i>',
-            path: { name: "" },
-            text: "logout",
-          },
-        ];
-      }
-    }, 1000);
+    this.navbarOptions.menuOptionsRight[5].path.name = this.$route.name;
   },
   mounted() {
     if (this.getTypeOfUser == "Proveedor") {

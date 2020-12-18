@@ -1,6 +1,6 @@
 <template>
   <div class="nuevo-proceso">
-      <div class="container">
+    <div class="container">
       <div class="header">
         <el-row type="flex">
           <el-col :xs="20" class="descripcion-header">
@@ -11,7 +11,8 @@
                 size="medium"
                 class="btn-blue"
                 @click="handleBack()"
-              >Volver</el-button>
+                >Volver</el-button
+              >
             </div>
             <div class="title">
               <h2>
@@ -35,19 +36,19 @@
           </el-col>
         </el-row>
       </div>
-      
+
       <div class="row-container">
         <div class="details">
           <el-row>
             <el-col :xs="24">
               <el-row class="header-box">
-                <el-col :xs="24" >
+                <el-col :xs="24">
                   <p class="title">Sobre el tramite</p>
                   <p class="description">{{ getNewProceso.descripcion }}</p>
                 </el-col>
               </el-row>
               <el-row class="header-box">
-                <el-col :xs="24" >
+                <el-col :xs="24">
                   <p class="title">Departamento a cargo</p>
                   <p class="description">{{ getNewProceso.departamento }}</p>
                 </el-col>
@@ -66,14 +67,18 @@
             v-for="(paso, index) in getNewProceso.pasos"
             :key="index"
           >
-            <span class="step-number">{{ index + 1 }}</span
-            >
+            <span class="step-number">{{ index + 1 }}</span>
             <el-col :xs="20">
               <p class="title">{{ paso.titulo }}</p>
               <p class="responsable">Responsable: {{ paso.responsable }}</p>
             </el-col>
             <el-col :xs="4" type="flex" align="right">
-              <el-button type="primary" round size="medium" class="btn-blue" @click="mostrarPaso(index)"
+              <el-button
+                type="primary"
+                round
+                size="medium"
+                class="btn-blue"
+                @click="mostrarPaso(index)"
                 >Ver formulario</el-button
               >
             </el-col>
@@ -87,14 +92,14 @@
                   class="btn-violet"
                   icon="el-icon-plus"
                   @click="drawer = true"
-                >Agregar Paso</el-button>
+                  >Agregar Paso</el-button
+                >
               </div>
             </el-col>
           </el-row>
         </div>
       </div>
-      
-
+     
       <!-- DRRRRRAAWWWEEEEERRRRRRRRR -->
 
       <el-drawer
@@ -107,31 +112,34 @@
             <el-form :model="formHeader">
               <div class="header-form-drawer">
                 <el-form-item>
-                    <el-input
-                      placeholder="Título Paso"
-                      v-model="getNewProceso.pasos[0].titulo"
-                    ></el-input>
+                  <el-input
+                    placeholder="Título Paso"
+                    v-model="getNewProceso.pasos[0].titulo"
+                  ></el-input>
                 </el-form-item>
                 <el-button icon="el-icon-close"></el-button>
               </div>
               <div class="detalle-form-drawer">
                 <el-form-item label="Descripción del paso">
-                    <p>Indica de que se trata el paso para que tus colaboradores e interesados lo sepan.</p>
-                    <el-input
-                      type="textarea"
-                      v-model="getNewProceso.pasos[0].descripcion"
-                    ></el-input>
+                  <p>
+                    Indica de que se trata el paso para que tus colaboradores e
+                    interesados lo sepan.
+                  </p>
+                  <el-input
+                    type="textarea"
+                    v-model="getNewProceso.pasos[0].descripcion"
+                  ></el-input>
                 </el-form-item>
                 <el-form-item label="Responsable">
-                    <p>Indica que parte es responsable de completar el paso.</p> 
-                    <el-radio v-model="formHeader.responsable" label="Interesado"
-                      >Interesado</el-radio
-                    >
-                    <el-radio
-                      v-model="formHeader.responsable"
-                      label="Administrador"
-                      >Administrador</el-radio
-                    >
+                  <p>Indica que parte es responsable de completar el paso.</p>
+                  <el-radio v-model="formHeader.responsable" label="Interesado"
+                    >Interesado</el-radio
+                  >
+                  <el-radio
+                    v-model="formHeader.responsable"
+                    label="Administrador"
+                    >Administrador</el-radio
+                  >
                 </el-form-item>
               </div>
             </el-form>
@@ -145,41 +153,41 @@
                   :key="index"
                   class="formcampos-item"
                 >
-                <el-row type="flex" align="middle">
-                  <el-col :lg="9">
-                    <el-form-item label="Nombre" class="nombre">
-                      <el-input v-model="campo.nombre"></el-input>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :lg="9">
-                    <el-form-item label="Tipo" class="tipo">
-                      <el-select v-model="campo.tipo">
-                        <el-option value="TextInput">Input Texto</el-option>
-                        <el-option value="Upload">Adjuntar</el-option>
-                        <el-option value="DatePicker">Input Fecha</el-option>
-                        <el-option value="Select">Dropdown</el-option>
-                      </el-select>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :lg="4" type="flex" justify="end">
-                    <el-button
-                      icon="el-icon-close"
-                      circle
-                      class="delete el-button--danger"
-                      @click="eliminarProcesoPaso(index)"
-                    ></el-button>
-                    <el-button
-                      icon="el-icon-setting"
-                      circle
-                      class="setting btn-violet"
-                      @click="mostrarConfig(index)"
-                    ></el-button>
-                  </el-col>
-                </el-row>
+                  <el-row type="flex" align="middle">
+                    <el-col :lg="9">
+                      <el-form-item label="Nombre" class="nombre">
+                        <el-input v-model="campo.nombre"></el-input>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :lg="9">
+                      <el-form-item label="Tipo" class="tipo">
+                        <el-select v-model="campo.tipo">
+                          <el-option value="TextInput">Input Texto</el-option>
+                          <el-option value="Upload">Adjuntar</el-option>
+                          <el-option value="DatePicker">Input Fecha</el-option>
+                          <el-option value="Select">Dropdown</el-option>
+                        </el-select>
+                      </el-form-item>
+
+                    </el-col>
+                    <el-col :lg="4" type="flex" justify="end">
+                      <el-button
+                        icon="el-icon-close"
+                        circle
+                        class="delete el-button--danger"
+                        @click="eliminarProcesoPaso(index)"
+                      ></el-button>
+                      <el-button
+                        icon="el-icon-setting"
+                        circle
+                        class="setting btn-violet"
+                        @click="mostrarConfig(index)"
+                      ></el-button>
+                    </el-col>
+                  </el-row>
                 </div>
               </el-form>
             </div>
-            
 
             <!-- DIALOG FOOOOOOOOOOOOOOOOOOOOOOOOOORRRMM -->
 
@@ -206,15 +214,17 @@
                     round
                     class="btn-violet"
                     @click="agregarCampo"
-                  >Agregar Campo</el-button>
-                  
+                    >Agregar Campo</el-button
+                  >
                 </div>
               </el-col>
             </el-row>
             <div class="footer-form-drawer">
-              <el-button class="danger" type="text" @click="drawer = false">Cancelar</el-button>
+              <el-button class="danger" type="text" @click="drawer = false"
+                >Cancelar</el-button
+              >
               <el-button type="primary" @click="agregarPaso">Agregar</el-button>
-            </div> 
+            </div>
           </el-row>
         </div>
       </el-drawer>
@@ -232,6 +242,7 @@ import AppUpload from "../components/InputsConfigComponents/AppUpload";
 export default {
   data() {
     return {
+      debugg: " ",
       drawer: false,
       formNuevoProceso: {
         value: "",
@@ -257,6 +268,10 @@ export default {
   methods: {
     handleCommand() {
       //
+    },
+    debug(campo) {
+      console.log("a");
+      console.log(campo);
     },
     mostrarConfig(index) {
       this.currentRow = index;
