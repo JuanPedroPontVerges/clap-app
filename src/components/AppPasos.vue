@@ -5,14 +5,14 @@
       align="middle"
       v-for="(paso, index) in getPasos"
       :key="index"
-      @click.native="changePaso(index)"
-      :class="{active: isActive}"
+      @click.native="changePaso(index), highlightRow(paso.id)"
+      :class="{ active: paso.id == selected }"
     >
       <el-col :sm="2">
         <span class="numero-pasos">{{ paso.numeroDePaso }}</span>
       </el-col>
       <el-col :sm="16">
-        <p class="nombre-paso">{{paso.nombre}}</p>
+        <p class="nombre-paso">{{ paso.nombre }}</p>
         <p class="responsable-paso">Responsable: {{ paso.responsablePaso }}</p>
       </el-col>
       <el-col :sm="6">
@@ -22,8 +22,8 @@
           v-model="getPasos[index].completado"
           disabled
         >
-        <i class="el-icon-success"></i>
-        <i class="el-icon-circle-check"></i>
+          <i class="el-icon-success"></i>
+          <i class="el-icon-circle-check"></i>
         </el-checkbox>
       </el-col>
     </el-row>
@@ -36,6 +36,7 @@ export default {
     return {
       checked: [],
       tramiteID: 0,
+      selected: undefined,
     };
   },
   computed: {
@@ -47,9 +48,14 @@ export default {
   },
   methods: {
     changePaso(index) {
-      this.$store.commit('setCurrentPaso', index)
+      this.selected = index;
+      this.isActive = !this.isActive;
+      this.$store.commit("setCurrentPaso", index);
+    },
+    highlightRow(id){
+      this.selected = id
     }
-  }
+  },
   // created() {
   //   this.tramiteID = ;
   // },
@@ -57,4 +63,7 @@ export default {
 </script>
 
 <style>
+.active {
+  background-color: black !important;
+}
 </style>
