@@ -1,10 +1,10 @@
 <template>
   <el-form label-position="top">
     <el-form-item label="Razón Social ">
-      <el-input v-model="form.razonSocial" :disabled="true"></el-input>
+      <el-input v-model="form.razonSocial"></el-input>
     </el-form-item>
     <el-form-item label="CUIT">
-      <el-input v-model="form.cuit" :disabled="true"></el-input>
+      <el-input v-model="form.cuit"></el-input>
     </el-form-item>
     <el-form-item label="Factura a cancelar">
       <a
@@ -17,7 +17,7 @@
       </a>
     </el-form-item>
     <el-form-item label="Departamento que debe aprobar el pago">
-      <el-select v-model="form.departamento" placeholder="Marketing" disabled>
+      <el-select v-model="form.departamento" placeholder="Marketing">
         <el-option
           v-for="(departamento, index) in getDepartamentos"
           :key="index"
@@ -27,11 +27,7 @@
       </el-select>
     </el-form-item>
     <el-form-item label="Comentarios">
-      <el-input
-        type="textarea"
-        v-model="form.comentarios"
-        :disabled="true"
-      ></el-input>
+      <el-input type="textarea" v-model="form.comentarios"></el-input>
     </el-form-item>
   </el-form>
 </template>

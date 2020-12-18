@@ -14,6 +14,7 @@ export default {
   },
   computed: {
     getCurrentTramite() {
+      console.log(this.$store.state.currentInicioTramite);
       return this.$store.state.currentInicioTramite;
     },
   },

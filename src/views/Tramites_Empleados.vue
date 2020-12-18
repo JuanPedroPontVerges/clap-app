@@ -27,7 +27,7 @@
               >
               </el-option>
               <el-option
-                @click.native="iniciarTramite('Descripcion_Inicio_Tramite1')"
+                @click.native="iniciarTramite('Descripcion_Inicio_Tramite2')"
                 label="Alta Proovedor"
                 value="Alta Proovedor"
               >
