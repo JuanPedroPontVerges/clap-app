@@ -127,9 +127,9 @@ export default new Vuex.Store({
         paso: '2',
         pasos: [{
             id: 1,
-            titulo: "Recepcion Solicitud",
+            titulo: "Recepción Solicitud",
             responsable: "Interesado",
-            descripcion: "Descripción de Recepción Solicitud",
+            descripcion: "Es el inicio del trámite solicitado por el interesado.",
             campos: [{
               id: 0,
               nombre: "",
@@ -138,9 +138,9 @@ export default new Vuex.Store({
           },
           {
             id: 2,
-            titulo: "Otra respuesta de solicitud",
-            responsable: "Interesado",
-            descripcion: "Otra descripcion de respuesta de solicitud",
+            titulo: "Respuesta solicitud",
+            responsable: "Instituto",
+            descripcion: "Validar los datos, cargarlos en el CRM de administración y confirmar alta.",
             campos: [{
               id: 0,
               nombre: "",

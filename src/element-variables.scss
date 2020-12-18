@@ -211,8 +211,8 @@ html {
     color: #fff;
     font-weight: bold;
 
-    &:hover{
-        background-color: #635ac7;
+    &:hover,&:active{
+        background: #635ac7;
         border: none;
         color: #fff;
     }
@@ -225,8 +225,8 @@ html {
     padding: 16px 60px;
     border-radius: 52px;
 
-    &:hover{
-        background-color: #0f57db;
+    &:hover,&:active{
+        background: #0f57db;
         border: none;
         color: #fff;
     }
@@ -733,7 +733,7 @@ html {
 
     .row-container{
         position: static;
-        max-width: 800px;
+        max-width: 900px;
         margin: 0 auto;
 
         .details{
@@ -809,6 +809,149 @@ html {
                     padding-top: 20px;
                     text-align: center;
                 }
+        }
+    }
+
+    .el-drawer__wrapper{
+        z-index: 9999 !important;
+
+        .el-drawer{
+            background-color:#EEF2FF;
+
+            &:focus, &:active{
+                outline: none;
+            }
+            
+            .el-row{
+                margin-left: 0px !important;
+                margin-right: 0px !important;
+            }
+            .header-form-drawer{
+                background-color: #796eff;
+                display: flex;
+                padding: 10px 20px;
+                position: fixed;
+                width: 100%;
+                box-sizing: border-box;
+                max-width: 576px;
+                z-index: 2;
+
+                .el-form-item{
+                    margin-bottom: 0px;
+                    width: 100%;
+                    margin-right: 20px;
+                    
+                    .el-input__inner{
+                        font-weight: bold;
+                        font-size: 17px;
+                    }
+                }
+
+                button{
+                    background-color: $--color-primary-dark;
+                    border-color: $--color-primary-dark;
+                    color: #fff;
+                    font-size: 15px;
+                    font-weight: bold;
+                }
+            }
+
+            .detalle-form-drawer{
+                padding: 80px 20px 10px;
+
+                .el-form-item{
+
+                    .el-form-item__label{
+                        display: block;
+                        width: 100%;
+                        text-align: left;
+                        font-weight: bold;
+                        font-size: 15px;
+                    }
+
+                    .el-form-item__content{
+                        p {
+                            margin: 0px 0px 20px;
+                            line-height: 1.2em;
+                        }
+                    }
+                }
+
+            }
+
+            .campos-form-drawer{
+
+                .titulo{
+                    background-color: #796eff;
+                    color: #fff;
+                    text-align: center;
+                    padding: 5px;
+                    width: 100%;
+                    display: block;
+                    font-weight: bold;
+                    border-top: 1px solid rgba(0, 0, 0, 0.1);
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                }
+
+                .formcampos-item{
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                    background-color:  #D7E0FF;
+                    padding: 20px;
+
+                    .el-form-item{
+                        margin-bottom: 0px;
+                    }
+
+                    .el-form-item__label{
+                        line-height: 15px;
+                        font-weight: bold;
+                    }
+
+                    .nombre{
+                        margin-right: 10px;
+                    }
+
+                    .tipo{
+                        margin-right: 10px;
+                    }
+
+                    button{
+                        margin-left: 0px;
+                        margin-top: 22px;
+
+                        &.el-button--danger{
+                            margin-right: 5px;
+                        }
+                    }
+                }
+            }
+
+            .add-button{
+                text-align: center;
+                padding: 20px;
+                margin-bottom: 100px;
+            }
+
+            .footer-form-drawer{
+                background-color: #fff;
+                padding: 20px;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                box-sizing: border-box;
+                text-align: right;
+                max-width: 576px;
+                border-top: 2px solid rgba(0, 0, 0, 0.1);
+
+                button{
+
+                    &.danger{
+                        color: #F56C6C;
+                        margin-right: 30px;
+
+                    }
+                }
+            }
         }
     }
 

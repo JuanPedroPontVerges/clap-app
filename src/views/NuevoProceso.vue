@@ -101,97 +101,85 @@
         :withHeader="false"
         :visible.sync="drawer"
         :with-header="false"
-        size="40%"
       >
-        <div style="margin: 100px 14px; 0 14px;">
+        <div>
           <el-row :gutter="20">
             <el-form :model="formHeader">
-              <el-col
-                :xs="24"
-                :lg="6"
-                class="hidden-sm-and-up"
-                style="text-align: right; padding: 10px"
-              >
-                <el-button icon="el-icon-close"></el-button>
-              </el-col>
-              <el-col :xs="18" :lg="18">
+              <div class="header-form-drawer">
                 <el-form-item>
-                  <el-input
-                    placeholder="Respuesta"
-                    v-model="getNewProceso.pasos[0].titulo"
-                  ></el-input>
+                    <el-input
+                      placeholder="Título Paso"
+                      v-model="getNewProceso.pasos[0].titulo"
+                    ></el-input>
                 </el-form-item>
-              </el-col>
-
-              <el-col :xs="24" :lg="6" class="hidden-sm-and-down">
                 <el-button icon="el-icon-close"></el-button>
-              </el-col>
-
-              <el-col :xs="24" style="border-top: 1px solid black">
-                <el-form-item label="Descripción paso">
-                  <el-input
-                    type="textarea"
-                    v-model="getNewProceso.pasos[0].descripcion"
-                  ></el-input>
+              </div>
+              <div class="detalle-form-drawer">
+                <el-form-item label="Descripción del paso">
+                    <p>Indica de que se trata el paso para que tus colaboradores e interesados lo sepan.</p>
+                    <el-input
+                      type="textarea"
+                      v-model="getNewProceso.pasos[0].descripcion"
+                    ></el-input>
                 </el-form-item>
-              </el-col>
-              <el-col :xs="24" :lg="24">
                 <el-form-item label="Responsable">
-                  <el-radio v-model="formHeader.responsable" label="Interesado"
-                    >Interesado</el-radio
-                  >
-                  <el-radio
-                    v-model="formHeader.responsable"
-                    label="Administrador"
-                    >Administrador</el-radio
-                  >
+                    <p>Indica que parte es responsable de completar el paso.</p> 
+                    <el-radio v-model="formHeader.responsable" label="Interesado"
+                      >Interesado</el-radio
+                    >
+                    <el-radio
+                      v-model="formHeader.responsable"
+                      label="Administrador"
+                      >Administrador</el-radio
+                    >
                 </el-form-item>
-              </el-col>
-            </el-form>
-            <el-col :lg="24">
-              <p>Campos</p>
-            </el-col>
-
-            <el-form label-position="top" :model="formCampos">
-              <div
-                style="margin: 20px"
-                v-for="(campo, index) in formCampos.campos"
-                :key="index"
-              >
-                <el-col :lg="3">
-                  <span>{{ index + 1 }}</span>
-                </el-col>
-                <el-col :xs="9" :lg="8">
-                  <el-form-item label="Nombre">
-                    <el-input v-model="campo.nombre"></el-input>
-                  </el-form-item>
-                </el-col>
-                <el-col :xs="9" :lg="8">
-                  <el-form-item label="Tipo">
-                    <el-select v-model="campo.tipo">
-                      <el-option value="TextInput">TextInput</el-option>
-                      <el-option value="Upload">Upload</el-option>
-                      <el-option value="DatePicker">DatePicker</el-option>
-                      <el-option value="Select">Select</el-option>
-                    </el-select>
-                  </el-form-item>
-                </el-col>
-                <el-col :lg="2">
-                  <el-button
-                    icon="el-icon-close"
-                    circle
-                    @click="eliminarProcesoPaso(index)"
-                  ></el-button>
-                </el-col>
-                <el-col :lg="3">
-                  <el-button
-                    icon="el-icon-setting"
-                    circle
-                    @click="mostrarConfig(index)"
-                  ></el-button>
-                </el-col>
               </div>
             </el-form>
+
+            <div class="campos-form-drawer">
+              <span class="titulo">Campos</span>
+
+              <el-form label-position="top" :model="formCampos" type="flex">
+                <div
+                  v-for="(campo, index) in formCampos.campos"
+                  :key="index"
+                  class="formcampos-item"
+                >
+                <el-row type="flex" align="middle">
+                  <el-col :lg="9">
+                    <el-form-item label="Nombre" class="nombre">
+                      <el-input v-model="campo.nombre"></el-input>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :lg="9">
+                    <el-form-item label="Tipo" class="tipo">
+                      <el-select v-model="campo.tipo">
+                        <el-option value="TextInput">TextInput</el-option>
+                        <el-option value="Upload">Upload</el-option>
+                        <el-option value="DatePicker">DatePicker</el-option>
+                        <el-option value="Select">Select</el-option>
+                      </el-select>
+                    </el-form-item>
+                  </el-col>
+                  <el-col :lg="4" type="flex" justify="end">
+                    <el-button
+                      icon="el-icon-close"
+                      circle
+                      class="delete el-button--danger"
+                      @click="eliminarProcesoPaso(index)"
+                    ></el-button>
+                    <el-button
+                      icon="el-icon-setting"
+                      circle
+                      class="setting btn-violet"
+                      @click="mostrarConfig(index)"
+                    ></el-button>
+                  </el-col>
+                </el-row>
+                </div>
+              </el-form>
+            </div>
+            
 
             <!-- DIALOG FOOOOOOOOOOOOOOOOOOOOOOOOOORRRMM -->
 
@@ -209,32 +197,24 @@
                 >
               </span>
             </el-dialog>
-            <el-col :xs="24" style="text-align: center; padding: 20px">
-              <div>
-                <el-button
-                  type="primary"
-                  icon="el-icon-plus"
-                  circle
-                  @click="agregarCampo"
-                ></el-button>
-                <span style="margin: 0 10px; font-size: 20px"
-                  >Agregar Campo</span
-                >
-              </div>
-            </el-col>
-            <el-col
-              :lg="24"
-              style="
-                border-top: 1px solid black;
-                padding: 20px;
-                text-align: center;
-              "
-            >
-              <el-button type="danger" @click="drawer = false"
-                >Cancelar</el-button
-              >
+            <el-row class="add-button">
+              <el-col :xs="24">
+                <div>
+                  <el-button
+                    type="primary"
+                    icon="el-icon-plus"
+                    round
+                    class="btn-violet"
+                    @click="agregarCampo"
+                  >Agregar Campo</el-button>
+                  
+                </div>
+              </el-col>
+            </el-row>
+            <div class="footer-form-drawer">
+              <el-button class="danger" type="text" @click="drawer = false">Cancelar</el-button>
               <el-button type="primary" @click="agregarPaso">Agregar</el-button>
-            </el-col>
+            </div> 
           </el-row>
         </div>
       </el-drawer>
