@@ -11,7 +11,6 @@ import Procesos from "../views/Procesos.vue";
 import ProcesosDetalle from "../views/ProcesosDetalle.vue";
 import Reportes from "../views/Report.vue";
 import NuevoProceso from "../views/NuevoProceso.vue";
-import Empleados from "../views/Empleados.vue"
 import Tramites_Empleados from "../views/Tramites_Empleados.vue"
 import Descripcion_Tramite from "../views/Descripcion_Tramite.vue"
 import Configuracion_Empleado from "../views/Configuracion_Empleado.vue"
@@ -99,14 +98,6 @@ const routes = [{
     path: "/login",
     name: "Login",
     component: Login,
-  },
-  {
-    path: "/empleados",
-    name: "Empleados",
-    component: Empleados,
-    meta: {
-      requiresAuth: false
-    }
   },
   {
     path: "/forms",
