@@ -42,6 +42,7 @@ export default new Vuex.Store({
         pasos: [{
             numeroDePaso: 1,
             nombre:'Recepción Solicitud',
+            descripcionPaso: 'Es el inicio del trámite solicitado por el interesado.',
             tipoPersona: 'Fisica',
             razonSocial: 'Imprenta HNOS Sosa',
             cuit: '30-25454456-2',

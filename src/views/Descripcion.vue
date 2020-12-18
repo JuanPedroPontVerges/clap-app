@@ -45,11 +45,12 @@
         <el-col :sm="18" class="details">
           <el-row>
             <el-col :sm="24">
-              <el-row type="flex" align="middle" justify="space-between">
+              <el-row type="flex" align="middle" justify="space-between" class="header-box">
                 <el-col :sm="12">
-                  <p>Lorem ipsum dolor sit amet consectetur.</p>
+                  <p class="title">{{getPaso.nombre}}</p>
+                  <p class="description">{{getPaso.descripcionPaso}}</p>
                 </el-col>
-                <el-col :sm="6">
+                <el-col :sm="6" type="flex" align="end">
                   <el-button
                     round
                     icon="el-icon-check"
@@ -59,7 +60,7 @@
                   >
                 </el-col>
               </el-row>
-              <component :is="getComponent"></component>
+              <component :is="getComponent" class="content"></component>
             </el-col>
           </el-row>
         </el-col>

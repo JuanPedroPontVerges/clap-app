@@ -132,7 +132,6 @@ h1 {
 html {
     min-height: 100%;
     margin: 0;
-    overflow: hidden;
 
 
     body {
@@ -142,7 +141,6 @@ html {
         font-weight: 300;
         padding: 0px;
         margin: 0 auto;
-        overflow: hidden;
 
         .el-header {
             padding: 0px;
@@ -397,7 +395,8 @@ html {
 
     .header{
         width: 100vw;
-        position: relative;
+        position: fixed;
+        z-index: 10;
         left: calc(-50vw + 50%);
         background-color: #fff;
         margin-top: -15px;
@@ -442,9 +441,67 @@ html {
     .row-container{
         position: static;
 
+        .details{
+            background-color:#F8F6F0;
+            margin-top: 120px;
+            border-top: .625rem solid #796eff;
+            
+                .header-box{
+                    padding: 10px 20px;
+
+                    .title{
+                        font-weight: bold;
+                        margin-bottom: 5px;
+                    }
+
+                    .description{
+                        font-size: 14px;
+                        margin-top: 0px;
+                    }
+
+                    button{
+                        background-color: #796eff;
+                        color: #fff;
+                        font-weight: bold;
+                    }
+                }
+
+                .content{
+                    background-color: #fff;
+                    border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+                    .paso{
+                        padding: 20px;
+                        display: flex;
+
+                        .paso-column{
+                            margin: 0 auto;
+                        }
+
+                        .el-form-item{
+
+                            .el-form-item__label{
+                                padding: 0px;
+                                line-height: 35px;
+                                font-weight: bold;
+                            }
+
+                            .el-input__inner{
+                                color: #606266;
+                                cursor: auto;
+                            }
+                            
+                            
+                        }
+                    }
+
+                }
+        }
+
         .sidebar{
             background-color: #FFF;
-            position: absolute;
+            position: fixed;
+            padding-top: 60px;
             right: 0;
             height: 100%;
             border-left: 1px solid rgba(0, 0, 0, 0.1);

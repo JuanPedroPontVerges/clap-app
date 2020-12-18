@@ -1,24 +1,60 @@
 <!-- PASOS DEL 1 TRAMITE !!!!!! -->
 <template>
   <div>
-    <el-row style="border: 1px solid black; padding: 20px">
-      <el-col :sm="12">
+    <el-row class="paso" >
+      <el-col :sm="12" class="paso-column">
         <el-form label-position="top">
-          <el-form-item label="Nombre">
+          <el-form-item label="Tipo Persona">
             <el-input
-              v-model="getPaso.nombreCompleto"
+              v-model="getPaso.tipoPersona"
               :disabled="true"
             ></el-input>
           </el-form-item>
-          <el-form-item label="Id Empleado">
+          <el-form-item label="Razón Social">
             <el-input
-              v-model="getPaso.idEmpelado"
+              v-model="getPaso.razonSocial"
               :disabled="true"
             ></el-input>
           </el-form-item>
-          <el-form-item label="Periodo">
+          <el-form-item label="CUIT">
             <el-input
-              v-model="getPaso.fecha"
+              v-model="getPaso.cuit"
+              :disabled="true"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="Constancia inscripción AFIP">
+            <el-input
+              v-model="getPaso.cuit"
+              :disabled="true"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="Constancia CBU">
+            <el-input
+              v-model="getPaso.cuit"
+              :disabled="true"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="Email Contacto">
+            <el-input
+              v-model="getPaso.emailContacto"
+              :disabled="true"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="Teléfono Contacto">
+            <el-input
+              v-model="getPaso.telefonoContacto"
+              :disabled="true"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="Nombre Contacto">
+            <el-input
+              v-model="getPaso.nombreContacto"
+              :disabled="true"
+            ></el-input>
+          </el-form-item>
+          <el-form-item label="Área de Contratación">
+            <el-input
+              v-model="getPaso.areaContratacion"
               :disabled="true"
             ></el-input>
           </el-form-item>
