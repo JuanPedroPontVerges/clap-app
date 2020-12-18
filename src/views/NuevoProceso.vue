@@ -9,7 +9,7 @@
           @click="handleBack()"
         ></el-button>
         <h2 style="display: inline">
-          {{ getNewProceso.titulo || 'Error' }}
+          {{ getNewProceso.titulo || "Error" }}
         </h2>
       </el-col>
       <el-col :xs="22" style="text-align: right">
@@ -147,27 +147,27 @@
               <p>Campos</p>
             </el-col>
 
-            <el-form label-position="top">
+            <el-form label-position="top" :model="formCampos">
               <div
                 style="margin: 20px"
-                v-for="(campo, index) in formCampos"
+                v-for="(campo, index) in formCampos.campos"
                 :key="index"
               >
                 <el-col :lg="3">
-                  <p>{{ index + 1 }}</p>
+                  <span>{{ index + 1 }}</span>
                 </el-col>
                 <el-col :xs="9" :lg="8">
-                  <el-form-item label="Nombre" >
-                    <el-input  v-model="campo.nombre"></el-input>
+                  <el-form-item label="Nombre">
+                    <el-input v-model="campo.nombre"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :xs="9" :lg="8">
                   <el-form-item label="Tipo">
-                    <el-select  v-model="campo.tipo">
+                    <el-select v-model="campo.tipo">
                       <el-option value="TextInput">TextInput</el-option>
-                      <el-option value="TextArea">TextArea</el-option>
+                      <el-option value="Upload">Upload</el-option>
                       <el-option value="DatePicker">DatePicker</el-option>
-                      <el-option value="NumberInput">NumberInput</el-option>
+                      <el-option value="Select">Select</el-option>
                     </el-select>
                   </el-form-item>
                 </el-col>
@@ -182,7 +182,7 @@
                   <el-button
                     icon="el-icon-setting"
                     circle
-                    @click="dialogForm = true"
+                    @click="mostrarConfig(index)"
                   ></el-button>
                 </el-col>
               </div>
@@ -196,37 +196,11 @@
               width="35%"
               :modal="false"
             >
-              <el-form :model="formSettings">
-                <h3>Aca podras configurar tus campos</h3>
-                <el-form-item label="Caracteres minimos">
-                  <el-input-number
-                    size="small"
-                    v-model="formSettings.min"
-                    :min="1"
-                    :max="10"
-                  ></el-input-number>
-                </el-form-item>
-                <el-form-item label="Caracteres máximos">
-                  <el-input-number
-                    size="small"
-                    v-model="formSettings.max"
-                    :min="25"
-                    :max="250"
-                  ></el-input-number>
-                </el-form-item>
-                <el-form-item label="Descripción">
-                  <el-input
-                    type="textarea"
-                    :rows="2"
-                    v-model="formSettings.description"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-form>
+              <component :is="getCurrentComponent"></component>
               <span slot="footer" class="dialog-footer">
                 <el-button @click="dialogForm = false">Cancel</el-button>
                 <el-button type="primary" @click="saveForm()"
-                  >Save changes</el-button
+                  >Guardar cambios</el-button
                 >
               </span>
             </el-dialog>
@@ -265,6 +239,10 @@
 
 <script>
 import HomeLayout from "../layouts/HomeLayout";
+import AppDTP from "../components/InputsConfigComponents/AppDTP";
+import AppSelect from "../components/InputsConfigComponents/AppSelect";
+import AppTextInput from "../components/InputsConfigComponents/AppTextInput";
+import AppUpload from "../components/InputsConfigComponents/AppUpload";
 
 export default {
   data() {
@@ -278,30 +256,56 @@ export default {
         descripcion: "",
         responsable: "",
       },
-      formCampos: [
-        {
-          nombre: "Ejemplo",
-          tipo: "TextArea",
-        },
-      ],
-      formSettings: {
-        min: 0,
-        max: 0,
-        description: "",
+      formCampos: {
+        campos: [
+          {
+            nombre: "Ejemplo",
+            tipo: "TextArea",
+          },
+        ],
       },
       dialogForm: false,
+      currentComponent: "",
+      currentRow: 0,
     };
   },
   methods: {
     handleCommand() {
       //
     },
+    mostrarConfig(index) {
+      this.currentRow = index;
+      switch (this.formCampos.campos[index].tipo) {
+        case "TextInput": {
+          this.currentComponent = "AppTextInput";
+          this.dialogForm = true;
+          break;
+        }
+        case "Upload": {
+          this.currentComponent = "AppUpload";
+          this.dialogForm = true;
+          break;
+        }
+        case "DatePicker": {
+          this.currentComponent = "AppDTP";
+          this.dialogForm = true;
+          break;
+        }
+        case "Select": {
+          this.currentComponent = "AppSelect";
+          this.dialogForm = true;
+          break;
+        }
+      }
+      console.log(this.formCampos.campos[index].tipo);
+      console.log(this.currentComponent);
+    },
     agregarCampo() {
       console.log(this.formCampos);
-      this.formCampos.push({ nombre: "", tipo: "" });
+      this.formCampos.campos.push({ nombre: "", tipo: "" });
     },
     eliminarProcesoPaso(index) {
-      this.formCampos.splice(index, 1)
+      this.formCampos.campos.splice(index, 1);
     },
     agregarPaso() {
       console.log(this.formHeader);
@@ -321,10 +325,10 @@ export default {
     },
     mostrarPaso(index) {
       this.$store.commit("setPasoActual", index);
-      setTimeout(() => {
-        this.formHeader = this.$store.state.pasoActual.header;
-        this.formCampos = this.$store.state.pasoActual.campos;
-      }, 10);
+      // setTimeout(() => {
+      //   this.formHeader = this.$store.state.pasoActual.header;
+      //   this.formCampos = this.$store.state.pasoActual.campos;
+      // }, 10);
       this.drawer = true;
     },
     handleBack() {
@@ -351,9 +355,16 @@ export default {
     getPasoActual() {
       return this.$store.pasoActual;
     },
+    getCurrentComponent() {
+      return this.currentComponent;
+    },
   },
   components: {
     HomeLayout,
+    AppDTP,
+    AppSelect,
+    AppTextInput,
+    AppUpload,
   },
 };
 </script>

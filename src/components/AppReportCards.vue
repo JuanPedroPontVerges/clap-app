@@ -1,23 +1,22 @@
 <template>
   <div>
     <el-row>
-      <el-col :lg="24"
-        <el-row
-          class="report-card"
-          :style="background"
-          type="flex"
-          justify="center"
-          align="middle"
-        >
-          <el-col :lg="10">
-            <i :class="icono" style="font-size: 100px; color: white"></i>
-          </el-col>
-          <el-col :lg="14" style="padding: 20px; color: white">
-            <span>{{ header_text }}</span>
-            <h1 style="color: white">{{ middle_text }}</h1>
-            <p>{{ footer_text }}</p>
-          </el-col>
-        </el-row>
+      <el-col
+        :lg="24"
+        class="report-card"
+        :style="background"
+        type="flex"
+        justify="center"
+        align="middle"
+      >
+        <el-col :lg="10">
+          <i :class="icono" style="font-size: 100px; color: white"></i>
+        </el-col>
+        <el-col :lg="14" style="padding: 20px; color: white">
+          <span>{{ header_text }}</span>
+          <h1 style="color: white">{{ middle_text }}</h1>
+          <p>{{ footer_text }}</p>
+        </el-col>
       </el-col>
     </el-row>
   </div>
