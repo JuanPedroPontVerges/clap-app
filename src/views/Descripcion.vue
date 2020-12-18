@@ -1,76 +1,83 @@
 <template>
-  <div class="container">
-    <el-row>
-      <el-col :sm="18">
+  <div class="tramites-detalle">
+    <div class="container">
+      <div class="header">
         <el-row type="flex" align="middle">
-          <el-col :sm="2">
-            <el-button
-              icon="el-icon-arrow-left"
-              round
-              size="small"
-              @click="handleBack()"
-            ></el-button>
-          </el-col>
-          <el-col :sm="15" class="tramites-descripcion-header">
-            <h1>{{ getTramite.tramite }}</h1>
-          </el-col>
-          <el-col :sm="4">
-            <el-tag
-              type="success"
-              v-if="getPasos[getPasos.length - 1].completado === true"
-              >Completado</el-tag
-            ></el-col
-          >
-          <el-col :sm="3">
-            <el-dropdown trigger="click" @command="handleCommand">
-              <el-button
-                type="primary"
-                size="mini"
-                @click.stop="handleAccion(scope.$index)"
-              >
-                <i class="el-icon-more" style="transform: rotate(90deg)"></i>
-              </el-button>
-              <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item command="eliminar">Eliminar</el-dropdown-item>
-                <el-dropdown-item command="editar">Editar</el-dropdown-item>
-              </el-dropdown-menu>
-            </el-dropdown>
-          </el-col>
-        </el-row>
-
-        <el-row>
-          <el-col :sm="24">
-            <el-row type="flex" align="middle" justify="space-between">
-              <el-col :sm="12">
-                <p>Lorem ipsum dolor sit amet consectetur.</p>
-              </el-col>
-              <el-col :sm="6">
+            <el-col :sm="20" class="tramites-descripcion-header">
+              <div class="btn-back">
                 <el-button
+                  icon="el-icon-arrow-left"
                   round
-                  icon="el-icon-check"
-                  @click="completarPaso"
-                  :disabled="getPaso.completado ? true : false"
-                  >Completado</el-button
+                  size="medium"
+                  class="btn-blue"
+                  @click="handleBack()"
+                ></el-button>
+              </div>
+              <div class="title">
+                <h2>{{ getTramite.tramite }}</h2>
+              </div>
+              <div class="tag">
+                <el-tag
+                  type="success"
+                  v-if="getPasos[getPasos.length - 1].completado === true"
+                  >Completado</el-tag
                 >
-              </el-col>
-            </el-row>
-            <component :is="getComponent"></component>
-          </el-col>
+              </div>
+            </el-col>
+            <el-col :sm="4" type="flex" align="right">
+              <el-dropdown trigger="click" @command="handleCommand">
+                <el-button
+                  type="primary"
+                  size="medium"
+                  @click.stop="handleAccion(scope.$index)"
+                >
+                  <i class="el-icon-more" style="transform: rotate(90deg)"></i>
+                </el-button>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item command="eliminar">Eliminar</el-dropdown-item>
+                  <el-dropdown-item command="editar">Editar</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+            </el-col>
         </el-row>
-      </el-col>
-      <el-col :sm="6">
-        <el-tabs v-model="activeName" style="margin-top: 20px">
-          <el-tab-pane label="Pasos" name="first">
-            <AppPasos></AppPasos>
-          </el-tab-pane>
-          <el-tab-pane label="Archivos" name="second">
-            <AppArchivos></AppArchivos>
-          </el-tab-pane>
-          <el-tab-pane label="Chat" name="third">Chat</el-tab-pane>
-          <el-tab-pane label="Perfil" name="fourth">Perfil</el-tab-pane>
-        </el-tabs>
-      </el-col>
-    </el-row>
+      </div>
+      <el-row class="row-container">
+        <el-col :sm="18" class="details">
+          <el-row>
+            <el-col :sm="24">
+              <el-row type="flex" align="middle" justify="space-between">
+                <el-col :sm="12">
+                  <p>Lorem ipsum dolor sit amet consectetur.</p>
+                </el-col>
+                <el-col :sm="6">
+                  <el-button
+                    round
+                    icon="el-icon-check"
+                    @click="completarPaso"
+                    :disabled="getPaso.completado ? true : false"
+                    >Completado</el-button
+                  >
+                </el-col>
+              </el-row>
+              <component :is="getComponent"></component>
+            </el-col>
+          </el-row>
+        </el-col>
+        
+        <el-col :sm="6" class="sidebar">
+          <el-tabs v-model="activeName">
+            <el-tab-pane label="Pasos" name="first">
+              <AppPasos></AppPasos>
+            </el-tab-pane>
+            <el-tab-pane label="Archivos" name="second">
+              <AppArchivos></AppArchivos>
+            </el-tab-pane>
+            <el-tab-pane label="Chat" name="third">Chat</el-tab-pane>
+            <el-tab-pane label="Perfil" name="fourth">Perfil</el-tab-pane>
+          </el-tabs>
+        </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 

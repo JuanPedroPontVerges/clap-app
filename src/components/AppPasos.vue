@@ -5,14 +5,14 @@
       align="middle"
       v-for="(paso, index) in getPasos"
       :key="index"
-      style="border: 1px solid black;cursor:pointer;"
       @click.native="changePaso(index)"
     >
       <el-col :sm="2">
         <p class="numero-pasos">{{ paso.numeroDePaso }}</p>
       </el-col>
       <el-col :sm="16">
-        <p>Ejecutado por {{ paso.nombreCompleto  || 'La Metro' }}</p>
+        <p>{{paso.nombre}}</p>
+        <p>Responsable {{ paso.responsablePaso  || 'La Metro' }}</p>
       </el-col>
       <el-col :sm="6">
         <el-checkbox
