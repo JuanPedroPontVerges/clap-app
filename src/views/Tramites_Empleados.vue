@@ -1,24 +1,15 @@
 <template>
-  <div class="tramites">
+  <div class="tramites tramites-empleado">
     <div class="container">
-      <el-row class="page-title">
-        <el-col :sm="24" :lg="24">
+      <el-row class="page-title" type="flex" align="middle">
+        <el-col :sm="20">
           <h1>Trámites</h1>
           <p>
             Aquí verás las solicitudes generadas por alumnos familiares,
             empleados o proveedores de tu institución.
           </p>
         </el-col>
-      </el-row>
-      <el-row>
-        <el-col :sm="12">
-          <el-input
-            placeholder="Nombre tramite"
-            suffix-icon="el-icon-search"
-            v-model="search"
-          >
-          </el-input>
-          <el-col :sm="12">
+        <el-col :sm="4">
             <el-select v-model="chooseTramite" placeholder="Iniciar tramite">
               <el-option
                 @click.native="iniciarTramite('Descripcion_Inicio_Tramite1')"
@@ -34,6 +25,15 @@
               </el-option>
             </el-select>
           </el-col>
+      </el-row>
+      <el-row>
+        <el-col :sm="12">
+          <el-input
+            placeholder="Nombre tramite"
+            suffix-icon="el-icon-search"
+            v-model="search"
+          >
+          </el-input>
         </el-col>
       </el-row>
       <el-row>

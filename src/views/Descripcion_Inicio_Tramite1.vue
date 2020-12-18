@@ -1,11 +1,17 @@
 <template>
-  <el-form label-position="top">
+  <el-row :gutter="20">
+  <el-form  label-position="top">
+    <el-col :sm="12">
     <el-form-item label="Razón Social ">
       <el-input v-model="form.razonSocial"></el-input>
     </el-form-item>
+    </el-col>
+    <el-col :sm="12">
     <el-form-item label="CUIT">
       <el-input v-model="form.cuit"></el-input>
     </el-form-item>
+    </el-col>
+    <el-col :sm="24">
     <el-form-item label="Factura a cancelar">
       <el-upload action="#" list-type="picture-card" :auto-upload="false">
         <i slot="default" class="el-icon-plus"></i>
@@ -39,6 +45,8 @@
         <img width="100%" :src="dialogImageUrl" alt="" />
       </el-dialog>
     </el-form-item>
+    </el-col>
+    <el-col :sm="12">
     <el-form-item label="Departamento que debe aprobar el pago">
       <el-select v-model="form.departamento" placeholder="Marketing">
         <el-option
@@ -49,10 +57,14 @@
         ></el-option>
       </el-select>
     </el-form-item>
+    </el-col>
+    <el-col :sm="24">
     <el-form-item label="Comentarios">
       <el-input type="textarea" v-model="form.comentarios"></el-input>
     </el-form-item>
+    </el-col>
   </el-form>
+  </el-row>
 </template>
 
 <script>

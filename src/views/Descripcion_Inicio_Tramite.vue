@@ -1,7 +1,15 @@
 <template>
-  <div>
-    <el-button type="success" @click="handleBack()">Completar</el-button>
-    <component :is="getCurrentTramite"></component>
+  <div class="tramite-empleado-detalle">
+    <div class="tramite-empleado-header">
+      <h2>Aca el titulo del tramite</h2>
+    </div>
+    <div class="tramite-empleado-body">
+      <component :is="getCurrentTramite"></component>
+    </div>
+    <div class="tramite-empleado-footer">
+      <el-button type="text" class="danger" @click="handleBack()">Cancelar</el-button>
+      <el-button type="success" class="btn-blue" @click="handleBack()">Solicitar</el-button>
+    </div>
   </div>
 </template>
 

@@ -1266,3 +1266,60 @@ html {
     }
 }
 
+/* TRAMITES EMPLEADO  */
+
+.tramites-empleado{
+    .page-title{
+        .el-input__inner{
+            background-color: #176ae5;
+            color: #fff;
+            border: none;
+            padding: 16px 57px;
+            border-radius: 52px;
+
+            &::before {
+                content: "after";
+              }
+        }
+        .el-select .el-input .el-select__caret{
+            display: none;
+        }
+    }
+}
+
+.tramite-empleado-detalle{
+    width: 900px;
+    margin-top: 40px;
+    margin-bottom: 100px;
+    
+    .tramite-empleado-header{
+        background-color: #F8F6F0;
+        border-top: .625rem solid #796eff;
+        h2{
+            margin:0px;
+            padding: 30px;
+            text-align: center;
+            font-weight: bold;
+            border-left: 1px solid rgb(204, 204, 204);
+            border-right: 1px solid rgb(204, 204, 204);
+        }
+    }
+    .tramite-empleado-body{
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid rgb(204, 204, 204);
+    }
+    .tramite-empleado-footer{
+        text-align: right;
+        margin-top: 30px;
+        .danger{
+            color: #F56C6C;
+            margin-right: 30px;
+        }
+    }
+    
+    .el-form-item__label{
+        line-height: 15px;
+        font-weight: bold;
+    }
+}

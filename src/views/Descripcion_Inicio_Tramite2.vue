@@ -1,14 +1,22 @@
 <template>
+  <el-row :gutter="20">
   <el-form label-position="top">
+    <el-col :sm="8">
     <el-form-item label="Tipo Persona">
       <el-input v-model="form.tipoPersona"></el-input>
     </el-form-item>
+    </el-col>
+    <el-col :sm="8">
     <el-form-item label="Razón Social">
       <el-input v-model="form.razonSocial"></el-input>
     </el-form-item>
+    </el-col>
+    <el-col :sm="8">
     <el-form-item label="CUIT">
       <el-input v-model="form.cuit"></el-input>
     </el-form-item>
+    </el-col>
+    <el-col :sm="24">
     <el-form-item label="Constancia inscripción AFIP">
       <el-upload action="#" list-type="picture-card" :auto-upload="false">
         <i slot="default" class="el-icon-plus"></i>
@@ -42,6 +50,8 @@
         <img width="100%" :src="dialogImageUrl" alt="" />
       </el-dialog>
     </el-form-item>
+    </el-col>
+    <el-col :sm="24">
     <el-form-item label="Constancia CBU">
       <el-upload action="#" list-type="picture-card" :auto-upload="false">
         <i slot="default" class="el-icon-plus"></i>
@@ -75,19 +85,29 @@
         <img width="100%" :src="dialogImageUrl" alt="" />
       </el-dialog>
     </el-form-item>
+    </el-col>
+    <el-col :sm="12">
     <el-form-item label="Email Contacto">
       <el-input v-model="form.emailContacto"></el-input>
     </el-form-item>
+    </el-col>
+    <el-col :sm="12">
     <el-form-item label="Teléfono Contacto">
       <el-input v-model="form.telefonoContacto"></el-input>
     </el-form-item>
+    </el-col>
+    <el-col :sm="12">
     <el-form-item label="Nombre Contacto">
       <el-input v-model="form.nombreContacto"></el-input>
     </el-form-item>
+    </el-col>
+    <el-col :sm="12">
     <el-form-item label="Área de Contratación">
       <el-input v-model="form.areaContratacion"></el-input>
     </el-form-item>
+    </el-col>
   </el-form>
+  </el-row>
 </template>
 
 <script>
