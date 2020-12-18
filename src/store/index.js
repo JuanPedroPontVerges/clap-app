@@ -42,7 +42,7 @@ export default new Vuex.Store({
         estado: 'Activo',
         pasos: [{
             numeroDePaso: 1,
-            nombre:'Recepción Solicitud',
+            nombre: 'Recepción Solicitud',
             descripcionPaso: 'Es el inicio del trámite solicitado por el interesado.',
             tipoPersona: 'Fisica',
             razonSocial: 'Imprenta HNOS Sosa',
@@ -71,12 +71,11 @@ export default new Vuex.Store({
           }
         ],
         perfil: [{
-            nombre:'Gonzalo Sosa',
-            email: 'gonzalo@sosaimprenta.com.ar',
-            telefono: '3513555898',
-            tipo: 'Proveedor'
-          }
-        ]
+          nombre: 'Gonzalo Sosa',
+          email: 'gonzalo@sosaimprenta.com.ar',
+          telefono: '3513555898',
+          tipo: 'Proveedor'
+        }]
       },
       {
         id: 2,
@@ -229,7 +228,6 @@ export default new Vuex.Store({
     setProcesoActual(state, payload) {
       let result = state.procesos.filter(ele => ele.id == payload)
       state.procesoActual = result
-      console.log(result);
     },
     setFormDialog(state) {
       state.formDialog = !state.formDialog
@@ -298,7 +296,6 @@ export default new Vuex.Store({
       paso,
       tramite
     }) {
-      console.log(tramite - 1, paso - 1);
       state.tramites[tramite - 1].pasos[paso - 1].completado = true
       state.tramites[tramite - 1].estado = "Aprobado"
     },
@@ -329,9 +326,6 @@ export default new Vuex.Store({
         header: state.pasos[payload],
         campos: state.procesosPasos[payload]
       }
-      setTimeout(() => {
-        console.log(state.pasoActual);
-      }, 10)
     },
     setGeneratedID(state) {
       state.generatedID++;
@@ -352,7 +346,7 @@ export default new Vuex.Store({
         })
         .catch(err => {
           this.commit('setErrorMessage', err.message)
-          console.log("Errorrrr", err)
+
         })
     },
     async fetchUserProfile({

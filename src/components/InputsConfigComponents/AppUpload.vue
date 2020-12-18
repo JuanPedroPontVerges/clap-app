@@ -1,10 +1,10 @@
 <template>
-  <el-form :model="formSettings">
+  <el-form :model="formSetting">
     <h3>Aca podras configurar tus campos</h3>
     <el-form-item label="Archivos maximos">
       <el-input-number
         type="textarea"
-        v-model="formSettings.archivosMaximos"
+        v-model="formSetting.archivosMaximos"
       ></el-input-number>
     </el-form-item>
     <el-form-item label="Tipos permitidos">
@@ -22,7 +22,7 @@
       </el-select>
     </el-form-item>
     <el-form-item label="Description">
-      <el-input type="textarea" v-model="formSetting.descripcion"></el-input>
+      <el-input type="textarea" v-model="formSetting.description"></el-input>
     </el-form-item>
   </el-form>
 </template>

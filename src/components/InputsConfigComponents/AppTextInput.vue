@@ -27,11 +27,11 @@
 export default {
   data() {
     return {
-        formSetting: {
-            max: '',
-            min: '',
-            description: ''
-        }
+      formSettings: {
+        max: "",
+        min: "",
+        description: "",
+      },
     };
   },
 };

@@ -154,7 +154,7 @@
                 :key="index"
               >
                 <el-col :lg="3">
-                  <p>{{ index + 1 }}</p>
+                  <span>{{ index + 1 }}</span>
                 </el-col>
                 <el-col :xs="9" :lg="8">
                   <el-form-item label="Nombre">
@@ -165,9 +165,9 @@
                   <el-form-item label="Tipo">
                     <el-select v-model="campo.tipo">
                       <el-option value="TextInput">TextInput</el-option>
-                      <el-option value="TextArea">TextArea</el-option>
+                      <el-option value="Upload">Upload</el-option>
                       <el-option value="DatePicker">DatePicker</el-option>
-                      <el-option value="NumberInput">NumberInput</el-option>
+                      <el-option value="Select">Select</el-option>
                     </el-select>
                   </el-form-item>
                 </el-col>
@@ -182,7 +182,7 @@
                   <el-button
                     icon="el-icon-setting"
                     circle
-                    @click="dialogForm = true"
+                    @click="mostrarConfig(index)"
                   ></el-button>
                 </el-col>
               </div>
@@ -196,7 +196,7 @@
               width="35%"
               :modal="false"
             >
-              <component :is="currentComponent"></component>
+              <component :is="getCurrentComponent"></component>
               <span slot="footer" class="dialog-footer">
                 <el-button @click="dialogForm = false">Cancel</el-button>
                 <el-button type="primary" @click="saveForm()"
@@ -264,18 +264,41 @@ export default {
           },
         ],
       },
-      formSettings: {
-        min: 0,
-        max: 0,
-        description: "",
-      },
       dialogForm: false,
       currentComponent: "",
+      currentRow: 0,
     };
   },
   methods: {
     handleCommand() {
       //
+    },
+    mostrarConfig(index) {
+      this.currentRow = index;
+      switch (this.formCampos.campos[index].tipo) {
+        case "TextInput": {
+          this.currentComponent = "AppTextInput";
+          this.dialogForm = true;
+          break;
+        }
+        case "Upload": {
+          this.currentComponent = "AppUpload";
+          this.dialogForm = true;
+          break;
+        }
+        case "DatePicker": {
+          this.currentComponent = "AppDTP";
+          this.dialogForm = true;
+          break;
+        }
+        case "Select": {
+          this.currentComponent = "AppSelect";
+          this.dialogForm = true;
+          break;
+        }
+      }
+      console.log(this.formCampos.campos[index].tipo);
+      console.log(this.currentComponent);
     },
     agregarCampo() {
       console.log(this.formCampos);
@@ -302,10 +325,10 @@ export default {
     },
     mostrarPaso(index) {
       this.$store.commit("setPasoActual", index);
-      setTimeout(() => {
-        this.formHeader = this.$store.state.pasoActual.header;
-        this.formCampos = this.$store.state.pasoActual.campos;
-      }, 10);
+      // setTimeout(() => {
+      //   this.formHeader = this.$store.state.pasoActual.header;
+      //   this.formCampos = this.$store.state.pasoActual.campos;
+      // }, 10);
       this.drawer = true;
     },
     handleBack() {
@@ -331,6 +354,9 @@ export default {
     },
     getPasoActual() {
       return this.$store.pasoActual;
+    },
+    getCurrentComponent() {
+      return this.currentComponent;
     },
   },
   components: {
