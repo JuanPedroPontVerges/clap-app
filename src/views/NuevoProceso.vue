@@ -9,7 +9,7 @@
           @click="handleBack()"
         ></el-button>
         <h2 style="display: inline">
-          {{ getNewProceso.titulo || 'Error' }}
+          {{ getNewProceso.titulo || "Error" }}
         </h2>
       </el-col>
       <el-col :xs="22" style="text-align: right">
@@ -147,23 +147,23 @@
               <p>Campos</p>
             </el-col>
 
-            <el-form label-position="top">
+            <el-form label-position="top" :model="formCampos">
               <div
                 style="margin: 20px"
-                v-for="(campo, index) in formCampos"
+                v-for="(campo, index) in formCampos.campos"
                 :key="index"
               >
                 <el-col :lg="3">
                   <p>{{ index + 1 }}</p>
                 </el-col>
                 <el-col :xs="9" :lg="8">
-                  <el-form-item label="Nombre" >
-                    <el-input  v-model="campo.nombre"></el-input>
+                  <el-form-item label="Nombre">
+                    <el-input v-model="campo.nombre"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :xs="9" :lg="8">
                   <el-form-item label="Tipo">
-                    <el-select  v-model="campo.tipo">
+                    <el-select v-model="campo.tipo">
                       <el-option value="TextInput">TextInput</el-option>
                       <el-option value="TextArea">TextArea</el-option>
                       <el-option value="DatePicker">DatePicker</el-option>
@@ -196,37 +196,11 @@
               width="35%"
               :modal="false"
             >
-              <el-form :model="formSettings">
-                <h3>Aca podras configurar tus campos</h3>
-                <el-form-item label="Caracteres minimos">
-                  <el-input-number
-                    size="small"
-                    v-model="formSettings.min"
-                    :min="1"
-                    :max="10"
-                  ></el-input-number>
-                </el-form-item>
-                <el-form-item label="Caracteres máximos">
-                  <el-input-number
-                    size="small"
-                    v-model="formSettings.max"
-                    :min="25"
-                    :max="250"
-                  ></el-input-number>
-                </el-form-item>
-                <el-form-item label="Descripción">
-                  <el-input
-                    type="textarea"
-                    :rows="2"
-                    v-model="formSettings.description"
-                  >
-                  </el-input>
-                </el-form-item>
-              </el-form>
+              <component :is="currentComponent"></component>
               <span slot="footer" class="dialog-footer">
                 <el-button @click="dialogForm = false">Cancel</el-button>
                 <el-button type="primary" @click="saveForm()"
-                  >Save changes</el-button
+                  >Guardar cambios</el-button
                 >
               </span>
             </el-dialog>
@@ -265,6 +239,10 @@
 
 <script>
 import HomeLayout from "../layouts/HomeLayout";
+import AppDTP from "../components/InputsConfigComponents/AppDTP";
+import AppSelect from "../components/InputsConfigComponents/AppSelect";
+import AppTextInput from "../components/InputsConfigComponents/AppTextInput";
+import AppUpload from "../components/InputsConfigComponents/AppUpload";
 
 export default {
   data() {
@@ -278,18 +256,21 @@ export default {
         descripcion: "",
         responsable: "",
       },
-      formCampos: [
-        {
-          nombre: "Ejemplo",
-          tipo: "TextArea",
-        },
-      ],
+      formCampos: {
+        campos: [
+          {
+            nombre: "Ejemplo",
+            tipo: "TextArea",
+          },
+        ],
+      },
       formSettings: {
         min: 0,
         max: 0,
         description: "",
       },
       dialogForm: false,
+      currentComponent: "",
     };
   },
   methods: {
@@ -298,10 +279,10 @@ export default {
     },
     agregarCampo() {
       console.log(this.formCampos);
-      this.formCampos.push({ nombre: "", tipo: "" });
+      this.formCampos.campos.push({ nombre: "", tipo: "" });
     },
     eliminarProcesoPaso(index) {
-      this.formCampos.splice(index, 1)
+      this.formCampos.campos.splice(index, 1);
     },
     agregarPaso() {
       console.log(this.formHeader);
@@ -354,6 +335,10 @@ export default {
   },
   components: {
     HomeLayout,
+    AppDTP,
+    AppSelect,
+    AppTextInput,
+    AppUpload,
   },
 };
 </script>
