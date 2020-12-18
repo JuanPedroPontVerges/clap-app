@@ -5,8 +5,7 @@
         <el-col :sm="24" :lg="24">
           <h1>Trámites</h1>
           <p>
-            Aquí verás las solicitudes generadas por alumnos familiares,
-            empleados o proveedores de tu institución.
+            Aquí verás las solicitudes generadas por alumnos familiares, empleados o proveedores de tu institución.
           </p>
         </el-col>
       </el-row>
@@ -97,19 +96,6 @@
             </el-table-column>
             <el-table-column align="center" min-width="100px">
               <template slot-scope="scope">
-                <el-tooltip
-                  class="item"
-                  effect="dark"
-                  content="Editar"
-                  placement="top-start"
-                >
-                  <el-button
-                    type="primary"
-                    icon="el-icon-edit"
-                    circle
-                    @click.stop="handleEdit(scope.$index)"
-                  ></el-button>
-                </el-tooltip>
                 <el-tooltip
                   class="item"
                   effect="dark"

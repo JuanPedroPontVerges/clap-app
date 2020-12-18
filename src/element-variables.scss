@@ -684,6 +684,12 @@ html {
 
 /* PROCESOS  */
 
+.procesos{
+    .el-table__row{
+        cursor: pointer;
+    }
+}
+
 .nuevo-proceso{
 
     .header{
@@ -961,7 +967,7 @@ html {
 
 }
 
-.el-select-dropdown{
+.el-select-dropdown, .el-picker-panel{
     z-index: 9999 !important;
 }
 

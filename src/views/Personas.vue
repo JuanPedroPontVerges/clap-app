@@ -1,10 +1,13 @@
 <template>
   <div class="container">
-    <el-row type="flex" justify="space-between" align="middle">
-      <el-col :sm="12">
+    <el-row type="flex" justify="space-between" align="middle" class="page-title">
+      <el-col :sm="20" >
         <h1>Personas</h1>
+        <p>
+            Aquí verás las solicitudes generadas por alumnos familiares, empleados o proveedores de tu institución.
+          </p>
       </el-col>
-      <el-col :sm="4">
+      <el-col :sm="4" type="flex" align="end">
         <el-button type="primary" @click="toggleDialog">Agregar</el-button>
       </el-col>
       <el-dialog
@@ -138,16 +141,7 @@
 
 
     </el-row>
-    <el-row>
-      <el-col :sm="24">
-        <div style="margin: 0 0 10px">
-          <i
-            >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo
-            officiis impedit cum!
-          </i>
-        </div>
-      </el-col>
-    </el-row>
+
     <el-row>
       <el-col :sm="12">
         <el-input
