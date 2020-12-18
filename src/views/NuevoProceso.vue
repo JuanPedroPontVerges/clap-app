@@ -30,6 +30,7 @@
                 <i class="el-icon-more" style="transform: rotate(90deg)"></i>
               </el-button>
               <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item command="eliminar">Editar</el-dropdown-item>
                 <el-dropdown-item command="eliminar">Eliminar</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
@@ -83,12 +84,12 @@
               >
               <el-button
                 type="danger"
-                round
+                circle
                 size="medium"
                 class="btn-red"
+                icon="el-icon-delete"
                 @click="eliminarPaso(index)"
-                >Eliminar formulario</el-button
-              >
+              ></el-button>
             </el-col>
           </el-row>
           <el-row class="agregar-paso">
@@ -175,10 +176,10 @@
                     <el-col :lg="9">
                       <el-form-item label="Tipo" class="tipo">
                         <el-select v-model="campo.tipo">
-                          <el-option value="TextInput">Input Texto</el-option>
-                          <el-option value="Upload">Adjuntar</el-option>
-                          <el-option value="DatePicker">Input Fecha</el-option>
-                          <el-option value="Select">Dropdown</el-option>
+                          <el-option value="TextInput">TextInput</el-option>
+                          <el-option value="Dropdown">Dropdown</el-option>
+                          <el-option value="Checkbox">Checkbox</el-option>
+                          <el-option value="TextArea">TextArea</el-option>
                         </el-select>
                       </el-form-item>
                     </el-col>
@@ -311,10 +312,10 @@
                     <el-col :lg="9">
                       <el-form-item label="Tipo" class="tipo">
                         <el-select v-model="campo.tipo">
-                          <el-option value="TextInput">Input Texto</el-option>
-                          <el-option value="Adjuntar">Adjuntar</el-option>
-                          <el-option value="DatePicker">Input Fecha</el-option>
-                          <el-option value="Select">Dropdown</el-option>
+                          <el-option value="TextInput">TextInput</el-option>
+                          <el-option value="Dropdown">Dropdown</el-option>
+                          <el-option value="Checkbox">Checkbox</el-option>
+                          <el-option value="TextArea">TextArea</el-option>
                         </el-select>
                       </el-form-item>
                     </el-col>
@@ -387,10 +388,10 @@
 
 <script>
 import HomeLayout from "../layouts/HomeLayout";
-import AppDTP from "../components/InputsConfigComponents/AppDTP";
+import AppCheckbox from "../components/InputsConfigComponents/AppCheckbox";
 import AppSelect from "../components/InputsConfigComponents/AppSelect";
 import AppTextInput from "../components/InputsConfigComponents/AppTextInput";
-import AppUpload from "../components/InputsConfigComponents/AppUpload";
+import AppTextArea from "../components/InputsConfigComponents/AppTextArea";
 
 export default {
   data() {
@@ -454,21 +455,20 @@ export default {
         case "TextInput": {
           this.currentComponent = "AppTextInput";
           this.dialogForm = true;
-          console.log(this.dialogForm);
           break;
         }
-        case "Upload": {
-          this.currentComponent = "AppUpload";
-          this.dialogForm = true;
-          break;
-        }
-        case "Selector de Fecha": {
-          this.currentComponent = "AppDTP";
-          this.dialogForm = true;
-          break;
-        }
-        case "Select": {
+        case "Dropdown": {
           this.currentComponent = "AppSelect";
+          this.dialogForm = true;
+          break;
+        }
+        case "Checkbox": {
+          this.currentComponent = "AppCheckbox";
+          this.dialogForm = true;
+          break;
+        }
+        case "TextArea": {
+          this.currentComponent = "AppTextArea";
           this.dialogForm = true;
           break;
         }
@@ -528,10 +528,10 @@ export default {
   },
   components: {
     HomeLayout,
-    AppDTP,
+    AppCheckbox,
     AppSelect,
     AppTextInput,
-    AppUpload,
+    AppTextArea,
   },
 };
 </script>

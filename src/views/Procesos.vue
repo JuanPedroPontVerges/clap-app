@@ -20,7 +20,7 @@
         <el-dialog
           title="Agregar Proceso"
           :visible.sync="dialogVisible"
-          width="350px"
+          width="500px"
         >
           <el-form :model="form" label-position="top">
             <el-row :gutter="20">
