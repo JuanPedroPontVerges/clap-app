@@ -81,6 +81,14 @@
                 @click="mostrarPaso(index)"
                 >Ver formulario</el-button
               >
+              <el-button
+                type="danger"
+                round
+                size="medium"
+                class="btn-red"
+                @click="eliminarPaso(index)"
+                >Eliminar formulario</el-button
+              >
             </el-col>
           </el-row>
           <el-row class="agregar-paso">
@@ -91,7 +99,7 @@
                   round
                   class="btn-violet"
                   icon="el-icon-plus"
-                  @click="drawer = true"
+                  @click="drawer2 = true"
                   >Agregar Paso</el-button
                 >
               </div>
@@ -99,7 +107,7 @@
           </el-row>
         </div>
       </div>
-     
+
       <!-- DRRRRRAAWWWEEEEERRRRRRRRR -->
 
       <el-drawer
@@ -117,7 +125,10 @@
                     v-model="getNewProceso.pasos[0].titulo"
                   ></el-input>
                 </el-form-item>
-                <el-button icon="el-icon-close"></el-button>
+                <el-button
+                  icon="el-icon-close"
+                  @click="drawer = false"
+                ></el-button>
               </div>
               <div class="detalle-form-drawer">
                 <el-form-item label="Descripción del paso">
@@ -132,7 +143,9 @@
                 </el-form-item>
                 <el-form-item label="Responsable">
                   <p>Indica que parte es responsable de completar el paso.</p>
-                  <el-radio v-model="formHeader.responsable" label="Interesado"
+                  <el-radio
+                    v-model="getNewProceso.pasos[0].responsable"
+                    label="Interesado"
                     >Interesado</el-radio
                   >
                   <el-radio
@@ -147,9 +160,9 @@
             <div class="campos-form-drawer">
               <span class="titulo">Campos</span>
 
-              <el-form label-position="top" :model="formCampos" type="flex">
+              <el-form label-position="top" :model="getPasoActual" type="flex">
                 <div
-                  v-for="(campo, index) in formCampos.campos"
+                  v-for="(campo, index) in formPasosCodeados.campos"
                   :key="index"
                   class="formcampos-item"
                 >
@@ -168,7 +181,6 @@
                           <el-option value="Select">Dropdown</el-option>
                         </el-select>
                       </el-form-item>
-
                     </el-col>
                     <el-col :lg="4" type="flex" justify="end">
                       <el-button
@@ -199,7 +211,148 @@
             >
               <component :is="getCurrentComponent"></component>
               <span slot="footer" class="dialog-footer">
-                <el-button class="danger" type="text" @click="dialogForm = false">Cancel</el-button>
+                <el-button
+                  class="danger"
+                  type="text"
+                  @click="dialogForm = false"
+                  >Cancel</el-button
+                >
+                <el-button type="primary" @click="saveForm()"
+                  >Guardar cambios</el-button
+                >
+              </span>
+            </el-dialog>
+            <el-row class="add-button">
+              <el-col :xs="24">
+                <div>
+                  <el-button
+                    type="primary"
+                    icon="el-icon-plus"
+                    round
+                    class="btn-violet"
+                    @click="agregarCampo"
+                    >Agregar Campo</el-button
+                  >
+                </div>
+              </el-col>
+            </el-row>
+            <div class="footer-form-drawer">
+              <el-button class="danger" type="text" @click="drawer = false"
+                >Cancelar</el-button
+              >
+              <el-button type="primary" @click="agregarPaso">Agregar</el-button>
+            </div>
+          </el-row>
+        </div>
+      </el-drawer>
+
+      <!-- Drawer 2 -->
+
+      <el-drawer
+        :withHeader="false"
+        :visible.sync="drawer2"
+        :with-header="false"
+      >
+        <div>
+          <el-row :gutter="20">
+            <el-form :model="formDrawer2">
+              <div class="header-form-drawer">
+                <el-form-item>
+                  <el-input
+                    placeholder="Título Paso"
+                    v-model="formDrawer2.titulo"
+                  ></el-input>
+                </el-form-item>
+                <el-button
+                  icon="el-icon-close"
+                  @click="drawer2 = false"
+                ></el-button>
+              </div>
+              <div class="detalle-form-drawer">
+                <el-form-item label="Descripción del paso">
+                  <p>
+                    Indica de que se trata el paso para que tus colaboradores e
+                    interesados lo sepan.
+                  </p>
+                  <el-input
+                    type="textarea"
+                    v-model="formDrawer2.descripcion"
+                  ></el-input>
+                </el-form-item>
+                <el-form-item label="Responsable">
+                  <p>Indica que parte es responsable de completar el paso.</p>
+                  <el-radio v-model="formDrawer2.responsable" label="Interesado"
+                    >Interesado</el-radio
+                  >
+                  <el-radio
+                    v-model="formDrawer2.responsable"
+                    label="Administrador"
+                    >Administrador</el-radio
+                  >
+                </el-form-item>
+              </div>
+            </el-form>
+
+            <div class="campos-form-drawer">
+              <span class="titulo">Campos</span>
+
+              <el-form label-position="top" :model="formCampos" type="flex">
+                <div
+                  v-for="(campo, index) in formCampos.campos"
+                  :key="index"
+                  class="formcampos-item"
+                >
+                  <el-row type="flex" align="middle">
+                    <el-col :lg="9">
+                      <el-form-item label="Nombre" class="nombre">
+                        <el-input v-model="campo.nombre"></el-input>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :lg="9">
+                      <el-form-item label="Tipo" class="tipo">
+                        <el-select v-model="campo.tipo">
+                          <el-option value="TextInput">Input Texto</el-option>
+                          <el-option value="Adjuntar">Adjuntar</el-option>
+                          <el-option value="DatePicker">Input Fecha</el-option>
+                          <el-option value="Select">Dropdown</el-option>
+                        </el-select>
+                      </el-form-item>
+                    </el-col>
+                    <el-col :lg="4" type="flex" justify="end">
+                      <el-button
+                        icon="el-icon-close"
+                        circle
+                        class="delete el-button--danger"
+                        @click="eliminarProcesoPaso(index)"
+                      ></el-button>
+                      <el-button
+                        icon="el-icon-setting"
+                        circle
+                        class="setting btn-violet"
+                        @click="mostrarConfig(index)"
+                      ></el-button>
+                    </el-col>
+                  </el-row>
+                </div>
+              </el-form>
+            </div>
+
+            <!-- DIALOG FOOOOOOOOOOOOOOOOOOOOOOOOOORRRMM -->
+
+            <el-dialog
+              title="Configuraciones"
+              :visible.sync="dialogForm"
+              width="35%"
+              :modal="false"
+            >
+              <component :is="getCurrentComponent"></component>
+              <span slot="footer" class="dialog-footer">
+                <el-button
+                  class="danger"
+                  type="text"
+                  @click="dialogForm = false"
+                  >Cancel</el-button
+                >
                 <el-button type="primary" @click="saveForm()"
                   >Guardar cambios</el-button
                 >
@@ -242,8 +395,29 @@ import AppUpload from "../components/InputsConfigComponents/AppUpload";
 export default {
   data() {
     return {
-      debugg: " ",
       drawer: false,
+      drawer2: false,
+      formPasosCodeados: {
+        campos: [
+          {
+            nombre: "Nombre",
+            tipo: "TextInput",
+          },
+          {
+            nombre: "Fecha",
+            tipo: "Selector de Fecha",
+          },
+          {
+            nombre: "Foto carnet",
+            tipo: "Upload",
+          },
+        ],
+      },
+      formDrawer2: {
+        titulo: "",
+        descripcion: "",
+        responsable: "",
+      },
       formNuevoProceso: {
         value: "",
       },
@@ -269,16 +443,14 @@ export default {
     handleCommand() {
       //
     },
-    debug(campo) {
-      console.log("a");
-      console.log(campo);
-    },
     mostrarConfig(index) {
       this.currentRow = index;
-      switch (this.formCampos.campos[index].tipo) {
+      console.log(this.formPasosCodeados.campos[index].tipo);
+      switch (this.formPasosCodeados.campos[index].tipo) {
         case "TextInput": {
           this.currentComponent = "AppTextInput";
           this.dialogForm = true;
+          console.log(this.dialogForm);
           break;
         }
         case "Upload": {
@@ -286,7 +458,7 @@ export default {
           this.dialogForm = true;
           break;
         }
-        case "DatePicker": {
+        case "Selector de Fecha": {
           this.currentComponent = "AppDTP";
           this.dialogForm = true;
           break;
@@ -299,34 +471,24 @@ export default {
       }
     },
     agregarCampo() {
-      console.log(this.formCampos);
       this.formCampos.campos.push({ nombre: "", tipo: "" });
     },
     eliminarProcesoPaso(index) {
       this.formCampos.campos.splice(index, 1);
     },
     agregarPaso() {
-      console.log(this.formHeader);
-      this.$store.commit("setPasos", {
-        detalles: {
-          titulo: this.formHeader.titulo,
-          descripcion: this.formHeader.descripcion,
-          responsable: this.formHeader.responsable,
-        },
-        pasos: this.formCampos,
+      console.log(this.formDrawer2);
+      console.log(this.formCampos.campos);
+      this.$store.commit("setProcesoActualPaso", {
+        titulo: this.formDrawer2.titulo,
+        descripcion: this.formDrawer2.descripcion,
+        responsable: this.formDrawer2.responsable,
+        pasos: this.formCampos.campos,
       });
-      console.log(this.formCampos);
-      console.log(this.formHeader);
-      this.drawer = false;
-      this.formHeader = {};
+      this.drawer2 = false;
       this.formCampos = {};
     },
     mostrarPaso(index) {
-      this.$store.commit("setPasoActual", index);
-      // setTimeout(() => {
-      //   this.formHeader = this.$store.state.pasoActual.header;
-      //   this.formCampos = this.$store.state.pasoActual.campos;
-      // }, 10);
       this.drawer = true;
     },
     handleBack() {
@@ -334,6 +496,9 @@ export default {
     },
     getProcesoIndex() {
       return this.$route.query[""] - 1;
+    },
+    saveForm() {
+      this.dialogForm = false;
     },
   },
   created() {
