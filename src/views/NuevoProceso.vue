@@ -154,10 +154,10 @@
                   <el-col :lg="9">
                     <el-form-item label="Tipo" class="tipo">
                       <el-select v-model="campo.tipo">
-                        <el-option value="TextInput">TextInput</el-option>
-                        <el-option value="Upload">Upload</el-option>
-                        <el-option value="DatePicker">DatePicker</el-option>
-                        <el-option value="Select">Select</el-option>
+                        <el-option value="TextInput">Input Texto</el-option>
+                        <el-option value="Upload">Adjuntar</el-option>
+                        <el-option value="DatePicker">Input Fecha</el-option>
+                        <el-option value="Select">Dropdown</el-option>
                       </el-select>
                     </el-form-item>
                   </el-col>
