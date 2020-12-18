@@ -1080,6 +1080,13 @@ html {
 
 }
 
+/* */
+
+.el-pagination.is-background .el-pager li {
+    margin: 0 5px;
+    background-color: #f4f4f5 !important;
+    color: #606266 !important;
+}
 
 /* LANDING */
 .landing-header {
@@ -1149,3 +1156,45 @@ html {
 .el-drawer__body::-webkit-scrollbar {
     width: 0.5em;
 }
+
+
+/* RESPONSIVE */
+
+@media (max-width: 767.98px) { 
+    
+    .vnb__collapse-button{
+        svg{
+            fill:#fff !important;
+        }
+    }
+
+    span.el-table__column-filter-trigger{
+        display: none;
+    }
+
+    .tramites-detalle .header .el-row{
+        padding: 10px 0px;
+
+        .btn-back{
+            span{
+                display: none;
+            }
+        }
+
+        .title {
+            width: 200px;
+
+            h2{
+                font-size: 20px;
+            }
+        }
+        
+        
+
+        .tag{
+            display: none !important;
+        }
+    }
+
+}
+
