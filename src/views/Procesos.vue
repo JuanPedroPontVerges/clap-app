@@ -6,14 +6,14 @@
       justify="space-between"
       align="middle"
     >
-      <el-col :sm="12" :lg="12">
+      <el-col :sm="20" >
         <h1>Procesos</h1>
         <p>
           Son los procesos que ofrece tu institución a sus interesados para
           solicitar trámites.
         </p>
       </el-col>
-      <el-col :sm="12" :lg="4">
+      <el-col :sm="4" type="flex" align="end">
         <el-button type="primary" @click="toggleDialog">Agregar</el-button>
       </el-col>
       <el-dialog
@@ -98,14 +98,12 @@
           <div slot="empty">
             <p>No se encontraron resultados</p>
           </div>
-          <el-table-column prop="id" label="ID" min-width="160px">
-          </el-table-column>
           <el-table-column prop="titulo" label="Proceso" min-width="160px">
           </el-table-column>
           <el-table-column
             prop="departamento"
             label="Departamento"
-            min-width="130px"
+            min-width="80px"
             :filters="departamentos"
             :filter-method="filterHandler"
           >
@@ -124,9 +122,9 @@
             :filter-method="filterHandler"
           >
           </el-table-column>
-          <el-table-column prop="paso" label="Pasos" min-width="100px">
+          <el-table-column prop="paso" label="Pasos" min-width="60px">
           </el-table-column>
-          <el-table-column align="center" min-width="150px">
+          <el-table-column align="center" min-width="60px">
             <template slot-scope="scope">
               <el-tooltip
                 class="item"

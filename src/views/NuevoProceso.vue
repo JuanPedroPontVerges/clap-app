@@ -1,94 +1,99 @@
-<template class="nuevo-proceso">
-  <div class="container">
-    <el-row type="flex">
-      <el-col :xs="2">
-        <el-button
-          icon="el-icon-arrow-left"
-          round
-          size="small"
-          @click="handleBack()"
-        ></el-button>
-        <h2 style="display: inline">
-          {{ getNewProceso.titulo || "Error" }}
-        </h2>
-      </el-col>
-      <el-col :xs="22" style="text-align: right">
-        <el-dropdown trigger="click" @command="handleCommand">
-          <el-button
-            type="primary"
-            size="mini"
-            @click.stop="handleAccion(scope.$index)"
-          >
-            <i class="el-icon-more" style="transform: rotate(90deg)"></i>
-          </el-button>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="eliminar">Eliminar</el-dropdown-item>
-            <el-dropdown-item command="editar">Editar</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </el-col>
-    </el-row>
-    <div style="padding: 40px">
-      <el-row>
-        <el-col :xs="24" style="border: 1px solid black">
+<template>
+  <div class="nuevo-proceso">
+      <div class="container">
+      <div class="header">
+        <el-row type="flex">
+          <el-col :xs="20" class="descripcion-header">
+            <div class="btn-back">
+              <el-button
+                icon="el-icon-arrow-left"
+                round
+                size="medium"
+                class="btn-blue"
+                @click="handleBack()"
+              >Volver</el-button>
+            </div>
+            <div class="title">
+              <h2>
+                {{ getNewProceso.titulo || "Error" }}
+              </h2>
+            </div>
+          </el-col>
+          <el-col :xs="4" type="flex" align="right">
+            <el-dropdown trigger="click" @command="handleCommand">
+              <el-button
+                type="primary"
+                size="medium"
+                @click.stop="handleAccion(scope.$index)"
+              >
+                <i class="el-icon-more" style="transform: rotate(90deg)"></i>
+              </el-button>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item command="eliminar">Eliminar</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </el-col>
+        </el-row>
+      </div>
+      
+      <div class="row-container">
+        <div class="details">
           <el-row>
-            <el-col :xs="24" style="padding: 20px">
-              <h2>Sobre el tramite</h2>
-              <p>{{ getNewProceso.descripcion }}</p>
+            <el-col :xs="24">
+              <el-row class="header-box">
+                <el-col :xs="24" >
+                  <p class="title">Sobre el tramite</p>
+                  <p class="description">{{ getNewProceso.descripcion }}</p>
+                </el-col>
+              </el-row>
+              <el-row class="header-box">
+                <el-col :xs="24" >
+                  <p class="title">Departamento a cargo</p>
+                  <p class="description">{{ getNewProceso.departamento }}</p>
+                </el-col>
+              </el-row>
+              <el-row class="header-pasos">
+                <el-col :xs="24">
+                  <h3>Pasos</h3>
+                </el-col>
+              </el-row>
             </el-col>
           </el-row>
-          <el-row>
-            <el-col :xs="24" style="padding: 20px">
-              <h2>Departamento</h2>
-              <p>{{ getNewProceso.departamento }}</p>
-            </el-col>
-          </el-row>
-          <el-row style="border: 1px solid black">
-            <el-col :xs="24" style="padding: 0 20px">
-              <h2 style="text-align: center">Pasos</h2>
-            </el-col>
-          </el-row>
-        </el-col>
-      </el-row>
-      <el-row
-        type="flex"
-        style="border: 1px solid black"
-        align="middle"
-        v-for="(paso, index) in getNewProceso.pasos"
-        :key="index"
-      >
-        <span
-          style="
-            padding: 20px;
-            margin: 10px;
-            border-radius: 50%;
-            border: 1px solid black;
-          "
-          >{{ index + 1 }}</span
-        >
-        <el-col :xs="16">
-          <h3>{{ paso.titulo }}</h3>
-          <h3>Responsable: {{ paso.responsable }}</h3>
-        </el-col>
-        <el-col :xs="8" style="text-align: right; padding: 20px">
-          <el-button type="primary" @click="mostrarPaso(index)"
-            >Ver formulario</el-button
+          <el-row
+            type="flex"
+            class="content"
+            align="middle"
+            v-for="(paso, index) in getNewProceso.pasos"
+            :key="index"
           >
-        </el-col>
-      </el-row>
-      <el-row style="border: 1px solid black">
-        <el-col :xs="24" style="text-align: center; padding: 20px">
-          <div>
-            <el-button
-              type="primary"
-              icon="el-icon-plus"
-              circle
-              @click="drawer = true"
-            ></el-button>
-            <span style="margin: 0 10px; font-size: 20px">Agregar Paso</span>
-          </div>
-        </el-col>
-      </el-row>
+            <span class="step-number">{{ index + 1 }}</span
+            >
+            <el-col :xs="20">
+              <p class="title">{{ paso.titulo }}</p>
+              <p class="responsable">Responsable: {{ paso.responsable }}</p>
+            </el-col>
+            <el-col :xs="4" type="flex" align="right">
+              <el-button type="primary" round size="medium" class="btn-blue" @click="mostrarPaso(index)"
+                >Ver formulario</el-button
+              >
+            </el-col>
+          </el-row>
+          <el-row class="agregar-paso">
+            <el-col :xs="24">
+              <div>
+                <el-button
+                  type="primary"
+                  round
+                  class="btn-violet"
+                  icon="el-icon-plus"
+                  @click="drawer = true"
+                >Agregar Paso</el-button>
+              </div>
+            </el-col>
+          </el-row>
+        </div>
+      </div>
+      
 
       <!-- DRRRRRAAWWWEEEEERRRRRRRRR -->
 

@@ -81,7 +81,7 @@ export default new Vuex.Store({
       {
         id: 2,
         fecha: "13-11-2020",
-        tramite: "Solicitud pago proveedor",
+        tramite: "Pago proveedor",
         interesado: "Gonzalo Sosa",
         pasosCompletados: "2/2",
         tipo: 'Proveedor',
@@ -115,8 +115,8 @@ export default new Vuex.Store({
       },
     ],
     procesos: [{
-        titulo: "UN proceso",
-        descripcion: "Una descripción de un proceso",
+        titulo: "Alta Proveedor",
+        descripcion: "Es el trámite inicial para que un proveedor empiece a trabajar con la institución.",
         departamento: "Administración",
         tipoInteresado: "Empleado / Proveedor",
         id: 1,
@@ -146,12 +146,12 @@ export default new Vuex.Store({
         ]
       },
       {
-        titulo: "Otro proceso",
+        titulo: "Pago Proveedor",
         descripcion: "Otra descripción de otro proceso",
         departamento: "Administración",
-        tipoInteresado: "Alumno / Familiar",
+        tipoInteresado: "Empleado / Proveedor",
         id: 2,
-        paso: '3',
+        paso: '2',
         pasos: [{
             id: 1,
             titulo: "Recepcion Solicitud",
