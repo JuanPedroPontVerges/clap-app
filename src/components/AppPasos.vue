@@ -56,9 +56,6 @@ export default {
       this.selected = id
     }
   },
-  // created() {
-  //   this.tramiteID = ;
-  // },
 };
 </script>
 

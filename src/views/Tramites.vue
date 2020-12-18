@@ -5,7 +5,8 @@
         <el-col :sm="24" :lg="24">
           <h1>Trámites</h1>
           <p>
-            Aquí verás las solicitudes generadas por alumnos familiares, empleados o proveedores de tu institución.
+            Aquí verás las solicitudes generadas por alumnos familiares,
+            empleados o proveedores de tu institución.
           </p>
         </el-col>
       </el-row>
@@ -166,6 +167,7 @@ export default {
     this.$store.state.departamentos.forEach((depto) => {
       this.departamentos.push({ text: depto.nombre, value: depto.nombre });
     });
+    console.log(this.$state.userProfile);
   },
   computed: {
     getUsuario() {

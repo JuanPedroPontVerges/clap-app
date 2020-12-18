@@ -36,11 +36,6 @@ export default {
             path: { name: "Tramites_Empleados" },
           },
           {
-            type: "link",
-            text: "Configuracion",
-            path: { name: "Configuracion_Empleado" },
-          },
-          {
             type: "button",
             iconRight: '<i class="el-icon-user"></i>',
             path: { name: "Tramites_Empleados" },
@@ -52,7 +47,7 @@ export default {
   },
   methods: {
     click(text) {
-      this.navbarOptions.menuOptionsRight[2].path.name = this.$route.name;
+      this.navbarOptions.menuOptionsRight[1].path.name = this.$route.name;
       if (text == "logout") {
         this.$confirm("Esta a punto de cerrar sesión", "Atención", {
           confirmButtonText: "OK",
@@ -79,11 +74,9 @@ export default {
     },
   },
   created() {
-    this.navbarOptions.menuOptionsRight[2].path.name = this.$route.name;
+    this.navbarOptions.menuOptionsRight[1].path.name = this.$route.name;
   },
-  mounted() {
-
-  },
+  mounted() {},
   components: {
     getTypeOfUser() {
       return this.$store.state.userType;
