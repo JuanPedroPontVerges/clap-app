@@ -106,6 +106,7 @@ export default new Vuex.Store({
         departamento: 'Administración',
         estado: 'Finalizado',
         pasos: [{
+            tramite: "Alta Proveedor",
             numeroDePaso: 1,
             nombre: 'Recepción Solicitud',
             descripcionPaso: 'Es el inicio del trámite solicitado por el interesado.',
@@ -125,6 +126,7 @@ export default new Vuex.Store({
             id: 1,
           },
           {
+
             numeroDePaso: 2,
             nombre: 'Respuesta Solicitud',
             descripcionPaso: 'Validar los datos, cargarlos en el CRM de administración y confirmar alta.',
@@ -155,6 +157,7 @@ export default new Vuex.Store({
         departamento: 'Administracion',
         estado: 'Finalizado',
         pasos: [{
+            tramite: "Pago proveedor",
             numeroDePaso: 1,
             nombre: 'Recepción Solicitud',
             descripcionPaso: 'Es el inicio del trámite solicitado por el interesado.',

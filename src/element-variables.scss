@@ -1196,12 +1196,17 @@ html {
         }
     }
 
+   
+
 }
 
 .collapse-mobile{
-    margin-top: 40px;
+    padding-top: 80px;
     max-width: 900px;
 
+    .el-collapse-item__header{
+        padding-left: 20px;
+    }
     .contenido{
         padding: 20px;
 

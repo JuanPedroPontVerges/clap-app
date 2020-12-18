@@ -40,7 +40,7 @@
             </el-col>
         </el-row>
       </div>
-      <el-row class="row-container">
+      <el-row class="row-container hidden-sm-only hidden-xs-only">
         <el-col :sm="18" class="details">
           <el-row>
             <el-col :sm="24">
@@ -108,9 +108,9 @@
         </el-col>
       </el-row>
 
-      <el-row class="collapse-mobile">
-        <el-collapse v-model="activeName" accordion>
-          <el-collapse-item title="Consistency" name="1">
+      <el-row class="collapse-mobile hidden-md-and-up">
+        <el-collapse v-model="activeName" accordion v-if="getPaso.tramite === 'Alta Proveedor'">
+          <el-collapse-item title="Solicitud Trámite" name="1">
             <div class="contenido">
               <el-form label-position="top">
                 <el-form-item label="Tipo Persona">
@@ -171,11 +171,11 @@
 
             </div>
           </el-collapse-item>
-          <el-collapse-item title="Feedback" name="2">
+          <el-collapse-item title="Respuesta Trámite" name="2">
             <div class="contenido">
               <el-form label-position="top">
                 <el-form-item label="Nombre Responsable">
-                  <el-input disabled v-model="getPaso.nombreResponsable"></el-input>
+                  <el-input disabled value="Leonela Ricompensa"></el-input>
                 </el-form-item>
                 <el-form-item label="Departamento">
                   <el-select
@@ -199,6 +199,86 @@
                 </el-form-item>
                 <el-form-item label="Comentarios">
                   <el-input disabled type="textarea" v-model="getPaso.comentarios"></el-input>
+                </el-form-item>
+              </el-form>
+            </div>
+          </el-collapse-item>
+        </el-collapse>
+
+        <el-collapse v-model="activeName" accordion v-if="getPaso.tramite === 'Pago proveedor'">
+          <el-collapse-item title="Solicitud Trámite" name="1">
+            <div class="contenido">
+              <el-form label-position="top">
+                <el-form-item label="Razón Social ">
+                  <el-input v-model="getPaso.razonSocial" :disabled="true"></el-input>
+                </el-form-item>
+                <el-form-item label="CUIT">
+                  <el-input
+                    v-model="getPaso.cuit"
+                    :disabled="true"
+                  ></el-input>
+                </el-form-item>
+                <el-form-item label="Factura a cancelar">
+                  <a href="https://made2.co/agu-borrar/factura.jpg" target="_blank" class="download">
+                    <i class="el-icon-download"></i>
+                    <span>Descargar</span>
+                  </a>
+                </el-form-item>
+                <el-form-item label="Departamento que debe aprobar el pago">
+                  <el-select
+                    v-model="getPaso.departamento"
+                    placeholder="Marketing"
+                    disabled
+                  >
+                    <el-option
+                      v-for="(departamento, index) in getDepartamentos"
+                      :key="index"
+                      :label="departamento.nombre"
+                      :value="departamento.nombre"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="Comentarios">
+                  <el-input type="textarea" v-model="getPaso.comentarios" :disabled="true"></el-input>
+                </el-form-item>
+              </el-form>
+
+            </div>
+          </el-collapse-item>
+          <el-collapse-item title="Respuesta Trámite" name="2">
+            <div class="contenido">
+              <el-form label-position="top">
+                <el-form-item label="Nombre Responsable">
+                  <el-input disabled value="Leonela Ricompensa"></el-input>
+                </el-form-item>
+                <el-form-item label="Departamento">
+                  <el-select
+                    v-model="getPaso.departamento"
+                    placeholder="Administración"
+                    disabled
+                  >
+                    <el-option
+                      v-for="(departamento, index) in getDepartamentos"
+                      :key="index"
+                      :label="departamento.nombre"
+                      :value="departamento.nombre"
+                    ></el-option>
+                  </el-select>
+                </el-form-item>
+                <el-form-item label="Decisión" label-width="50px">
+                  <el-radio-group v-model="getPaso.decision" size="medium">
+                    <el-radio border disabled  label="Si"></el-radio>
+                    <el-radio border disabled  label="No"></el-radio>
+                  </el-radio-group>
+                </el-form-item>
+                <el-form-item label="Comprobante de pago">
+                  <a href="https://made2.co/agu-borrar/transferencia.jpg" target="_blank" class="download">
+                    <i class="el-icon-download"></i>
+                    <span>Descargar</span>
+                  </a>
+                </el-form-item>
+                <el-form-item label="Comentarios">
+                  <el-input disabled type="textarea" value="Fue transferencia"></el-input>
                 </el-form-item>
               </el-form>
             </div>
