@@ -6,6 +6,7 @@
       v-for="(paso, index) in getPasos"
       :key="index"
       @click.native="changePaso(index)"
+      :class="{active: isActive}"
     >
       <el-col :sm="2">
         <span class="numero-pasos">{{ paso.numeroDePaso }}</span>
