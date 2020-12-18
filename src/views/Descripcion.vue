@@ -115,7 +115,7 @@
         </el-col>
       </el-row>
 
-      <el-row class="collapse-mobile">
+      <el-row class="collapse-mobile hidden-md-and-up">
         <el-collapse v-model="activeName" accordion>
           <el-collapse-item title="Dinamico" name="1">
             <div class="contenido">
