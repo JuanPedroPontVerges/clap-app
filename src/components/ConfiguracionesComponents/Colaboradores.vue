@@ -1,28 +1,28 @@
 <template>
-  <div>
-    <el-row>
+  <div class="configuracion-colaboradores">
+    <el-row class="settings-title">
       <el-col :sm="24">
-        <h1>Colaboradores</h1>
+        <h2>Colaboradores</h2>
       </el-col>
       <el-col :sm="24">
-        <div style="margin: 0 0 10px">
-          <i
-            >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo
-            officiis impedit cum!
-          </i>
+        <div>
+          <p>
+            Visualiza cuantos colaboradores tiene tu institución dentro de Pulpo. 
+          </p>
         </div>
       </el-col>
     </el-row>
-    <el-row style="border: 1px solid black; padding: 20px" :gutter="20">
+    <el-row class="settings-body" :gutter="20">
       <el-col :sm="24">
-        <h2>Total colaboradores</h2>
-        <p style="font-size: 30px">3</p>
+        <h3>Total colaboradores</h3>
+        <p style="font-size: 40px;margin:0px;">1</p>
       </el-col>
       <el-col :sm="24"> </el-col>
     </el-row>
-    <el-row :gutter="20" style="border: 1px solid black">
+    <el-row :gutter="20" class="settings-body">
       <el-col :sm="24">
         <h3>Planes</h3>
+        <p style="margin-top:-10px;margin-bottom:30px;">Elige el plan que se ajuste a tu necesidad para poder sumar más miembros de tu equipo.</p>
       </el-col>
       <el-col :sm="8">
         <AppCard texto="Hasta 3 colaboradores" incluido="true"></AppCard>
@@ -32,14 +32,6 @@
       </el-col>
       <el-col :sm="8">
         <AppCard texto="Hasta 10 colaboradores" precio="$3500"></AppCard>
-      </el-col>
-      <el-col :sm="24">
-        <div style="margin: 20px">
-          <i
-            >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo
-            officiis impedit cum!
-          </i>
-        </div>
       </el-col>
     </el-row>
   </div>

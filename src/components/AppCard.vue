@@ -1,14 +1,14 @@
 <template>
   <el-card class="box-card">
     <div slot="header" class="clearfix">
-      <h2 style="text-align:center;">{{ texto }} <br />{{ tamano }}</h2>
+      <h1 style="text-align:center;margin:0px;">{{ texto }} {{ tamano }}</h1>
     </div>
     <div v-if="incluido">
-      <p style="text-align:center;">Incluido</p>
+      <p style="text-align:center;">Actual</p>
     </div>
     <div v-else style="text-align:center;">
-      <p>{{ precio }}</p>
-      <el-button title="Comprar" type="primary">Comprar</el-button>
+      <p style="font-size: 25px;font-weight:bold;">{{ precio }} <span style="font-size:14px;">/mes</span></p>
+      <el-button title="Comprar" class="btn-blue" style="padding: 15px 40px;" type="primary">Comprar</el-button>
     </div>
   </el-card>
 </template>

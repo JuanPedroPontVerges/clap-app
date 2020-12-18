@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="configuracion-general">
     <el-row class="settings-title">
       <el-col :sm="24">
         <h2>General</h2>
@@ -7,8 +7,7 @@
       <el-col :sm="24">
         <div>
           <p>
-            Indica la información sobre tu instituto que se le mostrará a los
-            interesados.
+            Indica la información sobre tu instituto que se le mostrará a los interesados.
           </p>
         </div>
       </el-col>
@@ -19,66 +18,35 @@
           <h3>Logo</h3>
         </el-col>
         <el-col :sm="24">
-          <el-upload
-            action="#"
-            list-type="picture-card"
-            :auto-upload="false"
-            :on-change="toggleUpload"
-            :on-remove="toggleUpload"
-            :class="{ hideUpload: !showUpload }"
-          >
-            <!-- Atributo de <el-upload> <<:file-list="fileList">> -->
-            <i slot="default" class="el-icon-plus"></i>
-            <div slot="file" slot-scope="{ file }">
-              <img
-                class="el-upload-list__item-thumbnail"
-                :src="file.url"
-                alt=""
-              />
-              <span class="el-upload-list__item-actions">
-                <span
-                  class="el-upload-list__item-preview"
-                  @click="handlePictureCardPreview(file)"
-                >
-                  <i class="el-icon-zoom-in"></i>
-                </span>
-                <span
-                  v-if="!disabled"
-                  class="el-upload-list__item-delete"
-                  @click="handleRemove(file)"
-                >
-                  <i class="el-icon-delete"></i>
-                </span>
-              </span>
-            </div>
-          </el-upload>
-          <el-dialog :visible.sync="dialogVisible">
-            <img width="100%" :src="dialogImageUrl" alt="" />
-          </el-dialog>
+          <img class="logo" src="../../assets/logoMetro.png" alt="" />
+          <a href="#"><i class="el-icon-delete"></i>Eliminar</a>
         </el-col>
 
-        <el-col :sm="24">
+        <el-col :sm="12" style="margin-top:30px;">
           <el-form-item label="Nombre Institución" label-width="50px">
             <el-input
-              v-model="getForm.nombre"
-              style="margin-top: 10px"
+              value="La Metro"
             ></el-input>
           </el-form-item>
+        </el-col>
+        <el-col :sm="24">
           <el-form-item label="Descripción">
             <el-input
               type="textarea"
-              v-model="getForm.descripcion"
-              maxlength="50"
-              show-word-limit
+              value="Bienvenido al panel de gestión de la institución. Desde aqui podrás solicitar y dar seguimiento de tus trámites."
             >
             </el-input>
           </el-form-item>
+        </el-col>
+        <el-col :sm="12">
           <el-form-item label="URL Institución" label-width="50px">
-            <el-input v-model="getForm.url">
+            <el-input value="lametro">
               <template slot="append">.pulpo.com.ar</template>
             </el-input>
           </el-form-item>
-          <el-button type="primary" @click="guardarCambios">Guardar</el-button>
+        </el-col>
+        <el-col :sm="14">
+          <el-button type="primary" class="btn-blue" @click="guardarCambios">Guardar</el-button>
         </el-col>
       </el-form>
     </el-row>
