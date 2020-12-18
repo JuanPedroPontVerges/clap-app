@@ -10,8 +10,11 @@ import VueNavigationBar from "vue-navigation-bar";
 Vue.component("vue-navigation-bar", VueNavigationBar);
 // vue navigation bar CSS
 import "vue-navigation-bar/dist/vue-navigation-bar.css";
-import VueSocialChat from 'vue-social-chat'
+import VueApexCharts from 'vue-apexcharts'
 
+
+Vue.use(VueApexCharts)
+Vue.component('apexchart', VueApexCharts)
 Vue.config.productionTip = false;
 
 let app

@@ -124,7 +124,7 @@
             :filter-method="filterHandler"
           >
           </el-table-column>
-          <el-table-column prop="pasos" label="Pasos" min-width="100px">
+          <el-table-column prop="paso" label="Pasos" min-width="100px">
           </el-table-column>
           <el-table-column align="center" min-width="150px">
             <template slot-scope="scope">
@@ -191,9 +191,9 @@ export default {
         pasos: [
           {
             id: 0,
-            titulo: "",
-            responsable: "",
-            dscripcion: "",
+            titulo: "Recepcion Solicitud",
+            responsable: "Interesado",
+            dscripcion: "Descripción de Receipción Solicitud",
             campos: [
               {
                 id: 0,
@@ -270,13 +270,7 @@ export default {
       }
     },
     handleCurrentChange(val) {
-      this.$store.commit("setProcesoActual", {
-        departamento: val.departamento,
-        descripcion: val.descripcion,
-        tipoInteresado: val.tipoInteresado,
-        titulo: val.titulo,
-        id: val.id,
-      });
+      this.$store.commit("setProcesoActual", val.id);
       setTimeout(() => {
         this.$router.push(`/nuevo_proceso/id?=${val.id}`);
       }, 10);
