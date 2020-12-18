@@ -59,7 +59,7 @@ const routes = [{
     }
   },
   {
-    path: "/nuevo_proceso",
+    path: "/nuevo_proceso/:id",
     name: "Nuevo_Proceso",
     component: NuevoProceso,
     meta: {

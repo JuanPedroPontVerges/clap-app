@@ -146,23 +146,24 @@
             <el-col :lg="24">
               <p>Campos</p>
             </el-col>
-            <el-form :model="formCampos" label-position="top">
+
+            <el-form label-position="top">
               <div
                 style="margin: 20px"
-                v-for="(paso, index) in getProcesosPasos"
+                v-for="(campo, index) in formCampos"
                 :key="index"
               >
                 <el-col :lg="3">
                   <p>{{ index + 1 }}</p>
                 </el-col>
                 <el-col :xs="9" :lg="8">
-                  <el-form-item label="Nombre">
-                    <el-input v-model="paso.nombre"></el-input>
+                  <el-form-item label="Nombre" >
+                    <el-input  v-model="campo.nombre"></el-input>
                   </el-form-item>
                 </el-col>
                 <el-col :xs="9" :lg="8">
                   <el-form-item label="Tipo">
-                    <el-select v-model="paso.tipo">
+                    <el-select  v-model="campo.tipo">
                       <el-option value="TextInput">TextInput</el-option>
                       <el-option value="TextArea">TextArea</el-option>
                       <el-option value="DatePicker">DatePicker</el-option>
@@ -277,10 +278,12 @@ export default {
         descripcion: "",
         responsable: "",
       },
-      formCampos: {
-        nombre: "",
-        tipo: "",
-      },
+      formCampos: [
+        {
+          nombre: "Ejemplo",
+          tipo: "TextArea",
+        },
+      ],
       formSettings: {
         min: 0,
         max: 0,
@@ -295,16 +298,22 @@ export default {
     },
     agregarCampo() {
       console.log(this.formCampos);
-      this.$store.commit("setProcesosPasos", this.formCampos);
+      this.formCampos.push({ nombre: "", tipo: "" });
     },
     eliminarProcesoPaso(index) {
-      this.$store.commit("eliminarProcesoPaso", index);
+      this.formCampos.splice(index, 1)
     },
     agregarPaso() {
       this.$store.commit("setPasos", {
-        header: this.formHeader,
-        campos: this.formCampos,
+        detalles: {
+          titulo: this.formHeader.titulo,
+          descripcion: this.formHeader.descripcion,
+          responsable: this.formHeader.responsable,
+        },
+        pasos: this.formCampos,
       });
+      console.log(this.formCampos);
+      console.log(this.formHeader);
       this.drawer = false;
       this.formHeader = {};
       this.formCampos = {};
@@ -320,6 +329,9 @@ export default {
     handleBack() {
       this.$router.back();
     },
+    getProcesoIndex() {
+      return this.$route.query[""] - 1;
+    },
   },
   created() {
     this.$emit(`update:layout`, HomeLayout);
@@ -329,7 +341,7 @@ export default {
       return this.$store.state.procesoActual;
     },
     getProcesosPasos() {
-      return this.$store.state.procesosPasos;
+      return this.$store.state.pruebaProcesos[this.getProcesoIndex()].pasos;
     },
     getPasos() {
       return this.$store.state.pasos;

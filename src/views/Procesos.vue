@@ -98,6 +98,8 @@
           <div slot="empty">
             <p>No se encontraron resultados</p>
           </div>
+          <el-table-column prop="id" label="ID" min-width="160px">
+          </el-table-column>
           <el-table-column prop="titulo" label="Proceso" min-width="160px">
           </el-table-column>
           <el-table-column
@@ -185,6 +187,22 @@ export default {
         descripcion: "",
         departamento: "",
         tipoInteresado: "",
+        id: 0,
+        pasos: [
+          {
+            id: 0,
+            titulo: "",
+            responsable: "",
+            dscripcion: "",
+            campos: [
+              {
+                id: 0,
+                nombre: "",
+                tipo: "",
+              },
+            ],
+          },
+        ],
       },
       search: "",
       currentRow: null,
@@ -227,6 +245,9 @@ export default {
     getDepartamentos() {
       return this.$store.state.departamentos;
     },
+    getGeneratedID() {
+      return this.$store.state.generatedID;
+    },
   },
   methods: {
     handleDelete(index) {
@@ -254,10 +275,11 @@ export default {
         descripcion: val.descripcion,
         tipoInteresado: val.tipoInteresado,
         titulo: val.titulo,
+        id: val.id,
       });
       setTimeout(() => {
-        this.$router.push(`/nuevo_proceso`);
-      },10);
+        this.$router.push(`/nuevo_proceso/id?=${val.id}`);
+      }, 10);
     },
     getNumeroFila(row, column, cell, event) {
       this.nroFila = this.getTableData.indexOf(row);
@@ -288,8 +310,10 @@ export default {
     agregarProceso() {
       this.$store.commit("setAgregarProceso", this.form);
       this.$store.commit("setProcesoActual", this.form);
+      this.$store.commit("setGeneratedID");
+      this.form.id = this.$store.state.generatedID;
+      this.$router.push(`/nuevo_proceso/id?=${this.form.id}`);
       this.form = {};
-      this.$router.push(`/nuevo_proceso`);
     },
     handleBack() {
       this.$router.back();

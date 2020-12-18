@@ -98,24 +98,6 @@ export default new Vuex.Store({
         ]
       },
     ],
-    pruebaProcesos: [{
-      id: 0,
-      titulo: '',
-      departamento: '',
-      tipoInteresado: '',
-      descripcion: '',
-      pasos: [{
-        id: 0,
-        titulo: '',
-        repsonsable: '',
-        descripcion: '',
-        campos: [{
-          id: 0,
-          nombre: '',
-          tipo: ''
-        }]
-      }]
-    }],
     procesos: [{}],
     departamentos: [],
     personas: [],
@@ -133,7 +115,8 @@ export default new Vuex.Store({
       responsable: 'Interesado',
       descripcion: 'Random description'
     }],
-    pasoActual: {}
+    pasoActual: {},
+    generatedID: 0,
   },
   mutations: {
     setUserProfile(state, val) {
@@ -256,6 +239,9 @@ export default new Vuex.Store({
       setTimeout(() => {
         console.log(state.pasoActual);
       }, 10)
+    },
+    setGeneratedID(state) {
+      state.generatedID++;
     }
   },
   actions: {
