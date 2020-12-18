@@ -1,21 +1,8 @@
 <template>
   <el-form :model="formSettings">
-    <h2>Configuración para TextInput</h2>
-    <el-form-item label="Caracteres minimos">
-      <el-input-number
-        size="small"
-        v-model="formSettings.min"
-        :min="1"
-        :max="10"
-      ></el-input-number>
-    </el-form-item>
-    <el-form-item label="Caracteres máximos">
-      <el-input-number
-        size="small"
-        v-model="formSettings.max"
-        :min="10"
-        :max="20"
-      ></el-input-number>
+    <h2>Configuración para Checkbox</h2>
+    <el-form-item label="Valores">
+      <el-input type="textarea" v-model="formSettings.valores"></el-input>
     </el-form-item>
     <el-form-item label="Descripción">
       <el-input type="textarea" :rows="2" v-model="formSettings.description">
@@ -32,9 +19,9 @@ export default {
   data() {
     return {
       formSettings: {
-        max: "",
-        min: "",
+        valores: "",
         description: "",
+        radio: "",
       },
     };
   },

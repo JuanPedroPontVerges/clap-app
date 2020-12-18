@@ -28,7 +28,22 @@
         </el-row>
       </el-form>
       <div>
-        <el-button type="primary" @click="loguearse()" style="width:40%;" class="btn-blue">Ingresar</el-button>
+        <el-button
+          v-if="this.$route.query.user == 'Empleados/Proveedores'"
+          type="primary"
+          @click="loginEmpleados()"
+          style="width: 40%"
+          class="btn-blue"
+          >Ingresar</el-button
+        >
+        <el-button
+          v-else
+          type="primary"
+          @click="loguearse()"
+          style="width: 40%"
+          class="btn-blue"
+          >Ingresar</el-button
+        >
       </div>
       <p v-if="errMsg">
         {{ errMsg }}
@@ -67,8 +82,13 @@ export default {
     toggleRegister() {
       this.$store.commit("setCurrentComponent", "AppRegister");
     },
+    loginEmpleados() {
+      this.$store.dispatch("loginEmpleados", {
+        email: this.loginForm.email,
+        password: this.loginForm.contrasena,
+      });
+    },
     loguearse() {
-      console.log("logeo");
       this.$store.dispatch("login", {
         email: this.loginForm.email,
         password: this.loginForm.contrasena,
@@ -88,5 +108,4 @@ export default {
 
 
 <style>
-
 </style>

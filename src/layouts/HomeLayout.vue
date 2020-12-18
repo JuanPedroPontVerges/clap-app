@@ -62,8 +62,8 @@ export default {
   },
   methods: {
     click(text) {
-      this.navbarOptions.menuOptionsRight[5].path.name = this.$route.name;
-      if (text == "logout") {
+      this.navbarOptions.menuOptionsRight[4].path.name = this.$route.name;
+      if (text == "Cerrar Sesión") {
         this.$confirm("Esta a punto de cerrar sesión", "Atención", {
           confirmButtonText: "OK",
           cancelButtonText: "Cancelar",
@@ -89,7 +89,7 @@ export default {
     },
   },
   created() {
-    this.navbarOptions.menuOptionsRight[5].path.name = this.$route.name;
+    this.navbarOptions.menuOptionsRight[4].path.name = this.$route.name;
   },
   components: {
     getTypeOfUser() {

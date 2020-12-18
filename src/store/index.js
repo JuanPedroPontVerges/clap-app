@@ -277,8 +277,30 @@ export default new Vuex.Store({
       responsable: 'Interesado',
       descripcion: 'Random description'
     }],
-    pasoActual: {},
-    generatedID: 0,
+    pasoActual: {
+      campos: [{
+          nombre: "Campo N°1",
+          tipo: "Text Field"
+        },
+        {
+          nombre: "Paso N°2",
+          tipo: "Select"
+        },
+        {
+          nombre: "Paso N°3",
+          tipo: "Upload"
+        },
+      ],
+      header: {
+        titulo: "Recepción Solicitud",
+        responsable: "Interesado",
+        descripcion: "Random description"
+      },
+      descripcion: "Random description",
+      responsable: "Interesado",
+      titulo: "Recepción Solicitud",
+      generatedID: 0,
+    }
   },
   mutations: {
     setUserProfile(state, val) {
@@ -406,6 +428,10 @@ export default new Vuex.Store({
     },
     setNavBar(state, payload) {
       state.navbarOptions = payload
+    },
+    setProcesoActualPaso(state, payload) {
+      console.log(payload);
+      state.procesoActual[0].pasos.push(payload)
     }
   },
   actions: {

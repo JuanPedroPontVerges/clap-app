@@ -1,20 +1,20 @@
 <template>
   <el-form :model="formSettings">
-    <h2>Configuración para TextInput</h2>
+    <h2>Configuración para TextArea</h2>
     <el-form-item label="Caracteres minimos">
       <el-input-number
         size="small"
         v-model="formSettings.min"
-        :min="1"
-        :max="10"
+        :min="10"
+        :max="40"
       ></el-input-number>
     </el-form-item>
     <el-form-item label="Caracteres máximos">
       <el-input-number
         size="small"
         v-model="formSettings.max"
-        :min="10"
-        :max="20"
+        :min="40"
+        :max="250"
       ></el-input-number>
     </el-form-item>
     <el-form-item label="Descripción">
