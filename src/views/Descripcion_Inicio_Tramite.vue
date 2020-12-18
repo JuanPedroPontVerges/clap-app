@@ -1,5 +1,6 @@
 <template>
   <div>
+    <el-button type="success" @click="handleBack()">Completar</el-button>
     <component :is="getCurrentTramite"></component>
   </div>
 </template>
@@ -16,6 +17,11 @@ export default {
     getCurrentTramite() {
       console.log(this.$store.state.currentInicioTramite);
       return this.$store.state.currentInicioTramite;
+    },
+  },
+  methods: {
+    handleBack() {
+      this.$router.back();
     },
   },
   components: {
